@@ -229,6 +229,7 @@ namespace kNumbers
         List<NeedDef> pNeedDef;
 
         List<KListObject> kList = new List<KListObject>();
+        int listScrollPos = 0;
 
         OrderBy chosenOrderBy = OrderBy.Name;
         KListObject sortObject;
@@ -853,6 +854,26 @@ namespace kNumbers
             }
             x += buttonWidth + 10;
 
+            // Scroll stats
+            {
+                Rect pageDownBtn = new Rect(x, 0f, PawnRowHeight, PawnRowHeight);
+                if (Widgets.ButtonText(pageDownBtn, "<<"))
+                {
+                    listScrollPos -= 8;
+                }
+                x += PawnRowHeight + 10;
+
+                Rect pageUpBtn = new Rect(x, 0f, PawnRowHeight, PawnRowHeight);
+                if (Widgets.ButtonText(pageUpBtn, ">>"))
+                {
+                    listScrollPos += 8;
+                }
+                x += PawnRowHeight + 10;
+
+                if (listScrollPos >= kList.Count) listScrollPos = kList.Count - 1;
+                if (listScrollPos < 0) listScrollPos = 0;
+            }
+
             //TODO: implement
             /*
             Rect addPresetBtn = new Rect(x, 0f, buttonWidth, PawnRowHeight);
@@ -904,7 +925,7 @@ namespace kNumbers
             kListDesiredWidth = 175f;
             Text.Anchor = TextAnchor.MiddleCenter;
 
-            for (int i = 0; i < kList.Count; i++)
+            for (int i = listScrollPos; i < kList.Count; i++)
             {
                 float colWidth = kList[i].minWidthDesired;
 
@@ -972,7 +993,7 @@ namespace kNumbers
             Text.Anchor = TextAnchor.MiddleCenter;
 
             //TODO: better interface - auto width calculation, make sure columns won't overlap
-            for (int i = 0; i < kList.Count; i++)
+            for (int i = listScrollPos; i < kList.Count; i++)
             {
                 float colWidth = kList[i].minWidthDesired;
                 if (colWidth + x + cFreeSpaceAtTheEnd > maxWindowWidth)
