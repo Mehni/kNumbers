@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+	<koisama.Numbers.Title>Numbers!</koisama.Numbers.Title>
+	<koisama.Numbers.Count>Nombre de rangées</koisama.Numbers.Count>
+	<koisama.Numbers.ClickToToggle>Cliquez pour sélectionner la métrique ou l'état.</koisama.Numbers.ClickToToggle>
+	<koisama.Numbers.RemoveTooltip>Faites un clic droit pour supprimer la colonne.</koisama.Numbers.RemoveTooltip>
+	<koisama.Numbers.SetPresetLabel>Vues prédéfinies</koisama.Numbers.SetPresetLabel>
+
+	<!--- becomes Load {medical/combat} preset -->
+	<Numbers_Presets.Load>Charger la vue "{0}" prédéfinie</Numbers_Presets.Load>
+	<Numbers_Presets.Medical>santé</Numbers_Presets.Medical>
+	<Numbers_Presets.Combat>combat</Numbers_Presets.Combat>
+	<Numbers_Presets.WorkTabPlus>travail (élargi)</Numbers_Presets.WorkTabPlus>
+
+	<Numbers_SetAsDefault>Enregistrez la vue actuelle en tant que vue par défaut</Numbers_SetAsDefault>
+	<Numbers_SetAsDefaultExplanation>Définir la vue actuelle comme la vue par défaut pour ce type de vue ({0}). Esta vista será utilizado para nuevas colonias. Se puede eliminar en la configuración de mod: [Menú] => [Opciones] => [Ajustes de mod] => [Numbers].</Numbers_SetAsDefaultExplanation>
+	<Numbers_NoDefaultStoredForThisView>No hay valores predeterminados almacenados para este tipo de vista actualmente.</Numbers_NoDefaultStoredForThisView>
+	<Numbers_LoadDefault>Carga la vista predeterminada</Numbers_LoadDefault>
+
+	<Numbers_ShowMoreInfoThanVanilla>Muestra las necesidades y los trabajos incluso donde normalmente estaría ocultas.</Numbers_ShowMoreInfoThanVanilla>
+	<Numbers_coolerThanTheWildlifeTab>Numbers! es todo lo que siempre quise de la pestaña "Fauna", que se hiciera cargo.</Numbers_coolerThanTheWildlifeTab>
+	<Numbers_MaxTableHeight>Altura máxima de la pestaña "Numbers" que está permitido a utilizar.</Numbers_MaxTableHeight>
+
+	<Numbers_LoadSavedLayout>Cargar la vista guardad</Numbers_LoadSavedLayout>
+	<Numbers_NothingSaved>Nada guardado</Numbers_NothingSaved>
+	<Numbers_SaveCurrentLayout>Guardar la vista actual</Numbers_SaveCurrentLayout>
+
+</LanguageData>
