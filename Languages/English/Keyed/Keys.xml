@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
 
-	<koisama.Numbers.Title>Numbers overview</koisama.Numbers.Title>
-	<koisama.Numbers.Count>Row Count</koisama.Numbers.Count>
-	<koisama.Numbers.ClickToToggle>Click to select pawn type.</koisama.Numbers.ClickToToggle>
+	<koisama.Numbers.Title>Numbers!</koisama.Numbers.Title>
+	<koisama.Numbers.Count>Number of rows</koisama.Numbers.Count>
+	<koisama.Numbers.ClickToToggle>Click to select metric or pawn type.</koisama.Numbers.ClickToToggle>
 	<koisama.Numbers.RemoveTooltip>Right click to remove column.</koisama.Numbers.RemoveTooltip>
 	<koisama.Numbers.SetPresetLabel>Presets</koisama.Numbers.SetPresetLabel>
-	
+
 	<!--- becomes Load {medical/combat} preset -->
 	<Numbers_Presets.Load>Load {0} preset</Numbers_Presets.Load>
 	<Numbers_Presets.Medical>medical</Numbers_Presets.Medical>
 	<Numbers_Presets.Combat>combat</Numbers_Presets.Combat>
-	<Numbers_Presets.WorkTabPlus>worktab plus</Numbers_Presets.WorkTabPlus>
-	
-	<Numbers_SetAsDefault>Set as default</Numbers_SetAsDefault>
-	<Numbers_SetAsDefaultExplanation>Sets the currently viewed layout as the default for this type of view ({0}). This layout will then be used for new colonies. Can be deleted in the mod settings (Menu => Options => Mod settings => Numbers).</Numbers_SetAsDefaultExplanation>
+	<Numbers_Presets.WorkTabPlus>work (extended)</Numbers_Presets.WorkTabPlus>
+
+	<Numbers_SetAsDefault>Set current view as default</Numbers_SetAsDefault>
+	<Numbers_SetAsDefaultExplanation>Set the current view as the default for this type of view ({0}).\n\nThis view will then be used for new colonies.\n\nCan be deleted in the mod settings:\n  [Menu] => [Options] => [Mod settings] => [Numbers].</Numbers_SetAsDefaultExplanation>
 	<Numbers_NoDefaultStoredForThisView>There are no defaults stored for the currently viewed pawn type.</Numbers_NoDefaultStoredForThisView>
-	<Numbers_LoadDefault>Load default</Numbers_LoadDefault>
+	<Numbers_LoadDefault>Load default view</Numbers_LoadDefault>
 
 	<Numbers_ShowMoreInfoThanVanilla>Show needs and jobs even where it would normally be hidden.</Numbers_ShowMoreInfoThanVanilla>
-	<Numbers_coolerThanTheWildlifeTab>Numbers is everything I ever wanted from the Wildlife tab and I want it to take over.</Numbers_coolerThanTheWildlifeTab>
-	<Numbers_MaxTableHeight>Max amount of vertical screen space Numbers is allowed to use.</Numbers_MaxTableHeight>
+	<Numbers_coolerThanTheWildlifeTab>Numbers! is everything I ever wanted from the "Wildlife" tab and I want it to take over.</Numbers_coolerThanTheWildlifeTab>
+	<Numbers_MaxTableHeight>Maximum height of the "Numbers" tab that is allowed to use.</Numbers_MaxTableHeight>
 
-	<Numbers_LoadSavedLayout>Load saved layout</Numbers_LoadSavedLayout>
+	<Numbers_LoadSavedLayout>Load saved view</Numbers_LoadSavedLayout>
 	<Numbers_NothingSaved>Nothing saved</Numbers_NothingSaved>
-	<Numbers_SaveCurrentLayout>Save current layout</Numbers_SaveCurrentLayout>
+	<Numbers_SaveCurrentLayout>Save current view</Numbers_SaveCurrentLayout>
 
 </LanguageData>
