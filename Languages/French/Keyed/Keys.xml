@@ -14,16 +14,16 @@
 	<Numbers_Presets.WorkTabPlus>travail (élargi)</Numbers_Presets.WorkTabPlus>
 
 	<Numbers_SetAsDefault>Enregistrez la vue actuelle en tant que vue par défaut</Numbers_SetAsDefault>
-	<Numbers_SetAsDefaultExplanation>Définir la vue actuelle comme la vue par défaut pour ce type de vue ({0}). Esta vista será utilizado para nuevas colonias. Se puede eliminar en la configuración de mod: [Menú] => [Opciones] => [Ajustes de mod] => [Numbers].</Numbers_SetAsDefaultExplanation>
-	<Numbers_NoDefaultStoredForThisView>No hay valores predeterminados almacenados para este tipo de vista actualmente.</Numbers_NoDefaultStoredForThisView>
-	<Numbers_LoadDefault>Carga la vista predeterminada</Numbers_LoadDefault>
+	<Numbers_SetAsDefaultExplanation>Définir la vue actuelle comme la vue par défaut pour ce type de vue ({0}).\n\nCette vue sera utilisée pour les nouvelles colonies.\n\nIl peut être supprimé dans la configuration du mod:\n\n  [Menu] => [Options] => [Paramètres de mod] => [Numbers].</Numbers_SetAsDefaultExplanation>
+	<Numbers_NoDefaultStoredForThisView>Aucune valeur par défaut n'est actuellement stockée pour ce type de vue.</Numbers_NoDefaultStoredForThisView>
+	<Numbers_LoadDefault>Charger la vue par défaut</Numbers_LoadDefault>
 
-	<Numbers_ShowMoreInfoThanVanilla>Muestra las necesidades y los trabajos incluso donde normalmente estaría ocultas.</Numbers_ShowMoreInfoThanVanilla>
+	<Numbers_ShowMoreInfoThanVanilla>Afficher les besoins et les emplois même là où ils seraient normalement cachés.</Numbers_ShowMoreInfoThanVanilla>
 	<Numbers_coolerThanTheWildlifeTab>Numbers! es todo lo que siempre quise de la pestaña "Fauna", que se hiciera cargo.</Numbers_coolerThanTheWildlifeTab>
-	<Numbers_MaxTableHeight>Altura máxima de la pestaña "Numbers" que está permitido a utilizar.</Numbers_MaxTableHeight>
+	<Numbers_MaxTableHeight>Hauteur maximale de l'onglet "Numbers" autorisée à être utilisée.</Numbers_MaxTableHeight>
 
-	<Numbers_LoadSavedLayout>Cargar la vista guardad</Numbers_LoadSavedLayout>
-	<Numbers_NothingSaved>Nada guardado</Numbers_NothingSaved>
-	<Numbers_SaveCurrentLayout>Guardar la vista actual</Numbers_SaveCurrentLayout>
+	<Numbers_LoadSavedLayout>Charger la vue enregistrée</Numbers_LoadSavedLayout>
+	<Numbers_NothingSaved>Rien n'est enregistrée</Numbers_NothingSaved>
+	<Numbers_SaveCurrentLayout>Enregistrer la vue actuelle</Numbers_SaveCurrentLayout>
 
 </LanguageData>
