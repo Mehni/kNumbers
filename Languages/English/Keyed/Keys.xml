@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
 
-	<koisama.Numbers.Title>Numbers!</koisama.Numbers.Title>
+	<koisama.Numbers.Title>Numbers</koisama.Numbers.Title>
 	<koisama.Numbers.Count>Number of rows</koisama.Numbers.Count>
 	<koisama.Numbers.ClickToToggle>Click to select metric or pawn type.</koisama.Numbers.ClickToToggle>
 	<koisama.Numbers.RemoveTooltip>Right click to remove column.</koisama.Numbers.RemoveTooltip>
@@ -19,8 +19,8 @@
 	<Numbers_LoadDefault>Load default view</Numbers_LoadDefault>
 
 	<Numbers_ShowMoreInfoThanVanilla>Show needs and jobs even where it would normally be hidden.</Numbers_ShowMoreInfoThanVanilla>
-	<Numbers_coolerThanTheWildlifeTab>Numbers! is everything I ever wanted from the "Wildlife" tab and I want it to take over.</Numbers_coolerThanTheWildlifeTab>
-	<Numbers_MaxTableHeight>Maximum height of the "Numbers" tab that is allowed to use.</Numbers_MaxTableHeight>
+	<Numbers_coolerThanTheWildlifeTab>Numbers is everything I ever wanted from the "Wildlife" tab and I want it to take over.</Numbers_coolerThanTheWildlifeTab>
+	<Numbers_MaxTableHeight>Set the maximum screen height that is allowed to expand the "Numbers" tab.</Numbers_MaxTableHeight>
 
 	<Numbers_LoadSavedLayout>Load saved view</Numbers_LoadSavedLayout>
 	<Numbers_NothingSaved>Nothing saved</Numbers_NothingSaved>
