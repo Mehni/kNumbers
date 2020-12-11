@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Numbers
@@ -9,5 +10,8 @@ namespace Numbers
         {
             return MeditationUtility.FocusTypesAvailableForPawnString(pawn);
         }
+
+        public override int GetMinWidth(PawnTable table)
+            => Mathf.Max(base.GetMinWidth(table), 200);
     }
 }
