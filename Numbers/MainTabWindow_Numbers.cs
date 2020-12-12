@@ -162,6 +162,12 @@
                 DoButton("TabHealth".Translate(), tmp.ToList(), ref x);
             }
 
+            //abilities btn
+            if (ModLister.RoyaltyInstalled)
+            {
+                DoButton("Abilities".Translate(), optionsMaker.OptionsMakerForGenericDef(DefDatabase<AbilityDef>.AllDefsListForReading.OrderBy(y => y.label)), ref x);
+            }
+
             //records btn
             DoButton("TabRecords".Translate(), optionsMaker.OptionsMakerForGenericDef(DefDatabase<RecordDef>.AllDefsListForReading), ref x);
 

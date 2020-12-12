@@ -44,6 +44,36 @@
     <sortable>true</sortable>
     <label>Title</label>
   </PawnColumnDef>
+  
+  <PawnColumnDef>
+    <defName>Numbers_Psyfocus</defName>
+    <workerClass>Numbers.PawnColumnWorker_Psyfocus</workerClass>
+    <sortable>true</sortable>
+    <label>Psyfocus</label>
+    <modExtensions>
+      <li Class="Numbers.DefModExtension_NeedsRoyalty"/>
+    </modExtensions>
+  </PawnColumnDef>
+  
+  <PawnColumnDef>
+    <defName>Numbers_Entropy</defName>
+    <workerClass>Numbers.PawnColumnWorker_Entropy</workerClass>
+    <sortable>true</sortable>
+    <label>Heat</label>
+    <modExtensions>
+      <li Class="Numbers.DefModExtension_NeedsRoyalty"/>
+    </modExtensions>
+  </PawnColumnDef>
+  
+  <PawnColumnDef>
+    <defName>Numbers_PsylinkLevel</defName>
+    <workerClass>Numbers.PawnColumnWorker_PsylinkLevel</workerClass>
+    <sortable>true</sortable>
+    <label>Psylevel</label>
+    <modExtensions>
+      <li Class="Numbers.DefModExtension_NeedsRoyalty"/>
+    </modExtensions>
+  </PawnColumnDef>
 
   <PawnColumnDef>
     <defName>Numbers_Equipment</defName>

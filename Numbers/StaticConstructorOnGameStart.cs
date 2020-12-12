@@ -27,6 +27,7 @@
         public static List<PawnColumnDef> combatPreset = new List<PawnColumnDef>(),
                                           workTabPlusPreset = new List<PawnColumnDef>(),
                                           colonistNeedsPreset = new List<PawnColumnDef>(),
+                                          psycastingPreset = new List<PawnColumnDef>(),
                                           medicalPreset = new List<PawnColumnDef>();
 
         public static Type animalTab;
@@ -79,7 +80,8 @@
                         && x.defName.StartsWith("Numbers_")
                         && !(x.Worker is PawnColumnWorker_AllHediffs
                         || x.Worker is PawnColumnWorker_SelfTend
-                        || x.Worker is PawnColumnWorker_ManhunterOnTameFailChance))) //special treatment for those.
+                        || x.Worker is PawnColumnWorker_ManhunterOnTameFailChance
+                        || x.Worker is PawnColumnWorker_Ability))) //special treatment for those.
             {
                 pawnColumnDef.headerTip += (pawnColumnDef.headerTip.NullOrEmpty() ? "" : "\n\n") + "Numbers_ColumnHeader_Tooltip".Translate();
             }
@@ -90,7 +92,23 @@
             combatPreset.AddRange(DefDatabase<PawnTableDef>.GetNamed("Numbers_CombatPreset").columns);
             workTabPlusPreset.AddRange(DefDatabase<PawnTableDef>.GetNamed("Numbers_WorkTabPlusPreset").columns);
             colonistNeedsPreset.AddRange(DefDatabase<PawnTableDef>.GetNamed("Numbers_ColonistNeedsPreset").columns);
+            PopulatePsycastingPreset();
             PopulateMedicalPreset();
+        }
+
+        private static void PopulatePsycastingPreset()
+        {
+            psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Label"));
+            psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Numbers_PsylinkLevel"));
+            psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Numbers_Psyfocus"));
+            psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Numbers_Entropy"));
+            psycastingPreset.AddRange(
+                DefDatabase<PawnColumnDef>.AllDefsListForReading.Where(pcd => pcd.Ext(throwError: false)?.ability != null).ToList()
+                    .OrderBy(x => x.Ext().ability.level)
+                    .ThenBy(x => x.Ext().ability.PsyfocusCost)
+                    .ThenBy(x => x.Ext().ability.EntropyGain)
+                    .ThenBy(x => x.Ext().ability.defName)
+            );
         }
 
         private static void PopulateMedicalPreset()

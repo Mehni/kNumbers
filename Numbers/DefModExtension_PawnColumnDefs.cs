@@ -10,5 +10,6 @@
         public NeedDef         need;
         public StatDef         stat;
         public SkillDef        skill;
+        public AbilityDef      ability;
     }
 }

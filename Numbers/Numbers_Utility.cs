@@ -27,9 +27,9 @@
             => p.Faction == null
             && p.AnimalOrWildMan();
 
-        public static DefModExtension_PawnColumnDefs Ext(this PawnColumnDef def)
+        public static DefModExtension_PawnColumnDefs Ext(this PawnColumnDef def, bool throwError = true)
         {
-            if (!def.HasModExtension<DefModExtension_PawnColumnDefs>())
+            if (throwError && !def.HasModExtension<DefModExtension_PawnColumnDefs>())
             {
                 Log.Error("Numbers expected DefModExtension PawnColumnDefs, got null");
                 return null;

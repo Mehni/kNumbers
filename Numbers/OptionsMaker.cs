@@ -50,9 +50,14 @@
             => new[] { DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Inspiration"),
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Inventory"),
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_SelfTend"),
-                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Meditation"), }
-               .Concat(DefDatabase<PawnTableDef>.GetNamed("Assign").columns
-               .Concat(DefDatabase<PawnTableDef>.GetNamed("Restrict").columns).Where(x => pcdValidator(x)));
+                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Meditation"),
+                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Psyfocus"),
+                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Entropy"),
+                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_PsylinkLevel") }
+               .Concat(DefDatabase<PawnTableDef>.GetNamed("Assign").columns)
+               .Concat(DefDatabase<PawnTableDef>.GetNamed("Restrict").columns).Where(x => pcdValidator(x) && filterRoyalty(x));
+
+        private static readonly Func<PawnColumnDef, bool> filterRoyalty = pcd => ModLister.RoyaltyInstalled || !pcd.HasModExtension<DefModExtension_NeedsRoyalty>();
 
         private static IEnumerable<PawnColumnDef> WildAnimals
             => new[] { DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Wildness"),
@@ -79,11 +84,16 @@
                 new FloatMenuOption("Numbers_Presets.Load".Translate("Numbers_Presets.Combat".Translate()), () => ChangeMainTableTo(StaticConstructorOnGameStart.combatPreset)),
                 new FloatMenuOption("Numbers_Presets.Load".Translate("Numbers_Presets.WorkTabPlus".Translate()), () => ChangeMainTableTo(StaticConstructorOnGameStart.workTabPlusPreset)),
                 new FloatMenuOption("Numbers_Presets.Load".Translate("Numbers_Presets.ColonistNeeds".Translate()), () => ChangeMainTableTo(StaticConstructorOnGameStart.colonistNeedsPreset)),
+                //maybe Psycasting here, index 6, referenced below
                 new FloatMenuOption("Numbers_SetAsDefault".Translate(), SetAsDefault,
                         extraPartWidth: 29f,
                         extraPartOnGUI: rect => Numbers_Utility.InfoCardButton(rect.x + 5f, rect.y + (rect.height - 24f) / 2, "Numbers_SetAsDefaultExplanation".Translate(PawnTable.LabelCap))),
                 new FloatMenuOption("Numbers_LoadDefault".Translate(), LoadDefault)
             };
+            if (ModLister.RoyaltyInstalled)
+            {
+                list.Insert(6, new FloatMenuOption("Numbers_Presets.Load".Translate("Numbers_Presets.Psycasting".Translate()), () => ChangeMainTableTo(StaticConstructorOnGameStart.psycastingPreset)));
+            }
 
             return list;
         }

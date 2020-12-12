@@ -353,6 +353,8 @@
                    .Concat(DefDatabase<StatDef>
                           .AllDefsListForReading.Select(GenerateNewPawnColumnDefFor))
                    .Concat(DefDatabase<SkillDef>
+                          .AllDefsListForReading.Select(GenerateNewPawnColumnDefFor))
+                   .Concat(DefDatabase<AbilityDef>
                           .AllDefsListForReading.Select(GenerateNewPawnColumnDefFor));
 
         private static PawnColumnDef GenerateNewPawnColumnDefFor(Def def)
@@ -389,6 +391,10 @@
                 case SkillDef _:
                     pcd.workerClass = typeof(PawnColumnWorker_Skill);
                     pcd.GetModExtension<DefModExtension_PawnColumnDefs>().skill = (SkillDef)def;
+                    break;
+                case AbilityDef _:
+                    pcd.workerClass = typeof(PawnColumnWorker_Ability);
+                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().ability = (AbilityDef)def;
                     break;
                 default:
                     throw new ArgumentException($"Unsupported Def of type {def.GetType()}");
