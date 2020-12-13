@@ -65,7 +65,7 @@
             bool redFlag = !(severityChangePerDayFromTendD + severityChangePerDayFromImmu > immunityPerDay);
 
             Texture2D texture2D = redFlag ? StaticConstructorOnGameStart.SortingIcon : StaticConstructorOnGameStart.SortingDescendingIcon;
-            GUI.color = redFlag ? HealthUtility.GoodConditionColor : HealthUtility.DarkRedColor;
+            GUI.color = redFlag ? HealthUtility.GoodConditionColor : HealthUtility.RedColor;
             Rect position2 = new Rect(rect.xMax - texture2D.width - 1f, rect.yMax - texture2D.height - 1f, texture2D.width, texture2D.height);
             GUI.DrawTexture(position2, texture2D);
             GUI.color = Color.white;
@@ -132,7 +132,7 @@
         private Color GetPrettyColorFor(float deltaSeverity)
         {
             if (deltaSeverity <= -0.4f)
-                return HealthUtility.DarkRedColor;
+                return HealthUtility.RedColor;
 
             if (deltaSeverity <= -0.2f)
                 return SeverePainColor;

@@ -39,7 +39,7 @@
 
             AddRemainingSpaceToPawnTableDefs();
 
-            AddHeadersToPawnColumns();
+            AddHeaderToolTipToPawnColumns();
 
             PopulatePresets();
 
@@ -72,7 +72,7 @@
             }
         }
 
-        private static void AddHeadersToPawnColumns()
+        private static void AddHeaderToolTipToPawnColumns()
         {
             foreach (PawnColumnDef pawnColumnDef in DefDatabase<PawnColumnDef>
                 .AllDefsListForReading
@@ -81,7 +81,7 @@
                         && !(x.Worker is PawnColumnWorker_AllHediffs
                         || x.Worker is PawnColumnWorker_SelfTend
                         || x.Worker is PawnColumnWorker_ManhunterOnTameFailChance
-                        || x.Worker is PawnColumnWorker_Ability))) //special treatment for those.
+                        || x.Worker is PawnColumnWorker_Ability))) //these PawnColumnWorkers override GetHeaderTip.
             {
                 pawnColumnDef.headerTip += (pawnColumnDef.headerTip.NullOrEmpty() ? "" : "\n\n") + "Numbers_ColumnHeader_Tooltip".Translate();
             }
@@ -103,7 +103,7 @@
             psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Numbers_Psyfocus"));
             psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Numbers_Entropy"));
             psycastingPreset.AddRange(
-                DefDatabase<PawnColumnDef>.AllDefsListForReading.Where(pcd => pcd.Ext(throwError: false)?.ability != null).ToList()
+                DefDatabase<PawnColumnDef>.AllDefsListForReading.Where(pcd => pcd.Ext(logError: false)?.ability != null).ToList()
                     .OrderBy(x => x.Ext().ability.level)
                     .ThenBy(x => x.Ext().ability.PsyfocusCost)
                     .ThenBy(x => x.Ext().ability.EntropyGain)

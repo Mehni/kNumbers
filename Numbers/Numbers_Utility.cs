@@ -27,24 +27,28 @@
             => p.Faction == null
             && p.AnimalOrWildMan();
 
-        public static DefModExtension_PawnColumnDefs Ext(this PawnColumnDef def, bool throwError = true)
+        public static DefModExtension_PawnColumnDefs Ext(this PawnColumnDef def, bool logError = true)
         {
-            if (throwError && !def.HasModExtension<DefModExtension_PawnColumnDefs>())
+            var ext = def.GetModExtension<DefModExtension_PawnColumnDefs>();
+
+            if (logError && ext == null)
             {
-                Log.Error("Numbers expected DefModExtension PawnColumnDefs, got null");
-                return null;
+                Log.Error($"Numbers expected DefModExtension PawnColumnDefs, got null for def {def.defName}");
             }
-            return def.GetModExtension<DefModExtension_PawnColumnDefs>();
+
+            return ext;
         }
 
         public static DefModExtension_PawnTableDefs Ext(this PawnTableDef def)
         {
-            if (!def.HasModExtension<DefModExtension_PawnTableDefs>())
+            var ext = def.GetModExtension<DefModExtension_PawnTableDefs>();
+
+            if (ext == null)
             {
-                Log.Error("Numbers expected DefModExtension PawnTableDef, got null");
-                return null;
+                Log.Error($"Numbers expected DefModExtension PawnTableDef, got null for def {def.defName}");
             }
-            return def.GetModExtension<DefModExtension_PawnTableDefs>();
+
+            return ext;
         }
 
         public static string WordWrapAt(this string text, float length, PawnTable table = null)

@@ -44,7 +44,7 @@
     <sortable>true</sortable>
     <label>Title</label>
   </PawnColumnDef>
-  
+
   <PawnColumnDef>
     <defName>Numbers_Psyfocus</defName>
     <workerClass>Numbers.PawnColumnWorker_Psyfocus</workerClass>
@@ -54,7 +54,7 @@
       <li Class="Numbers.DefModExtension_NeedsRoyalty"/>
     </modExtensions>
   </PawnColumnDef>
-  
+
   <PawnColumnDef>
     <defName>Numbers_Entropy</defName>
     <workerClass>Numbers.PawnColumnWorker_Entropy</workerClass>
@@ -64,7 +64,7 @@
       <li Class="Numbers.DefModExtension_NeedsRoyalty"/>
     </modExtensions>
   </PawnColumnDef>
-  
+
   <PawnColumnDef>
     <defName>Numbers_PsylinkLevel</defName>
     <workerClass>Numbers.PawnColumnWorker_PsylinkLevel</workerClass>
@@ -240,11 +240,14 @@
     <label>Filth rate</label>
   </PawnColumnDef>
 
-    <PawnColumnDef>
+  <PawnColumnDef>
     <defName>Numbers_Meditation</defName>
     <workerClass>Numbers.PawnColumnWorker_Meditation</workerClass>
     <sortable>true</sortable>
     <label>Focus</label>
+    <modExtensions>
+      <li Class="Numbers.DefModExtension_NeedsRoyalty"/>
+    </modExtensions>
   </PawnColumnDef>
 
 </Defs>

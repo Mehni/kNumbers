@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\workshop\content\294100\2009463077\v1.1\Assemblies\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\..\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
@@ -74,16 +74,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefModExtension_NeedsRoyalty.cs" />
     <Compile Include="DefModExtension_PawnTableDefs.cs" />
     <Compile Include="Dialog_IHaveToCreateAnEntireFuckingDialogForANOKAYBUTTONFFS.cs" />
     <Compile Include="MainTabWindow_Numbers.cs" />
     <Compile Include="DefModExtension_PawnColumnDefs.cs" />
     <Compile Include="HorribleStringParsersForSaving.cs" />
     <Compile Include="MainTabWindow_NumbersAnimals.cs" />
+    <Compile Include="Numbers_PawnColumnDef.cs" />
     <Compile Include="Numbers_Settings.cs" />
     <Compile Include="Numbers_SettingsHelper.cs" />
     <Compile Include="Numbers_Utility.cs" />
     <Compile Include="OptionsMaker.cs" />
+    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Ability.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Age.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_AllHediffs.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_AnimalMilkFullness.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Capacity.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_AnimalEggProgress.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_DiseaseProgression.cs" />
+    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Entropy.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Faction.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Forbidden.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Gear.cs" />
@@ -111,6 +115,8 @@
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_PrisonerRecruitmentDifficulty.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_PrisonerResistance.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_JobQueued.cs" />
+    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Psyfocus.cs" />
+    <Compile Include="PawnColumnWorkers\PawnColumnWorker_PsylinkLevel.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Race.cs" />
     <Compile Include="Numbers.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Record.cs" />

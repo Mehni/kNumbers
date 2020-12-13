@@ -60,8 +60,8 @@
 
                 if (selPawn.IsColonistPlayerControlled)
                 {
-                    Action action = DropThing(thing, selPawn);
-                    list.Add(new FloatMenuOption("DropThing".Translate(), action));
+                    Action dropAction = DropThing(thing, selPawn);
+                    list.Add(new FloatMenuOption("DropThing".Translate(), dropAction));
                 }
                 FloatMenu window = new FloatMenu(list, thing.LabelCap);
                 Find.WindowStack.Add(window);
@@ -77,31 +77,22 @@
 
         private static Action DropThing(Thing thing, Pawn selPawn)
         {
-            Action action = null;
-            ThingWithComps eq = thing as ThingWithComps;
             if (thing is Apparel ap && selPawn.apparel != null && selPawn.apparel.WornApparel.Contains(ap))
             {
-                action = delegate
-                {
-                    selPawn.jobs.TryTakeOrderedJob(new Job(JobDefOf.RemoveApparel, ap));
-                };
-            }
-            else if (eq != null && selPawn.equipment.AllEquipmentListForReading.Contains(eq))
-            {
-                action = delegate
-                {
-                    selPawn.jobs.TryTakeOrderedJob(new Job(JobDefOf.DropEquipment, eq));
-                };
-            }
-            else if (!thing.def.destroyOnDrop)
-            {
-                action = delegate
-                {
-                    selPawn.inventory.innerContainer.TryDrop(thing, selPawn.Position, selPawn.Map, ThingPlaceMode.Near, out Thing unused);
-                };
+                return () => selPawn.jobs.TryTakeOrderedJob(new Job(JobDefOf.RemoveApparel, ap));
             }
 
-            return action;
+            if (thing is ThingWithComps eq && selPawn.equipment.AllEquipmentListForReading.Contains(eq))
+            {
+                return() => selPawn.jobs.TryTakeOrderedJob(new Job(JobDefOf.DropEquipment, eq));
+            }
+
+            if (!thing.def.destroyOnDrop)
+            {
+                return () => selPawn.inventory.innerContainer.TryDrop(thing, selPawn.Position, selPawn.Map, ThingPlaceMode.Near, out Thing unused);
+            }
+
+            return null;
         }
 
         public override int Compare(Pawn a, Pawn b)

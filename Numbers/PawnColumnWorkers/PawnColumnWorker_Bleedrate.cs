@@ -48,7 +48,7 @@
 
             return Mathf.Approximately(isThisMyBlood, 1f)
                 ? SeverePainColor
-                : HealthUtility.DarkRedColor;
+                : HealthUtility.RedColor;
         }
     }
 }

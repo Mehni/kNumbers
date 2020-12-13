@@ -256,12 +256,18 @@
             var pawnHumanlikeStatDef = source
                            .Concat(tmpPawn.def.SpecialDisplayStats(StatRequest.For(tmpPawn)))
                            .Where(s => s.stat != null && s.ShouldDisplay && s.stat.Worker != null)
-                           .Select(s => s.stat)
-                           .OrderBy(stat => stat.LabelCap.Resolve());
+                           .Select(s => s.stat);
 
             tmpPawn.Destroy(DestroyMode.KillFinalize);
 
-            return pawnHumanlikeStatDef.ToList();
+            return SubstituteEnvironmentalStatDefsForNormalizedVersion(pawnHumanlikeStatDef).OrderBy(stat => stat.LabelCap.Resolve()).ToList();
+        }
+
+        private IEnumerable<StatDef> SubstituteEnvironmentalStatDefsForNormalizedVersion(IEnumerable<StatDef> list)
+        {
+            return list
+                .Concat(new[] { DefDatabase<StatDef>.GetNamed("MoveSpeed_Normalized"), DefDatabase<StatDef>.GetNamed("WorkSpeedGlobal_Normalized") })
+                .Where(x => x.parts == null || x.GetStatPart<StatPart_Glow>() == null);
         }
     }
 }

@@ -32,6 +32,10 @@ It can be added to existing saves without problems.
 - [GitHub](https://github.com/Mehni/kNumbers)
 - [All the releases](https://github.com/Mehni/kNumbers/releases)
 
+## Credits
+
+Much thanks to [Maarxx](https://github.com/maarxx) for singlehandedly adding support for Royalty. Check out their mods [here](https://ludeon.com/forums/index.php?topic=53539)!
+
 ## License
 
 Original idea by koisama: https://github.com/koisama/kNumbers, whose original license I respect by the preceding link. For the license since 2018/11/21, see LICENSE.
