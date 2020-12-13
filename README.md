@@ -36,6 +36,13 @@ It can be added to existing saves without problems.
 
 Much thanks to [Maarxx](https://github.com/maarxx) for singlehandedly adding support for Royalty. Check out their mods [here](https://ludeon.com/forums/index.php?topic=53539)!
 
+### Languages
+
+- English: Mehni
+- Chinese (simplified): AlongWY
+- German: Amalek
+- Russian: JasKill
+
 ## License
 
 Original idea by koisama: https://github.com/koisama/kNumbers, whose original license I respect by the preceding link. For the license since 2018/11/21, see LICENSE.
