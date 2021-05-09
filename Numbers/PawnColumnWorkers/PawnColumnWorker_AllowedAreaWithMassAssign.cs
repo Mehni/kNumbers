@@ -7,6 +7,22 @@ namespace Numbers
 
     public class PawnColumnWorker_AllowedAreaWithMassAssign : PawnColumnWorker_AllowedAreaWide
     {
+        public override int GetOptimalWidth(PawnTable table)
+        {
+            var assignableAreas = Find.CurrentMap.areaManager.AllAreas.Where(area => area.AssignableAsAllowed());
+            var bla = Text.CalcSize(assignableAreas.Select(x => x.Label).ToCommaList());
+            return (int) Mathf.Max(bla.x + 48, def.width);
+        }
+
+        public override int GetMinWidth(PawnTable table)
+        {
+            return Mathf.Min(def.width, GetOptimalWidth(table));
+        }
+
+        protected override string GetHeaderTip(PawnTable table)
+        {
+            return base.GetHeaderTip(table) + "\nShift + control + click: Set all pawns to zone";
+        }
 
         protected override void HeaderClicked(Rect headerRect, PawnTable table)
         {
@@ -16,21 +32,21 @@ namespace Numbers
             }
             var allAreas = Find.CurrentMap.areaManager.AllAreas;
             var assignableAreas = 1 + allAreas.Count(area => area.AssignableAsAllowed());
-            var rectWidth = headerRect.width / (float)assignableAreas;
+            var rectWidth = headerRect.width / assignableAreas;
             Text.WordWrap = false;
             Text.Font = GameFont.Tiny;
-            var num3 = 1;
+            var areaIndexOffset = 1;
             foreach (var area in allAreas)
             {
                 if (area.AssignableAsAllowed())
                 {
-                    var num4 = (float)num3 * rectWidth;
-                    var rect = new Rect(headerRect.x + num4, headerRect.y, rectWidth, headerRect.height);
-                    if (Mouse.IsOver(rect) && Event.current.control && Event.current.button == 0)
+                    var startPosition = areaIndexOffset * rectWidth;
+                    var rect = new Rect(headerRect.x + startPosition, headerRect.y, rectWidth, headerRect.height);
+                    if (Mouse.IsOver(rect) && Event.current.control && Event.current.shift && Event.current.button == 0)
                     {
                         table.PawnsListForReading.ForEach(pawn => pawn.playerSettings.AreaRestriction = area);
                     }
-                    num3++;
+                    areaIndexOffset++;
                 }
             }
             Text.WordWrap = true;

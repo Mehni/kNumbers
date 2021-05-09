@@ -74,13 +74,13 @@
             if (Event.current.shift)
                 return true;
 
+            if (Event.current.button != 1)
+                return true;
+
             if (!(table is PawnTable_NumbersMain numbersTable))
                 return true;
 
             if (!Mouse.IsOver(headerRect))
-                return true;
-
-            if (Event.current.button != 1)
                 return true;
 
             numbersTable.ColumnsListForReading.RemoveAll(x => ReferenceEquals(__instance, x.Worker));
@@ -372,29 +372,29 @@
             };
             switch (def)
             {
-                case RecordDef _:
+                case RecordDef recordDef:
                     pcd.workerClass = typeof(PawnColumnWorker_Record);
-                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().record = (RecordDef)def;
+                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().record = recordDef;
                     break;
-                case PawnCapacityDef _:
+                case PawnCapacityDef pawnCapacityDef:
                     pcd.workerClass = typeof(PawnColumnWorker_Capacity);
-                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().capacity = (PawnCapacityDef)def;
+                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().capacity = pawnCapacityDef;
                     break;
-                case NeedDef _:
+                case NeedDef needDef:
                     pcd.workerClass = typeof(PawnColumnWorker_Need);
-                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().need = (NeedDef)def;
+                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().need = needDef;
                     break;
-                case StatDef _:
+                case StatDef statDef:
                     pcd.workerClass = typeof(PawnColumnWorker_Stat);
-                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().stat = (StatDef)def;
+                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().stat = statDef;
                     break;
-                case SkillDef _:
+                case SkillDef skillDef:
                     pcd.workerClass = typeof(PawnColumnWorker_Skill);
-                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().skill = (SkillDef)def;
+                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().skill = skillDef;
                     break;
-                case AbilityDef _:
+                case AbilityDef abilityDef:
                     pcd.workerClass = typeof(PawnColumnWorker_Ability);
-                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().ability = (AbilityDef)def;
+                    pcd.GetModExtension<DefModExtension_PawnColumnDefs>().ability = abilityDef;
                     break;
                 default:
                     throw new ArgumentException($"Unsupported Def of type {def.GetType()}");
