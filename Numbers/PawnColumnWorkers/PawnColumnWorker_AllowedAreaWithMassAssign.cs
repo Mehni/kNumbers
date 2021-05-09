@@ -26,6 +26,7 @@ namespace Numbers
 
         protected override void HeaderClicked(Rect headerRect, PawnTable table)
         {
+            base.HeaderClicked(headerRect, table);
             if (Find.CurrentMap == null)
             {
                 return;
@@ -51,8 +52,6 @@ namespace Numbers
             }
             Text.WordWrap = true;
             Text.Font = GameFont.Small;
-
-            base.HeaderClicked(headerRect, table);
         }
     }
 }
