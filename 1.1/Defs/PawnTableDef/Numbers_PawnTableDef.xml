@@ -25,7 +25,7 @@
         <Humanlike>true</Humanlike>
       </li>
     </modExtensions>
-    <minWidth>1032</minWidth>
+    <minWidth>1148</minWidth>
   </PawnTableDef>
 
   <PawnTableDef>
@@ -127,7 +127,7 @@
       <li>Numbers_AnimalFilthRate</li>
       <li>MedicalCare</li>
       <li>GapTiny</li>
-      <li>AllowedAreaWide</li>
+      <li>Numbers_Areas</li>
     </columns>
     <modExtensions>
       <li Class="Numbers.DefModExtension_PawnTableDefs">

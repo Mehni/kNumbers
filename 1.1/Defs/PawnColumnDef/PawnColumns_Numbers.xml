@@ -250,4 +250,12 @@
     </modExtensions>
   </PawnColumnDef>
 
+  <PawnColumnDef>
+    <defName>Numbers_Areas</defName>
+    <workerClass>Numbers.PawnColumnWorker_AllowedAreaWithMassAssign</workerClass>
+    <sortable>true</sortable>
+    <label>allowed area</label>
+    <width>350</width>
+  </PawnColumnDef>
+
 </Defs>
