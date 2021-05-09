@@ -127,7 +127,7 @@
       <li>Numbers_AnimalFilthRate</li>
       <li>MedicalCare</li>
       <li>GapTiny</li>
-      <li>AllowedAreaWide</li>
+      <li>Numbers_Areas</li>
     </columns>
     <modExtensions>
       <li Class="Numbers.DefModExtension_PawnTableDefs">
