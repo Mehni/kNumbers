@@ -32,6 +32,13 @@
   </PawnColumnDef>
 
   <PawnColumnDef>
+    <defName>Numbers_LeatherType</defName>
+    <workerClass>Numbers.PawnColumnWorker_LeatherType</workerClass>
+    <sortable>true</sortable>
+    <label>Leather type</label>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
     <defName>Numbers_Race</defName>
     <workerClass>Numbers.PawnColumnWorker_Race</workerClass>
     <sortable>true</sortable>
@@ -87,6 +94,13 @@
     <workerClass>Numbers.PawnColumnWorker_Inventory</workerClass>
     <sortable>true</sortable>
     <label>Inventory</label>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
+    <defName>Numbers_InventoryDropAll</defName>
+    <workerClass>Numbers.PawnColumnWorker_InventoryDropAll</workerClass>
+    <sortable>true</sortable>
+    <label>Drop all inventory</label>
   </PawnColumnDef>
 
   <PawnColumnDef>

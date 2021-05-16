@@ -39,13 +39,14 @@
       <li>Numbers_Pain</li>
       <li>Numbers_RimWorld_StatDef_MeleeDPS</li>
       <li>Numbers_RimWorld_StatDef_ShootingAccuracyPawn</li>
-      <li>Numbers_RimWorld_StatDef_MoveSpeed_Normalized</li>
+      <li>Numbers_RimWorld_StatDef_MoveSpeed</li>
     </columns>
     <modExtensions>
       <li Class="Numbers.DefModExtension_PawnTableDefs">
         <Humanlike>true</Humanlike>
       </li>
     </modExtensions>
+    <minWidth>1148</minWidth>
   </PawnTableDef>
 
   <PawnTableDef>
@@ -88,7 +89,7 @@
         <Corpse>true</Corpse>
       </li>
     </modExtensions>
-    <minWidth>600</minWidth>
+    <minWidth>700</minWidth>
   </PawnTableDef>
 
   <PawnTableDef>
@@ -157,6 +158,7 @@
       <li>Info</li>
       <li>Numbers_RimWorld_StatDef_MeatAmount</li>
       <li>Numbers_RimWorld_StatDef_LeatherAmount</li>
+      <li>Numbers_LeatherType</li>
       <li>Numbers_RimWorld_RecordDef_Kills</li>
     </columns>
     <modExtensions>
@@ -176,6 +178,7 @@
       <li>Numbers_RimWorld_StatDef_FoodPoisonChanceFixedHuman</li>
       <li>Numbers_RimWorld_StatDef_MeatAmount</li>
       <li>Numbers_RimWorld_StatDef_LeatherAmount</li>
+      <li>Numbers_LeatherType</li>
     </columns>
     <modExtensions>
       <li Class="Numbers.DefModExtension_PawnTableDefs">
@@ -183,7 +186,7 @@
         <Corpse>true</Corpse>
       </li>
     </modExtensions>
-    <minWidth>600</minWidth>
+    <minWidth>700</minWidth>
   </PawnTableDef>
 
   <PawnTableDef>
@@ -196,7 +199,7 @@
       <li>Numbers_Equipment</li>
       <li>Numbers_RimWorld_StatDef_ShootingAccuracyPawn</li>
       <li>Numbers_RimWorld_RecordDef_Kills</li>
-      <li>Numbers_RimWorld_StatDef_MoveSpeed_Normalized</li>
+      <li>Numbers_RimWorld_StatDef_MoveSpeed</li>
       <li>Numbers_RimWorld_StatDef_MeleeDPS</li>
       <li>Numbers_RimWorld_NeedDef_Food</li>
       <li>Numbers_RimWorld_NeedDef_Mood</li>
@@ -217,7 +220,7 @@
     <workerClass>Numbers.PawnTable_NumbersMain</workerClass>
     <columns>
       <li>Label</li>
-      <li>Numbers_RimWorld_StatDef_WorkSpeedGlobal_Normalized</li>
+      <li>Numbers_RimWorld_StatDef_WorkSpeedGlobal</li>
       <li>WorkPriority_Patient</li>
       <li>Numbers_NeedsTreatment</li>
       <li>WorkPriority_Doctor</li>

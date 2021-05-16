@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>8.0</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>8.0</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
@@ -86,6 +86,7 @@
     <Compile Include="Numbers_SettingsHelper.cs" />
     <Compile Include="Numbers_Utility.cs" />
     <Compile Include="OptionsMaker.cs" />
+    <Compile Include="PawnColumnOptionDef.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Ability.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Age.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_AllHediffs.cs" />
@@ -105,7 +106,9 @@
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Gear.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Inspiration.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Inventory.cs" />
+    <Compile Include="PawnColumnWorkers\PawnColumnWorker_InventoryDropAll.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_JobCurrent.cs" />
+    <Compile Include="PawnColumnWorkers\PawnColumnWorker_LeatherType.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_ManhunterOnTameFailChance.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Meditation.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_MentalState.cs" />

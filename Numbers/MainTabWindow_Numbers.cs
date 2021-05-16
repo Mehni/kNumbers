@@ -260,14 +260,7 @@
 
             tmpPawn.Destroy(DestroyMode.KillFinalize);
 
-            return SubstituteEnvironmentalStatDefsForNormalizedVersion(pawnHumanlikeStatDef).OrderBy(stat => stat.LabelCap.Resolve()).ToList();
-        }
-
-        private IEnumerable<StatDef> SubstituteEnvironmentalStatDefsForNormalizedVersion(IEnumerable<StatDef> list)
-        {
-            return list
-                .Concat(new[] { DefDatabase<StatDef>.GetNamed("MoveSpeed_Normalized"), DefDatabase<StatDef>.GetNamed("WorkSpeedGlobal_Normalized") })
-                .Where(x => x.parts == null || x.GetStatPart<StatPart_Glow>() == null);
+            return pawnHumanlikeStatDef.OrderBy(stat => stat.LabelCap.Resolve()).ToList();
         }
     }
 }
