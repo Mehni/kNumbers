@@ -113,7 +113,7 @@
                 //IL_0097: ldloc.s 6 <-- insert here.
                 //IL_0099: ldarg.0
                 //IL_009a: callvirt instance void RimWorld.PawnColumnWorker::DoHeader(valuetype [UnityEngine.CoreModule]UnityEngine.Rect, class RimWorld.PawnTable)
-                if (instruction.opcode == OpCodes.Ldloc_S && codeInstructions[i + 2].Calls(doHeader))
+                if (i < codeInstructions.Length + 3 && instruction.opcode == OpCodes.Ldloc_S && codeInstructions[i + 2].Calls(doHeader))
                 {
                     yield return new CodeInstruction(OpCodes.Ldloc, 7);
                     yield return instruction;
