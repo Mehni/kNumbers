@@ -16,6 +16,7 @@
             <li>Numbers_JobCurrent</li>
             <li>Numbers_JobQueued</li>
             <li>Numbers_HediffList</li>
+            <li>Numbers_InventoryDropAll</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 

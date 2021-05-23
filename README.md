@@ -43,6 +43,13 @@ Much thanks to [Maarxx](https://github.com/maarxx) for singlehandedly adding sup
 - German: Amalek
 - Russian: JasKill
 
+## Adding a column (for contributors)
+
+1. Add a new class in Numbers\PawnColumnWorkers. Use the `Numbers` namespace. Inherit from the correct PawnColumnWorker.
+1. Create a new PawnColumnDef. Save it in `1.1\Defs\PawnColumnDef\PawnColumns_Numbers.xml`. Adhere to the naming scheme there.
+1. To add your new column to the Misc button, add the defName of your PawnColumnDef to the appropriate Def in `1.1\Defs\PawnColumnOptionDef\Numbers_PawnColumnOptionDef.xml`. This step should not be skipped.
+1. To add your new column to the default table, add the defName of your PawnColumnDef to the approppriate PawnTableDef in `1.1\Defs\PawnTableDef\Numbers_PawnTableDef.xml`.
+
 ## License
 
 Original idea by koisama: https://github.com/koisama/kNumbers, whose original license I respect by the preceding link. For the license since 2018/11/21, see LICENSE.
