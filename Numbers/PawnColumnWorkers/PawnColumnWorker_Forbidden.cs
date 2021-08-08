@@ -7,7 +7,7 @@
     {
         protected override bool GetValue(Pawn pawn) => ((Thing)pawn.ParentHolder).IsForbidden(Faction.OfPlayer);
 
-        protected override void SetValue(Pawn pawn, bool value)
+        protected override void SetValue(Pawn pawn, bool value, PawnTable table)
         {
             ((Thing)pawn.ParentHolder).SetForbidden(value);
         }

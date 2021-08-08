@@ -13,7 +13,7 @@
 
         protected override bool HasCheckbox(Pawn pawn) => pawn.IsColonist && !pawn.Dead && !(pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor));
 
-        protected override void SetValue(Pawn pawn, bool value)
+        protected override void SetValue(Pawn pawn, bool value, PawnTable table)
         {
             if (value && pawn.workSettings.GetPriority(WorkTypeDefOf.Doctor) == 0)
                 Messages.Message("MessageSelfTendUnsatisfied".Translate(pawn.LabelShort, pawn), MessageTypeDefOf.CautionInput, false);

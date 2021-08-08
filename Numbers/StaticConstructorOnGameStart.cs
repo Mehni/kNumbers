@@ -120,6 +120,7 @@
                                            DefDatabase<PawnColumnDef>.GetNamed("MedicalCare"),
                                            DefDatabase<PawnColumnDef>.GetNamed("Numbers_SelfTend"),
                                            DefDatabase<PawnColumnDef>.GetNamed("Numbers_HediffList"),
+                                           DefDatabase<PawnColumnDef>.GetNamed("Numbers_HediffBadList"),
                                            DefDatabase<PawnColumnDef>.GetNamed("Numbers_RimWorld_StatDef_MedicalSurgerySuccessChance"),
                                            DefDatabase<PawnColumnDef>.GetNamed("Numbers_RimWorld_StatDef_MedicalTendQuality"),
                                            DefDatabase<PawnColumnDef>.GetNamed("Numbers_RimWorld_StatDef_MedicalTendSpeed"),
