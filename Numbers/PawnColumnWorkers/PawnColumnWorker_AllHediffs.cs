@@ -61,7 +61,7 @@
             GUI.color = Color.white;
         }
 
-        private static IEnumerable<Hediff> VisibleHediffs(Pawn pawn)
+        protected virtual IEnumerable<Hediff> VisibleHediffs(Pawn pawn)
         {
             List<Hediff_MissingPart> mpca = pawn.health.hediffSet.GetMissingPartsCommonAncestors();
             foreach (Hediff_MissingPart t in mpca)
@@ -76,7 +76,7 @@
             }
         }
 
-        private static IEnumerable<IGrouping<BodyPartRecord, Hediff>> VisibleHediffGroupsInOrder(Pawn pawn)
+        private IEnumerable<IGrouping<BodyPartRecord, Hediff>> VisibleHediffGroupsInOrder(Pawn pawn)
             => VisibleHediffs(pawn)
                 .GroupBy(x => x.Part)
                 .OrderByDescending(x => GetListPriority(x.First().Part));

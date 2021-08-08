@@ -123,7 +123,7 @@
                 list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.DeadThings.options));
             }
 
-            return list;
+            return list.OrderBy(x => x.Label).ToList();
         }
 
         public List<FloatMenuOption> OptionsMakerForGenericDef<T>(IEnumerable<T> listOfDefs) where T : Def
@@ -269,11 +269,22 @@
             numbers.RefreshAndStoreSessionInWorldComp();
         }
 
-        private static readonly Func<PawnColumnDef, bool> pcdValidator = pcd => !(pcd.Worker is PawnColumnWorker_Gap)
+        private static readonly Func<PawnColumnDef, bool> pcdValidator = pcd =>
+        {
+            try
+            {
+                return !(pcd.Worker is PawnColumnWorker_Gap)
                                 && !(pcd.Worker is PawnColumnWorker_Label) && !(pcd.Worker is PawnColumnWorker_RemainingSpace)
                                 && !(pcd.Worker is PawnColumnWorker_CopyPaste) && !(pcd.Worker is PawnColumnWorker_MedicalCare)
                                 && !(pcd.Worker is PawnColumnWorker_Timetable) || (!(pcd.label.NullOrEmpty() && pcd.HeaderIcon == null)
                                 && !pcd.HeaderInteractable);
+            }
+            catch (ArgumentNullException ex)
+            {
+                Log.Error($"{pcd.defName} from {pcd.modContentPack.Name} threw ArgumentNullException {ex}");
+                return false;
+            }
+        };
         //basically all that are already present, don't have an interactable header, and uh
     }
 }

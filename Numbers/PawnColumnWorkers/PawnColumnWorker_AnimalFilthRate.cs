@@ -15,7 +15,7 @@
 
         private float GetScoreFor(Pawn pawn)
         {
-            return PawnUtility.AnimalFilthChancePerCell(pawn.def, pawn.def.race.baseBodySize) * 1000f;
+            return pawn.GetStatValueForPawn(StatDefOf.FilthRate, pawn);
         }
     }
 }

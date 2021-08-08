@@ -40,6 +40,7 @@
 
         private IEnumerable<PawnColumnDef> HealthStats
             => new[] { DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_HediffList"),
+                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_HediffBadList"),
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Pain"),
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Bleedrate"),
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_NeedsTreatment"),
