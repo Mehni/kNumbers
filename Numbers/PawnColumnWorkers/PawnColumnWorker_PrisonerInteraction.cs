@@ -56,6 +56,10 @@
                         pawn.guest.interactionMode = prisonerInteraction;
                         SoundDefOf.Designate_DragStandard_Changed.PlayOneShotOnCamera();
                     }
+                    if (ModsConfig.IdeologyActive && pawn.guest.interactionMode == PrisonerInteractionModeDefOf.Convert && pawn.guest.ideoForConversion == null)
+                    {
+                        pawn.guest.ideoForConversion = Faction.OfPlayer.ideos.PrimaryIdeo;
+                    }
                 }
             }
         }
