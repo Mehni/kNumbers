@@ -42,6 +42,7 @@ Much thanks to [Maarxx](https://github.com/maarxx) for singlehandedly adding sup
 - Chinese (simplified): AlongWY
 - German: Amalek
 - Russian: JasKill
+- Spanish: Crusader
 
 ## Adding a column (for contributors)
 
