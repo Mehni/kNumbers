@@ -417,7 +417,7 @@
             listingStandard.CheckboxLabeled("Numbers_coolerThanTheAnimalTab".Translate(), ref Numbers_Settings.coolerThanTheAnimalTab);
             listingStandard.CheckboxLabeled("Numbers_pawnTableClickSelect".Translate(), ref Numbers_Settings.pawnTableClickSelect, "Numbers_pawnTableClickSelect_Desc".Translate());
             listingStandard.CheckboxLabeled("Numbers_pawnTableHighSelected".Translate(), ref Numbers_Settings.pawnTableHighlightSelected, "Numbers_pawnTableHighSelected_Desc".Translate());
-            listingStandard.CheckboxLabeled("Numbers_useSmolFont", ref Numbers_Settings.useTinyFont);
+            listingStandard.CheckboxLabeled("Numbers_useSmolFont".Translate(), ref Numbers_Settings.useTinyFont);
             listingStandard.SliderLabeled("Numbers_maxTableHeight".Translate(), ref Numbers_Settings.maxHeight, Numbers_Settings.maxHeight.ToStringPercent(), 0.3f);
             listingStandard.End();
 
