@@ -18,6 +18,18 @@
         private PawnColumnDef _allowedarea;
         private PawnColumnDef AllowedArea => _allowedarea ??= _allowedarea = DefDatabase<PawnColumnDef>.GetNamedSilentFail("AllowedArea");
 
+        private PawnColumnDef _gender;
+        private PawnColumnDef Gender => _gender ??= _gender = DefDatabase<PawnColumnDef>.GetNamedSilentFail("Gender");
+
+        private PawnColumnDef _age;
+        private PawnColumnDef Age => _age ??= _age = DefDatabase<PawnColumnDef>.GetNamedSilentFail("Age");
+
+        private PawnColumnDef _mentalState;
+        private PawnColumnDef MentalState => _mentalState ??= _mentalState = DefDatabase<PawnColumnDef>.GetNamedSilentFail("MentalState");
+
+        private PawnColumnDef _revengeOnTameFailed;
+        private PawnColumnDef RevengeOnTameFailed => _revengeOnTameFailed ??= _revengeOnTameFailed = DefDatabase<PawnColumnDef>.GetNamedSilentFail("ManhunterOnTameFailChance");
+
         private PawnTableDef PawnTable
         {
             get => numbers.pawnTableDef;
@@ -98,7 +110,7 @@
                 list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.Animals.options
                     .Concat(DefDatabase<PawnTableDef>.GetNamed("Animals").columns)
                     .Where(x => pcdValidator(x))
-                    .Except(new[] { AllowedArea, AllowedAreaWide })));
+                    .Except(new[] { AllowedArea, AllowedAreaWide, Gender, Age, MentalState })));
             }
 
             if (PawnTable == NumbersDefOf.Numbers_MainTable)
@@ -107,14 +119,15 @@
                     .Concat(DefDatabase<PawnTableDef>.GetNamed("Assign").columns)
                     .Concat(DefDatabase<PawnTableDef>.GetNamed("Restrict").columns)
                     .Where(x => pcdValidator(x) && filterRoyalty(x))
-                    .Except(new[] { AllowedArea, AllowedAreaWide })));
+                    .Except(new[] { AllowedArea, AllowedAreaWide, Gender, Age, MentalState })));
             }
 
             if (PawnTable == NumbersDefOf.Numbers_WildAnimals)
             {
                 list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.WildAnimals.options
                     .Concat(DefDatabase<PawnTableDef>.GetNamed("Wildlife").columns)
-                    .Where(x => pcdValidator(x))));
+                    .Where(x => pcdValidator(x))
+                    .Except(new[] { Gender, MentalState, RevengeOnTameFailed })));
             }
 
             //all dead things
