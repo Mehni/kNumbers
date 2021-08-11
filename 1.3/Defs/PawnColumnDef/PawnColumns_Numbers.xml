@@ -205,7 +205,7 @@
     <workerClass>Numbers.PawnColumnWorker_ManhunterOnDamageChance</workerClass>
     <sortable>true</sortable>
     <headerTip>Revenge chance when harmed</headerTip>
-    <headerIcon>World/WorldObjects/Expanding/Sites/Manhunters</headerIcon>
+    <headerIcon>UI/Icons/Animal/Predator</headerIcon>
     <width>45</width>
   </PawnColumnDef>
 
