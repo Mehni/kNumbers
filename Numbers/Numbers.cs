@@ -16,9 +16,15 @@
     {
         private readonly Numbers_Settings settings;
 
+        private static int reorderableGroupId = -1;
+
         public Numbers(ModContentPack content) : base(content)
         {
             Harmony harmony = new Harmony("mehni.rimworld.numbers");
+
+#if DEBUG
+            Harmony.DEBUG = true;
+#endif
 
             harmony.Patch(AccessTools.Method(typeof(DefGenerator), nameof(DefGenerator.GenerateImpliedDefs_PreResolve)),
                 postfix: new HarmonyMethod(typeof(Numbers), nameof(Columndefs)));
@@ -77,13 +83,13 @@
             if (Event.current.button != 1)
                 return true;
 
-            if (!(table is PawnTable_NumbersMain numbersTable))
+            if (table is not PawnTable_NumbersMain numbersTable)
                 return true;
 
             if (!Mouse.IsOver(headerRect))
                 return true;
 
-            numbersTable.ColumnsListForReading.RemoveAll(x => ReferenceEquals(__instance, x.Worker));
+            numbersTable.RemoveColumns(x => ReferenceEquals(__instance, x.Worker));
 
             if (Find.WindowStack.currentlyDrawnWindow is MainTabWindow_Numbers numbers)
                 numbers.RefreshAndStoreSessionInWorldComp();
@@ -91,12 +97,14 @@
             return false;
         }
 
-        private static IEnumerable<CodeInstruction> MakeHeadersReOrderable(IEnumerable<CodeInstruction> instructions)
+        private static IEnumerable<CodeInstruction> MakeHeadersReOrderable(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         {
             MethodInfo recacheIfDirty = AccessTools.Method(typeof(PawnTable), "RecacheIfDirty");
             MethodInfo reorderableGroup = AccessTools.Method(typeof(Numbers), nameof(ReorderableGroup));
             MethodInfo reorderableWidget = AccessTools.Method(typeof(Numbers), nameof(CallReorderableWidget));
             MethodInfo doHeader = AccessTools.Method(typeof(PawnColumnWorker), nameof(PawnColumnWorker.DoHeader));
+
+            var local = generator.DeclareLocal(typeof(int));
 
             CodeInstruction[] codeInstructions = instructions.ToArray();
             for (int i = 0; i < codeInstructions.Length; i++)
@@ -106,7 +114,7 @@
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Call, reorderableGroup);
-                    yield return new CodeInstruction(OpCodes.Stloc, 7);
+                    yield return new CodeInstruction(OpCodes.Stloc, local.LocalIndex);
                 }
 
                 //IL_0092: callvirt instance class RimWorld.PawnColumnWorker RimWorld.PawnColumnDef::get_Worker()
@@ -115,7 +123,7 @@
                 //IL_009a: callvirt instance void RimWorld.PawnColumnWorker::DoHeader(valuetype [UnityEngine.CoreModule]UnityEngine.Rect, class RimWorld.PawnTable)
                 if (i < codeInstructions.Length + 3 && instruction.opcode == OpCodes.Ldloc_S && codeInstructions[i + 2].Calls(doHeader))
                 {
-                    yield return new CodeInstruction(OpCodes.Ldloc, 7);
+                    yield return new CodeInstruction(OpCodes.Ldloc, local.LocalIndex);
                     yield return instruction;
                     yield return new CodeInstruction(OpCodes.Call, reorderableWidget);
                 }
@@ -125,10 +133,14 @@
 
         private static int ReorderableGroup(PawnTable pawnTable)
         {
-            if (!(pawnTable is PawnTable_NumbersMain numbersPawnTable))
-                return int.MinValue;
+            if (pawnTable is not PawnTable_NumbersMain numbersPawnTable)
+                reorderableGroupId = int.MinValue;
 
-            return ReorderableWidget.NewGroup(ReorderAction, ReorderableDirection.Horizontal);
+            if (Event.current.type == EventType.Repaint)
+            {
+                reorderableGroupId = ReorderableWidget.NewGroup(ReorderAction, ReorderableDirection.Horizontal, new Rect(0f, 0f, UI.screenWidth, UI.screenHeight));
+            }
+            return reorderableGroupId;
         }
 
         private static readonly Action<int, int> ReorderAction = delegate (int from, int to)
@@ -187,7 +199,7 @@
             for (int i = 0; i < instructionList.Count; i++)
             {
                 CodeInstruction instruction = instructionList[i];
-                if (instruction.opcode == OpCodes.Ldc_I4_3 && instructionList[i + 1].Calls(anchorSetter))
+                if (instruction.opcode == OpCodes.Call && instructionList[i + 1].Calls(anchorSetter))
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_3); //put Table on stack
                     instruction = new CodeInstruction(OpCodes.Call, transpilerHelper);
@@ -271,6 +283,7 @@
             => useRightButton && Input.GetMouseButtonDown(1)
             || !useRightButton && Input.GetMouseButtonDown(0);
 
+
         private static void AddHighlightToLabel_PostFix(Rect rect, Pawn pawn)
         {
             if (!Numbers_Settings.pawnTableHighlightSelected) return;
@@ -296,7 +309,7 @@
             }
         }
 
-        public static void ClickPawn(GlobalTargetInfo target)
+        public static void ClickPawn(GlobalTargetInfo target, CameraJumper.MovementMode mode = CameraJumper.MovementMode.Pan)
         {
             if (!Numbers_Settings.pawnTableClickSelect)
             {
@@ -359,7 +372,7 @@
 
         private static PawnColumnDef GenerateNewPawnColumnDefFor(Def def)
         {
-            bool prependDescription = !(def is PawnCapacityDef);
+            bool prependDescription = def is not PawnCapacityDef;
             PawnColumnDef pcd = new PawnColumnDef
             {
                 defName = HorribleStringParsersForSaving.CreateDefNameFromType(def),

@@ -12,11 +12,11 @@
 
         private float GetValue(Pawn pawn) => pawn.AnimalOrWildMan() ? TameChanceFactorCurve_Wildness.Evaluate(pawn.RaceProps.wildness) : 0;
 
-        //RimWorld.InteractionWorker_RecruitAttempt.TameChanceFactorCurve_Wildness is private, so I copy-pasted the simple thing.
-        // Updaters beware: this is likely to be outdated. Verify.
 
 #if DEBUG
         [Obsolete]
+        //RimWorld.InteractionWorker_RecruitAttempt.TameChanceFactorCurve_Wildness is private, so I copy-pasted the simple thing.
+        // Updaters beware: this is likely to be outdated. Verify.
 #endif
         private static readonly SimpleCurve TameChanceFactorCurve_Wildness = new SimpleCurve
         {
