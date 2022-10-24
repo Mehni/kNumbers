@@ -2,7 +2,7 @@
 {
     using Verse;
 
-    public class DefModExtension_NeedsRoyalty : DefModExtension
+    public class DefModExtension_NeedsBioTech : DefModExtension
     {
         //nothing needed, just a tag
     }

@@ -7,6 +7,7 @@
             <li>Numbers_Equipment</li>
             <li>Numbers_Meditation</li>
             <li>Numbers_Traits</li>
+            <li>Numbers_Strip</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 
@@ -20,6 +21,9 @@
             <li>Numbers_HediffList</li>
             <li>Numbers_HediffBadList</li>
             <li>Numbers_InventoryDropAll</li>
+            <li>Numbers_Ideology</li>
+            <li>Numbers_Xenogenes</li>
+            <li>Numbers_Endogenes</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 
@@ -30,6 +34,7 @@
             <li>Numbers_PrisonerResistance</li>
             <li>FoodRestriction</li>
             <li>Numbers_Inventory</li>
+            <li>Numbers_Guilt</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 
@@ -59,6 +64,7 @@
             <li>Numbers_Entropy</li>
             <li>Numbers_PsylinkLevel</li>
             <li>Numbers_Areas</li>
+            <li>Numbers_Bandwidth</li>
             <!-- .Concat(DefDatabase<PawnTableDef>.GetNamed("Assign").columns).Concat(DefDatabase<PawnTableDef>.GetNamed("Restrict").columns).Where(x => pcdValidator(x) && filterRoyalty(x)); -->
         </options>
     </Numbers.PawnColumnOptionDef>

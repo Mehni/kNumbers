@@ -283,4 +283,69 @@
     <width>350</width>
   </PawnColumnDef>
 
+  <PawnColumnDef>
+    <defName>Numbers_Bandwidth</defName>
+    <workerClass>Numbers.PawnColumnWorker_Bandwidth</workerClass>
+    <sortable>true</sortable>
+    <headerTip>Bandwidth</headerTip>
+    <label>Bandwidth</label>
+    <modExtensions>
+      <li Class="Numbers.DefModExtension_NeedsBioTech"/>
+    </modExtensions>
+    <width>200</width>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
+    <defName>Numbers_Endogenes</defName>
+    <workerClass>Numbers.PawnColumnWorker_Endogenes</workerClass>
+    <sortable>true</sortable>
+    <headerTip>Germline genes</headerTip>
+    <label>Germline genes</label>
+    <modExtensions>
+      <li Class="Numbers.DefModExtension_NeedsBioTech"/>
+    </modExtensions>
+    <width>350</width>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
+    <defName>Numbers_Xenogenes</defName>
+    <workerClass>Numbers.PawnColumnWorker_Xenogenes</workerClass>
+    <sortable>true</sortable>
+    <headerTip>Xenogenes</headerTip>
+    <label>Xenogenes</label>
+    <modExtensions>
+      <li Class="Numbers.DefModExtension_NeedsBioTech"/>
+    </modExtensions>
+    <width>350</width>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
+    <defName>Numbers_Guilt</defName>
+    <workerClass>Numbers.PawnColumnWorker_Guilt</workerClass>
+    <sortable>true</sortable>
+    <headerTip>Guilt</headerTip>
+    <label>Guilt</label>
+    <width>50</width>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
+    <defName>Numbers_Ideology</defName>
+    <workerClass>Numbers.PawnColumnWorker_Ideology</workerClass>
+    <sortable>true</sortable>
+    <headerTip>Ideology and certainty</headerTip>
+    <label>Ideology</label>
+    <modExtensions>
+      <li Class="Numbers.DefModExtension_NeedsIdeology"/>
+    </modExtensions>
+    <width>200</width>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
+    <defName>Numbers_Strip</defName>
+    <workerClass>Numbers.PawnColumnWorker_Strip</workerClass>
+    <headerTip>Strip</headerTip>
+    <label>Strip</label>
+    <width>50</width>
+  </PawnColumnDef>
+
 </Defs>

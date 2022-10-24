@@ -25,6 +25,8 @@
         }
 
         private static readonly Func<PawnColumnDef, bool> filterRoyalty = pcd => ModLister.RoyaltyInstalled || !pcd.HasModExtension<DefModExtension_NeedsRoyalty>();
+        private static readonly Func<PawnColumnDef, bool> filterBioTech = pcd => ModLister.BiotechInstalled || !pcd.HasModExtension<DefModExtension_NeedsBioTech>();
+        private static readonly Func<PawnColumnDef, bool> filterIdeology = pcd => ModLister.BiotechInstalled || !pcd.HasModExtension<DefModExtension_NeedsIdeology>();
 
         public OptionsMaker(MainTabWindow_Numbers mainTabWindow)
         {
@@ -106,7 +108,7 @@
                 list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.MainTable.options
                     .Concat(DefDatabase<PawnTableDef>.GetNamed("Assign").columns)
                     .Concat(DefDatabase<PawnTableDef>.GetNamed("Restrict").columns)
-                    .Where(x => pcdValidator(x) && filterRoyalty(x))
+                    .Where(x => pcdValidator(x))
                     .Except(new[] { AllowedArea, AllowedAreaWide })));
             }
 
@@ -277,7 +279,10 @@
                                 && !(pcd.Worker is PawnColumnWorker_Label) && !(pcd.Worker is PawnColumnWorker_RemainingSpace)
                                 && !(pcd.Worker is PawnColumnWorker_CopyPaste) && !(pcd.Worker is PawnColumnWorker_MedicalCare)
                                 && !(pcd.Worker is PawnColumnWorker_Timetable) || (!(pcd.label.NullOrEmpty() && pcd.HeaderIcon == null)
-                                && !pcd.HeaderInteractable);
+                                && !pcd.HeaderInteractable)
+                                && filterRoyalty(pcd)
+                                && filterIdeology(pcd)
+                                && filterBioTech(pcd);
             }
             catch (ArgumentNullException ex)
             {

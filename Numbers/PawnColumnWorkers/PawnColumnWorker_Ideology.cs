@@ -1,0 +1,32 @@
+﻿namespace Numbers
+{
+    using RimWorld;
+    using UnityEngine;
+    using Verse;
+
+    public class PawnColumnWorker_Ideology : PawnColumnWorker
+    {
+        public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
+        {
+            IdeoUIUtility.DrawIdeoPlate(rect, pawn.Ideo, pawn);
+            //SocialCardUtility.DrawPawnCertainty(pawn, rect);
+        }
+
+        public override int GetMinWidth(PawnTable table)
+        {
+            return Mathf.Max(base.GetMinWidth(table), 140);
+        }
+
+        public override int Compare(Pawn a, Pawn b)
+        {
+            return (a.ideo?.Certainty ?? 0).CompareTo(b.ideo?.Certainty ?? 0);
+        }
+    }
+}
+
+//todo: biotech
+//genes (germline, xeno)
+//bandwidth
+//complexity
+//efficiency
+//fix hand icon on self-tend
