@@ -114,6 +114,7 @@
 
             if (PawnTable == NumbersDefOf.Numbers_WildAnimals)
             {
+                list.RemoveAll(x => x.Label == "Gender"); //duplicate
                 list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.WildAnimals.options
                     .Concat(DefDatabase<PawnTableDef>.GetNamed("Wildlife").columns)
                     .Where(x => pcdValidator(x))));
@@ -275,14 +276,18 @@
         {
             try
             {
-                return !(pcd.Worker is PawnColumnWorker_Gap)
-                                && !(pcd.Worker is PawnColumnWorker_Label) && !(pcd.Worker is PawnColumnWorker_RemainingSpace)
-                                && !(pcd.Worker is PawnColumnWorker_CopyPaste) && !(pcd.Worker is PawnColumnWorker_MedicalCare)
-                                && !(pcd.Worker is PawnColumnWorker_Timetable) || (!(pcd.label.NullOrEmpty() && pcd.HeaderIcon == null)
-                                && !pcd.HeaderInteractable)
-                                && filterRoyalty(pcd)
-                                && filterIdeology(pcd)
-                                && filterBioTech(pcd);
+                return pcd.Worker is not PawnColumnWorker_Gap
+                    && pcd.Worker is not PawnColumnWorker_Label
+                    && pcd.Worker is not PawnColumnWorker_RemainingSpace
+                    && pcd.Worker is not PawnColumnWorker_CopyPaste
+                    && pcd.Worker is not PawnColumnWorker_MedicalCare
+                    && pcd.Worker is not RimWorld.PawnColumnWorker_Ideo //definitely don't want the vanilla one.
+                    && pcd.Worker is not RimWorld.PawnColumnWorker_MentalState //definitely don't want the vanilla one.
+                    && pcd.Worker is not PawnColumnWorker_Timetable
+                    || (!(pcd.label.NullOrEmpty() && pcd.HeaderIcon == null) && !pcd.HeaderInteractable)
+                    && filterRoyalty(pcd)
+                    && filterIdeology(pcd)
+                    && filterBioTech(pcd);
             }
             catch (ArgumentNullException ex)
             {

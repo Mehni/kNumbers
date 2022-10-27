@@ -9,7 +9,7 @@
     {
         protected override string GetTextFor(Pawn pawn)
         {
-            return pawn.genes.Endogenes.Select(gene => gene.Label).ToCommaList();
+            return pawn.genes?.Endogenes?.Select(gene => gene.Label).ToCommaList();
         }
     }
 
@@ -17,7 +17,7 @@
     {
         protected override string GetTextFor(Pawn pawn)
         {
-            return pawn.genes.Xenogenes.Select(gene => gene.Label).ToCommaList();
+            return pawn.genes?.Xenogenes?.Select(gene => gene.Label).ToCommaList();
         }
     }
 }

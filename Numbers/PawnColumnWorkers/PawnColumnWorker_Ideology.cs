@@ -8,8 +8,11 @@
     {
         public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
         {
+            if (pawn?.Ideo == null)
+            {
+                return;
+            }
             IdeoUIUtility.DrawIdeoPlate(rect, pawn.Ideo, pawn);
-            //SocialCardUtility.DrawPawnCertainty(pawn, rect);
         }
 
         public override int GetMinWidth(PawnTable table)
@@ -23,10 +26,3 @@
         }
     }
 }
-
-//todo: biotech
-//genes (germline, xeno)
-//bandwidth
-//complexity
-//efficiency
-//fix hand icon on self-tend

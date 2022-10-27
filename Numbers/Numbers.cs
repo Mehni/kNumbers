@@ -67,12 +67,9 @@
             {
                 DefGenerator.AddImpliedDef(pawnColumnDef);
             }
-            //yeah I will set an icon for it because I can.
-            var pcd = DefDatabase<PawnColumnDef>.GetNamed("ManhunterOnDamageChance");
-            pcd.headerIcon = "UI/Icons/Animal/Predator";
-            pcd.headerAlwaysInteractable = true;
             var pred = DefDatabase<PawnColumnDef>.GetNamed("Predator");
             pred.sortable = true;
+            pred.headerTip = "Predator";
         }
 
         private static bool RightClickToRemoveHeader(PawnColumnWorker __instance, Rect headerRect, PawnTable table)
@@ -357,12 +354,17 @@
                 o1.EscapeCurrentTab(o2);
         }
 
+        private static NeedDef DummyNeed => DefDatabase<NeedDef>.GetNamedSilentFail("Authority");
+        // the xml says
+        //  <!-- This is a temporary dummy need to suppress errors when loading older saves. -->
+        // temporary my ass.
+
         private static IEnumerable<PawnColumnDef> ImpliedPawnColumnDefs()
             => DefDatabase<RecordDef>.AllDefsListForReading.Select(GenerateNewPawnColumnDefFor)
                    .Concat(DefDatabase<PawnCapacityDef>
                           .AllDefsListForReading.Select(GenerateNewPawnColumnDefFor))
                    .Concat(DefDatabase<NeedDef>
-                          .AllDefsListForReading.Select(GenerateNewPawnColumnDefFor))
+                          .AllDefsListForReading.Except(DummyNeed).Select(GenerateNewPawnColumnDefFor))
                    .Concat(DefDatabase<StatDef>
                           .AllDefsListForReading.Select(GenerateNewPawnColumnDefFor))
                    .Concat(DefDatabase<SkillDef>

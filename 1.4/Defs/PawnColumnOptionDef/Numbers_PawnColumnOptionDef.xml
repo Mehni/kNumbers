@@ -75,7 +75,6 @@
             <li>Numbers_Wildness</li>
             <li>Numbers_TameChance</li>
             <li>Numbers_LeatherType</li>
-            <li>Numbers_ManhunterOnTameFailChance</li>
             <!-- .Concat(DefDatabase<PawnTableDef>.GetNamed("Wildlife").columns.Where(x => pcdValidator(x))); -->
         </options>
     </Numbers.PawnColumnOptionDef>

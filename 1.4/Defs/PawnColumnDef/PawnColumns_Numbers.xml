@@ -192,15 +192,6 @@
   </PawnColumnDef>
 
   <PawnColumnDef>
-    <defName>Numbers_ManhunterOnTameFailChance</defName>
-    <workerClass>Numbers.PawnColumnWorker_ManhunterOnTameFailChance</workerClass>
-    <sortable>true</sortable>
-    <headerTip>Revenge chance on tame fail</headerTip>
-    <headerIcon>UI/Icons/Animal/Predator</headerIcon>
-    <width>45</width>
-  </PawnColumnDef>
-
-  <PawnColumnDef>
     <defName>Numbers_Wildness</defName>
     <workerClass>Numbers.PawnColumnWorker_AnimalWildness</workerClass>
     <sortable>true</sortable>
