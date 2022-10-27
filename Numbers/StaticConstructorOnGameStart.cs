@@ -81,7 +81,6 @@
                         && x.defName.StartsWith("Numbers_")
                         && !(x.Worker is PawnColumnWorker_AllHediffs
                         || x.Worker is PawnColumnWorker_SelfTend
-                        || x.Worker is PawnColumnWorker_ManhunterOnTameFailChance
                         || x.Worker is PawnColumnWorker_Ability))) //these PawnColumnWorkers override GetHeaderTip.
             {
                 pawnColumnDef.headerTip += (pawnColumnDef.headerTip.NullOrEmpty() ? "" : "\n\n") + "Numbers_ColumnHeader_Tooltip".Translate();
@@ -99,7 +98,7 @@
 
         private static void PopulatePsycastingPreset()
         {
-            psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Label"));
+            psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("LabelShortWithIcon"));
             psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Numbers_PsylinkLevel"));
             psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Numbers_Psyfocus"));
             psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Numbers_Entropy"));
@@ -116,7 +115,7 @@
         {
             medicalPreset.AddRange(new List<PawnColumnDef>
                                        {
-                                           DefDatabase<PawnColumnDef>.GetNamed("Label"),
+                                           DefDatabase<PawnColumnDef>.GetNamed("LabelShortWithIcon"),
                                            DefDatabase<PawnColumnDef>.GetNamed("MedicalCare"),
                                            DefDatabase<PawnColumnDef>.GetNamed("Numbers_SelfTend"),
                                            DefDatabase<PawnColumnDef>.GetNamed("Numbers_HediffList"),

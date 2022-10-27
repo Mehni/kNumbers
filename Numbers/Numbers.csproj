@@ -1,61 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BA30D06A-3EAF-4302-8FD2-9C6A9BD177C4}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Numbers</RootNamespace>
-    <AssemblyName>Numbers</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>false</DebugSymbols>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyTitle>Numbers</AssemblyTitle>
+    <Product>Numbers</Product>
+    <Copyright>Copyright © Mehni 2022</Copyright>
+    <FileVersion>1.1.0.0</FileVersion>
     <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\1.1\Assemblies\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\1.3\Assemblies\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
-    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
+    <OutputPath>..\1.4\Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
@@ -74,67 +34,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefModExtension_NeedsRoyalty.cs" />
-    <Compile Include="DefModExtension_PawnTableDefs.cs" />
-    <Compile Include="Dialog_IHaveToCreateAnEntireFuckingDialogForANOKAYBUTTONFFS.cs" />
-    <Compile Include="MainTabWindow_Numbers.cs" />
-    <Compile Include="DefModExtension_PawnColumnDefs.cs" />
-    <Compile Include="HorribleStringParsersForSaving.cs" />
-    <Compile Include="MainTabWindow_NumbersAnimals.cs" />
-    <Compile Include="Numbers_PawnColumnDef.cs" />
-    <Compile Include="Numbers_Settings.cs" />
-    <Compile Include="Numbers_SettingsHelper.cs" />
-    <Compile Include="Numbers_Utility.cs" />
-    <Compile Include="OptionsMaker.cs" />
-    <Compile Include="PawnColumnOptionDef.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Ability.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Age.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_AllHediffs.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_AllowedAreaWithMassAssign.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_AnimalMilkFullness.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_AnimalWildness.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_AnimalFilthRate.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_AnimalWoolGrowth.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Backstory.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Bleedrate.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Capacity.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_AnimalEggProgress.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_DiseaseProgression.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Entropy.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Faction.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Forbidden.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Gear.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_HediffIsBad.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Inspiration.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Inventory.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_InventoryDropAll.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_JobCurrent.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_LeatherType.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_ManhunterOnTameFailChance.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Meditation.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_MentalState.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Need.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_OperationDropDown.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Pain.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_PrisonerInteraction.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_PrisonerResistance.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_JobQueued.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Psyfocus.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_PsylinkLevel.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Race.cs" />
-    <Compile Include="Numbers.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Record.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_SelfTend.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Skill.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Stat.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_NeedsTreatment.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_TameChance.cs" />
-    <Compile Include="PawnColumnWorkers\PawnColumnWorker_Trait.cs" />
-    <Compile Include="PawnTable_NumbersMain.cs" />
-    <Compile Include="MainTabWindow_NumbersWildLife.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaticConstructorOnGameStart.cs" />
-    <Compile Include="WorldComponent_Numbers.cs" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.4.3523-beta" />
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
