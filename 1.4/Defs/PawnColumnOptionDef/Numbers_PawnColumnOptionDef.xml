@@ -24,6 +24,7 @@
             <li>Numbers_Ideology</li>
             <li>Numbers_Xenogenes</li>
             <li>Numbers_Endogenes</li>
+            <li>Numbers_GenesRegrowTime</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 

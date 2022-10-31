@@ -311,6 +311,18 @@
   </PawnColumnDef>
 
   <PawnColumnDef>
+    <defName>Numbers_GenesRegrowTime</defName>
+    <workerClass>Numbers.PawnColumnWorker_GenesRegrowTime</workerClass>
+    <sortable>true</sortable>
+    <headerTip>Genes Regrowing</headerTip>
+    <label>Genes Regrowing</label>
+    <modExtensions>
+      <li Class="Numbers.DefModExtension_NeedsBioTech"/>
+    </modExtensions>
+    <width>80</width>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
     <defName>Numbers_Guilt</defName>
     <workerClass>Numbers.PawnColumnWorker_Guilt</workerClass>
     <sortable>true</sortable>
