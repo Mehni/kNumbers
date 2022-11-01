@@ -128,7 +128,8 @@
             }
         }
 
-        private static int ReorderableGroup(PawnTable pawnTable)
+        //public because of https://github.com/krypt-lynx/PawnTableGrouped
+        public static int ReorderableGroup(PawnTable pawnTable)
         {
             if (pawnTable is not PawnTable_NumbersMain numbersPawnTable)
                 reorderableGroupId = int.MinValue;
@@ -155,7 +156,8 @@
             }
         };
 
-        private static void CallReorderableWidget(int groupId, Rect rect)
+        //public because of https://github.com/krypt-lynx/PawnTableGrouped
+        public static void CallReorderableWidget(int groupId, Rect rect)
         {
             if (groupId == int.MinValue)
                 return;

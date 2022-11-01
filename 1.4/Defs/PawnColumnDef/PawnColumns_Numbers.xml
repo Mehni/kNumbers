@@ -351,4 +351,11 @@
     <width>50</width>
   </PawnColumnDef>
 
+  <PawnColumnDef>
+    <defName>Numbers_Recruitable</defName>
+    <workerClass>Numbers.PawnColumnWorker_Recruitable</workerClass>
+    <label>Unwaveringly loyal</label>
+    <width>50</width>
+  </PawnColumnDef>
+
 </Defs>

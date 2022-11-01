@@ -23,7 +23,8 @@
                                             SortingIcon = ContentFinder<Texture2D>.Get("UI/Icons/Sorting"),
                                             SortingDescendingIcon = ContentFinder<Texture2D>.Get("UI/Icons/SortingDescending"),
                                             BarInstantMarkerTex = ContentFinder<Texture2D>.Get("UI/Misc/BarInstantMarker"),
-                                            Drop = ContentFinder<Texture2D>.Get("UI/Buttons/Drop");
+                                            Drop = ContentFinder<Texture2D>.Get("UI/Buttons/Drop"),
+                                            UnwaveringlyLoyal = ContentFinder<Texture2D>.Get("UI/Icons/UnwaveringlyLoyal");
 
         public static List<PawnColumnDef> combatPreset = new List<PawnColumnDef>(),
                                           workTabPlusPreset = new List<PawnColumnDef>(),

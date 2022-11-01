@@ -36,6 +36,7 @@
             <li>FoodRestriction</li>
             <li>Numbers_Inventory</li>
             <li>Numbers_Guilt</li>
+            <li>Numbers_Recruitable</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 
