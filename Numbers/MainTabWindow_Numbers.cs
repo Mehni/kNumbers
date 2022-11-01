@@ -218,7 +218,7 @@
 
         private (List<NeedDef> pawnAnimalNeedDef, List<StatDef> pawnAnimalStatDef, List<StatDef> corpseStatDef) PopulateLists()
         {
-            PawnGenerationRequest request = new PawnGenerationRequest(PawnKindDefOf.Thrumbo, Faction.OfPirates, forceNoIdeo: true);
+            PawnGenerationRequest request = new PawnGenerationRequest(PawnKindDefOf.Thrumbo, Faction.OfPirates, forceNoIdeo: true, forceGenerateNewPawn: true);
             Pawn tmpPawn = PawnGenerator.GeneratePawn(request);
 
             var pawnAnimalNeedDef = tmpPawn.needs.AllNeeds.Where(x => x.def.showOnNeedList).Select(x => x.def).ToList();
@@ -251,7 +251,7 @@
 
         private List<StatDef> GetHumanLikeStatDefs()
         {
-            PawnGenerationRequest request = new PawnGenerationRequest(PawnKindDefOf.AncientSoldier, Faction.OfAncients, forceNoIdeo: true);
+            PawnGenerationRequest request = new PawnGenerationRequest(PawnKindDefOf.AncientSoldier, Faction.OfAncients, forceNoIdeo: true, forceGenerateNewPawn: true);
             Pawn tmpPawn = PawnGenerator.GeneratePawn(request);
 
             var source = ((IEnumerable<StatDrawEntry>)StatsToDraw?.Invoke(null, new[] { tmpPawn })) ?? Enumerable.Empty<StatDrawEntry>();
