@@ -29,7 +29,7 @@
         }
 
         // Postponing column removal until PawnTable drawing is finished
-        // Immidiate removal causes change of column indexes in middle of drawing process
+        // Immediate removal causes change of column indexes in middle of drawing process
         // it makes vanilla game to render nonsense for a single update
         // and also causes support issues for Grouped Pawn Tables mod (caches mismatch)
         public void EnqueueColumnRemoval(Predicate<PawnColumnDef> predicate)
