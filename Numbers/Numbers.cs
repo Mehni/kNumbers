@@ -33,6 +33,7 @@
                 prefix: new HarmonyMethod(typeof(Numbers), nameof(RightClickToRemoveHeader)));
 
             harmony.Patch(AccessTools.Method(typeof(PawnTable), nameof(PawnTable.PawnTableOnGUI)),
+                postfix: new HarmonyMethod(typeof(Numbers), nameof(ApplyColumnsRemoval)),
                 transpiler: new HarmonyMethod(typeof(Numbers), nameof(MakeHeadersReOrderable)));
 
             harmony.Patch(AccessTools.Method(typeof(PawnColumnWorker), nameof(PawnColumnWorker.DoHeader)),
@@ -86,12 +87,20 @@
             if (!Mouse.IsOver(headerRect))
                 return true;
 
-            numbersTable.RemoveColumns(x => ReferenceEquals(__instance, x.Worker));
+            numbersTable.EnqueueColumnRemoval(x => ReferenceEquals(__instance, x.Worker));
 
             if (Find.WindowStack.currentlyDrawnWindow is MainTabWindow_Numbers numbers)
                 numbers.RefreshAndStoreSessionInWorldComp();
 
             return false;
+        }
+
+        private static void ApplyColumnsRemoval(PawnTable __instance)
+        {
+            if (__instance is PawnTable_NumbersMain table)
+            {
+                table.ApplyColumnRemoval();
+            }
         }
 
         private static IEnumerable<CodeInstruction> MakeHeadersReOrderable(IEnumerable<CodeInstruction> instructions, ILGenerator generator)

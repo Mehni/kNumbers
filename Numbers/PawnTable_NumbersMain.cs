@@ -18,16 +18,31 @@
             SetDirty();
         }
 
+
         public PawnTableDef PawnTableDef { get; protected set; }
 
-        public bool RemoveColumn(PawnColumnDef columnDef)
-        {
-            return PawnTableDef.columns.Remove(columnDef);
-        }
+        Queue<Predicate<PawnColumnDef>> filtersToApply = new Queue<Predicate<PawnColumnDef>>();
 
         public int RemoveColumns(Predicate<PawnColumnDef> predicate)
         {
             return PawnTableDef.columns.RemoveAll(predicate);
+        }
+
+        // Postponing column removal until PawnTable drawing is finished
+        // Immidiate removal causes change of column indexes in middle of drawing process
+        // it makes vanilla game to render nonsense for a single update
+        // and also causes support issues for Grouped Pawn Tables mod (caches mismatch)
+        public void EnqueueColumnRemoval(Predicate<PawnColumnDef> predicate)
+        {
+            filtersToApply.Enqueue(predicate);
+        }
+
+        public void ApplyColumnRemoval()
+        {
+            while (filtersToApply.Count > 0)
+            {
+                RemoveColumns(filtersToApply.Dequeue());
+            }
         }
     }
 }
