@@ -5,10 +5,13 @@
     <Product>Numbers</Product>
     <Copyright>Copyright © Mehni 2022</Copyright>
     <FileVersion>1.1.0.0</FileVersion>
-    <DebugType>none</DebugType>
+    <DebugType>portable</DebugType>
     <LangVersion>latest</LangVersion>
     <OutputPath>..\1.4\Assemblies\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref" Version="1.4.3534" />
