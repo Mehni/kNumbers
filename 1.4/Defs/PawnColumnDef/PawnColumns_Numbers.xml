@@ -266,6 +266,21 @@
   </PawnColumnDef>
 
   <PawnColumnDef>
+    <defName>Numbers_AnimalFoodRestriction</defName>
+    <workerClass>Numbers.PawnColumnWorker_AnimalFoodRestriction</workerClass>
+    <sortable>true</sortable>
+    <label>food restriction</label>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
+    <defName>Numbers_FoodRestrictionMass</defName>
+    <workerClass>Numbers.PawnColumnWorker_FoodRestrictionMassAssign</workerClass>
+    <sortable>true</sortable>
+    <label>food restriction mass</label>
+    <width>250</width>
+  </PawnColumnDef>
+
+  <PawnColumnDef>
     <defName>Numbers_Traits</defName>
     <workerClass>Numbers.PawnColumnWorker_Trait</workerClass>
     <sortable>true</sortable>

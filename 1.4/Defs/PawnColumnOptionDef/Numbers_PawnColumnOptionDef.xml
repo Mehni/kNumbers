@@ -37,6 +37,7 @@
             <li>Numbers_Inventory</li>
             <li>Numbers_Guilt</li>
             <li>Numbers_Recruitable</li>
+            <li>Numbers_FoodRestrictionMass</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 
@@ -52,6 +53,8 @@
             <li>Numbers_LeatherType</li>
             <li>Numbers_AnimalFilthRate</li>
             <li>Numbers_Areas</li>
+            <li>Numbers_AnimalFoodRestriction</li>
+            <li>Numbers_FoodRestrictionMass</li>
             <!--.Concat(DefDatabase<PawnTableDef>.GetNamed("Animals").columns.Where(x => pcdValidator(x))); -->
         </options>
     </Numbers.PawnColumnOptionDef>
@@ -67,6 +70,7 @@
             <li>Numbers_PsylinkLevel</li>
             <li>Numbers_Areas</li>
             <li>Numbers_Bandwidth</li>
+            <li>Numbers_FoodRestrictionMass</li>
             <!-- .Concat(DefDatabase<PawnTableDef>.GetNamed("Assign").columns).Concat(DefDatabase<PawnTableDef>.GetNamed("Restrict").columns).Where(x => pcdValidator(x) && filterRoyalty(x)); -->
         </options>
     </Numbers.PawnColumnOptionDef>
