@@ -78,7 +78,8 @@
             if (new[] { NumbersDefOf.Numbers_MainTable,
                         NumbersDefOf.Numbers_Prisoners,
                         NumbersDefOf.Numbers_Enemies,
-                        NumbersDefOf.Numbers_Corpses
+                        NumbersDefOf.Numbers_Corpses,
+                        NumbersDefOf.Numbers_Guests
                       }.Contains(PawnTable))
             {
                 list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.EquipmentBearers.options));
