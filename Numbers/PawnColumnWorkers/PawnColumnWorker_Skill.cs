@@ -72,7 +72,12 @@
 
         public override int Compare(Pawn a, Pawn b)
         {
-            return (a.skills?.GetSkill(def.Ext().skill)?.XpTotalEarned ?? 0).CompareTo(b.skills?.GetSkill(def.Ext().skill)?.XpTotalEarned ?? 0);
+            int ret = (a.skills?.GetSkill(def.Ext().skill)?.GetLevel(true) ?? 0).CompareTo(b.skills?.GetSkill(def.Ext().skill)?.GetLevel(true) ?? 0);
+            if (ret == 0)
+            {
+                ret = (a.skills?.GetSkill(def.Ext().skill)?.XpTotalEarned ?? 0).CompareTo(b.skills?.GetSkill(def.Ext().skill)?.XpTotalEarned ?? 0);
+            }
+            return ret;
         }
     }
 }
