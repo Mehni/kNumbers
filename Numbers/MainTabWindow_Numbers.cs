@@ -75,7 +75,10 @@
 
             PawnTableDef defaultTable = WorldComponent_Numbers.PrimaryFilter.First().Key;
             if (Find.World.GetComponent<WorldComponent_Numbers>().sessionTable.TryGetValue(defaultTable, out List<PawnColumnDef> list))
+            {
+                list.RemoveAll(x => x == null);
                 pawnTableDef.columns = list;
+            }
 
             UpdateFilter();
         }
