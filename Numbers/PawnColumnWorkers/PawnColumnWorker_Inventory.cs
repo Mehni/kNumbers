@@ -24,7 +24,7 @@
 
             foreach (Thing thing in pawn.inventory.innerContainer)
             {
-                Rect rect2 = new Rect(x, 0, gWidth, gHeight);
+                Rect rect2 = new(x, 0, gWidth, gHeight);
                 DrawThing(rect2, thing, pawn);
                 x += gWidth;
                 if (x > width)
@@ -39,10 +39,10 @@
         {
             if (Widgets.ButtonInvisible(rect) && Event.current.button == 1)
             {
-                List<FloatMenuOption> list = new List<FloatMenuOption>
-                {
+                List<FloatMenuOption> list =
+                [
                     new FloatMenuOption("ThingInfo".Translate(), () => Find.WindowStack.Add(new Dialog_InfoCard(thing)))
-                };
+                ];
 
                 if (selPawn.IsColonistPlayerControlled)
                 {
@@ -57,7 +57,7 @@
                     }
                     list.Add(new FloatMenuOption("DropThing".Translate(), action));
                 }
-                FloatMenu window = new FloatMenu(list, thing.LabelCap);
+                FloatMenu window = new(list, thing.LabelCap);
                 Find.WindowStack.Add(window);
             }
 

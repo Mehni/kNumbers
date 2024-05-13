@@ -37,7 +37,7 @@
 
         private List<PawnColumnDef> loadList;
 
-        public Dictionary<PawnTableDef, List<PawnColumnDef>> sessionTable = new Dictionary<PawnTableDef, List<PawnColumnDef>>();
+        public Dictionary<PawnTableDef, List<PawnColumnDef>> sessionTable = [];
 
         public override void ExposeData()
         {
@@ -62,17 +62,17 @@
             }
         }
 
-        public static readonly Dictionary<PawnTableDef, Func<Pawn, bool>> PrimaryFilter = new Dictionary<PawnTableDef, Func<Pawn, bool>>
+        public static readonly Dictionary<PawnTableDef, Func<Pawn, bool>> PrimaryFilter = new()
         {
             //{ "All",            (pawn) => true },
             { NumbersDefOf.Numbers_MainTable,      pawn => !pawn.Dead && pawn.IsVisible() && pawn.IsColonist },
             { NumbersDefOf.Numbers_Enemies,        pawn => !pawn.Dead && pawn.IsVisible() && pawn.IsEnemy() },
             { NumbersDefOf.Numbers_Prisoners,      pawn => !pawn.Dead && pawn.IsVisible() && pawn.IsPrisoner },
             { NumbersDefOf.Numbers_Guests,         pawn => !pawn.Dead && pawn.IsVisible() && pawn.IsGuest() },
-            { NumbersDefOf.Numbers_Animals,        pawn => !pawn.Dead && pawn.IsVisible() && pawn.RaceProps.Animal && pawn.Faction == Faction.OfPlayer },
+            { NumbersDefOf.Numbers_Animals,        pawn => !pawn.Dead && pawn.IsVisible() && pawn.IsAnimal() && pawn.Faction == Faction.OfPlayer },
             { NumbersDefOf.Numbers_WildAnimals,    pawn => !pawn.Dead && pawn.IsVisible() && pawn.IsWildAnimal() },
-            { NumbersDefOf.Numbers_Corpses,        pawn => pawn.Dead && pawn.IsVisible() && !pawn.RaceProps.Animal },
-            { NumbersDefOf.Numbers_AnimalCorpses,  pawn => pawn.Dead && pawn.IsVisible() && pawn.RaceProps.Animal }
+            { NumbersDefOf.Numbers_Corpses,        pawn => pawn.Dead && pawn.IsVisible() && !pawn.IsAnimal() },
+            { NumbersDefOf.Numbers_AnimalCorpses,  pawn => pawn.Dead && pawn.IsVisible() && pawn.IsAnimal() }
         };
 
         internal void NotifySettingsChanged()

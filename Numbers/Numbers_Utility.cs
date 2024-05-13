@@ -27,6 +27,10 @@
             => p.Faction == null
             && p.AnimalOrWildMan();
 
+        public static bool IsAnimal(this Pawn p)
+            => p.RaceProps != null
+            && p.RaceProps.Animal;
+
         public static DefModExtension_PawnColumnDefs Ext(this PawnColumnDef def, bool logError = true)
         {
             var ext = def.GetModExtension<DefModExtension_PawnColumnDefs>();
@@ -53,7 +57,7 @@
 
         public static string WordWrapAt(this string text, float length, PawnTable table = null)
         {
-            if (table != null && !(table is PawnTable_NumbersMain))
+            if (table != null && table is not PawnTable_NumbersMain)
                 return text.Truncate(length);
 
             IEnumerable<Pair<char, int>> source = from p in text.Select((c, idx) => new Pair<char, int>(c, idx))
@@ -79,7 +83,7 @@
 
         private static bool InfoCardButtonWorker(float x, float y)
         {
-            Rect rect = new Rect(x, y, 24f, 24f);
+            Rect rect = new(x, y, 24f, 24f);
             TooltipHandler.TipRegion(rect, "DefInfoTip".Translate());
             bool result = Widgets.ButtonImage(rect, StaticConstructorOnGameStart.Info, GUI.color);
             UIHighlighter.HighlightOpportunity(rect, "InfoCard");

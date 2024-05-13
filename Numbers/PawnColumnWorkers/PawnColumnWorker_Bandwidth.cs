@@ -9,7 +9,7 @@
     [StaticConstructorOnStartup]
     public class PawnColumnWorker_Bandwidth : PawnColumnWorker
     {
-        private static readonly Color EmptyBlockColor = new Color(0.3f, 0.3f, 0.3f, 1f);
+        private static readonly Color EmptyBlockColor = new(0.3f, 0.3f, 0.3f, 1f);
 
         private static readonly Color FilledBlockColor = ColorLibrary.Yellow;
 

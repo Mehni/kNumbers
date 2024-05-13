@@ -18,10 +18,18 @@
             SetDirty();
         }
 
-
         public PawnTableDef PawnTableDef { get; protected set; }
 
-        Queue<Predicate<PawnColumnDef>> filtersToApply = new Queue<Predicate<PawnColumnDef>>();
+        Queue<Predicate<PawnColumnDef>> filtersToApply = new();
+
+        protected override IEnumerable<Pawn> LabelSortFunction(IEnumerable<Pawn> input)
+        {
+            if (PawnTableDef == NumbersDefOf.Numbers_MainTable)
+            {
+                return PlayerPawnsDisplayOrderUtility.InOrder(input);
+            }
+            return base.LabelSortFunction(input);
+        }
 
         public int RemoveColumns(Predicate<PawnColumnDef> predicate)
         {

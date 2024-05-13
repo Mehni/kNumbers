@@ -34,7 +34,7 @@
         private void DrawInteractionRadioButton(Rect rect, Pawn pawn, PrisonerInteractionModeDef prisonerInteraction)
         {
             //inspired by RimWorld.AreaAllowedGUI.DoAreaSelector(Rect rect, Pawn p, Area area)
-            Widgets.RadioButton(rect.x, rect.y, pawn.guest.interactionMode == prisonerInteraction);
+            Widgets.RadioButton(rect.x, rect.y, pawn.guest.ExclusiveInteractionMode == prisonerInteraction);
             {
                 if (Input.GetMouseButtonUp(0))
                 {
@@ -49,14 +49,14 @@
                     if (Input.GetMouseButton(0))
                     {
                         dragging = true;
-                        pawn.guest.interactionMode = prisonerInteraction;
+                        pawn.guest.SetExclusiveInteraction(prisonerInteraction);
                     }
-                    if (dragging && pawn.guest.interactionMode != prisonerInteraction)
+                    if (dragging && pawn.guest.ExclusiveInteractionMode != prisonerInteraction)
                     {
-                        pawn.guest.interactionMode = prisonerInteraction;
+                        pawn.guest.SetExclusiveInteraction(prisonerInteraction);
                         SoundDefOf.Designate_DragStandard_Changed.PlayOneShotOnCamera();
                     }
-                    if (ModsConfig.IdeologyActive && pawn.guest.interactionMode == PrisonerInteractionModeDefOf.Convert && pawn.guest.ideoForConversion == null)
+                    if (ModsConfig.IdeologyActive && pawn.guest.ExclusiveInteractionMode == PrisonerInteractionModeDefOf.Convert && pawn.guest.ideoForConversion == null)
                     {
                         pawn.guest.ideoForConversion = Faction.OfPlayer.ideos.PrimaryIdeo;
                     }
@@ -65,7 +65,7 @@
         }
 
         public override int Compare(Pawn a, Pawn b)
-            => (a.guest?.interactionMode?.listOrder ?? 0).CompareTo(b.guest?.interactionMode?.listOrder ?? 0);
+            => (a.guest?.ExclusiveInteractionMode?.listOrder ?? 0).CompareTo(b.guest?.ExclusiveInteractionMode?.listOrder ?? 0);
 
         public override int GetMinWidth(PawnTable table)
             => width;

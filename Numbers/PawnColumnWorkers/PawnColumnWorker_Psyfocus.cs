@@ -25,7 +25,7 @@
 
             Text.Font = (rect.height <= 55f) ? GameFont.Tiny : GameFont.Small;
             Text.Anchor = TextAnchor.UpperLeft;
-            Rect rect3 = new Rect(rect.x, rect.y + rect.height / 2f, rect.width, rect.height / 2f);
+            Rect rect3 = new(rect.x, rect.y + rect.height / 2f, rect.width, rect.height / 2f);
             rect3 = new Rect(rect3.x + barWidth, rect3.y, rect3.width - barWidth * 2f, rect3.height - barHeight);
 
             Widgets.FillableBar(rect3, curPsyfocusLevel);
@@ -41,8 +41,8 @@
             {
                 seekerSize /= 2f;
             }
-            Vector2 vector = new Vector2(barRect.x + barRect.width * pct, barRect.y + barRect.height);
-            Rect position = new Rect(vector.x - seekerSize / 2f, vector.y, seekerSize, seekerSize);
+            Vector2 vector = new(barRect.x + barRect.width * pct, barRect.y + barRect.height);
+            Rect position = new(vector.x - seekerSize / 2f, vector.y, seekerSize, seekerSize);
             GUI.DrawTexture(position, StaticConstructorOnGameStart.BarInstantMarkerTex);
         }
 

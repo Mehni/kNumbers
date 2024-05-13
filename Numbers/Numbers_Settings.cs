@@ -17,8 +17,8 @@
 
         public static bool useTinyFont = false;
 
-        public List<string> storedPawnTableDefs = new List<string>();
-        private readonly List<string> workingList = new List<string>();
+        public List<string> storedPawnTableDefs = [];
+        private readonly List<string> workingList = [];
 
         public void StoreNewPawnTableDef(string pawnTableDeftoSave)
         {
@@ -32,7 +32,7 @@
 
             if (workingList.Contains(label))
                 storedPawnTableDefs.RemoveAll(x => x.Split(',')[0] + x.Split(',')[1] == label);
-            
+
             if (label == "Default")
                 storedPawnTableDefs.Insert(0, pawnTableDeftoSave);
             else
