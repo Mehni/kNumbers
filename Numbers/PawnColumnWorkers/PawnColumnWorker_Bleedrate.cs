@@ -6,9 +6,9 @@
 
     public class PawnColumnWorker_Bleedrate : PawnColumnWorker_Text
     {
-        private static readonly Color MediumPainColor = new Color(0.9f, 0.9f, 0f);
+        private static readonly Color MediumPainColor = new(0.9f, 0.9f, 0f);
 
-        private static readonly Color SeverePainColor = new Color(0.9f, 0.5f, 0f);
+        private static readonly Color SeverePainColor = new(0.9f, 0.5f, 0f);
 
         public override int Compare(Pawn a, Pawn b)
             => a.health.hediffSet.BleedRateTotal.CompareTo(b.health.hediffSet.BleedRateTotal);

@@ -46,7 +46,7 @@
             }
 
             Texture2D abilityIcon = def.Ext().ability.uiIcon;
-            Rect position = new Rect(rect.x, rect.yMax - 26, 26, 26);
+            Rect position = new(rect.x, rect.yMax - 26, 26, 26);
             GUI.DrawTexture(position, abilityIcon);
         }
     }

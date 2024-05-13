@@ -20,7 +20,7 @@
 
         public Numbers(ModContentPack content) : base(content)
         {
-            Harmony harmony = new Harmony("mehni.rimworld.numbers");
+            Harmony harmony = new("mehni.rimworld.numbers");
 
 #if DEBUG
             Harmony.DEBUG = true;
@@ -176,7 +176,7 @@
 
         private static IEnumerable<CodeInstruction> UseWordWrapOnHeaders(IEnumerable<CodeInstruction> instructions)
         {
-            MethodInfo Truncate = AccessTools.Method(typeof(GenText), nameof(GenText.Truncate), new Type[] { typeof(string), typeof(float), typeof(Dictionary<string, string>) });
+            MethodInfo Truncate = AccessTools.Method(typeof(GenText), nameof(GenText.Truncate), [typeof(string), typeof(float), typeof(Dictionary<string, string>)]);
             MethodInfo WordWrap = AccessTools.Method(typeof(Numbers_Utility), nameof(Numbers_Utility.WordWrapAt));
 
             var instructionList = instructions.ToList();
@@ -250,7 +250,7 @@
                         // call Input.GetMouseButtonUp(1) (or 0)
                         yield return new CodeInstruction(OpCodes.Nop)
                         {
-                            labels = new List<Label> { generator.DefineLabel() }
+                            labels = [generator.DefineLabel()]
                         };
                         instruction.opcode = OpCodes.Call;
                         instruction.operand = NoMouseButtonsPressed;
@@ -260,9 +260,9 @@
                 if (instruction.StoresField(released))
                 {
                     yield return instruction;
-                    CodeInstruction codeInst = new CodeInstruction(OpCodes.Ldarg_2)
+                    CodeInstruction codeInst = new(OpCodes.Ldarg_2)
                     {
-                        labels = new List<Label> { generator.DefineLabel() }
+                        labels = [generator.DefineLabel()]
                     };
                     codeInst.labels.AddRange(instructionArr[i + 1].labels);
                     yield return codeInst;
@@ -321,31 +321,39 @@
         {
             if (!Numbers_Settings.pawnTableClickSelect)
             {
-                CameraJumper.TryJumpAndSelect(target);
+                CameraJumper.TryJumpAndSelect(target, mode);
                 return;
             }
 
             if (Current.ProgramState != ProgramState.Playing)
+            {
                 return;
+            }
 
             if (target.Thing is Pawn pawn && pawn.Spawned)
             {
                 if (Event.current.shift)
                 {
                     if (Find.Selector.IsSelected(pawn))
+                    {
                         Find.Selector.Deselect(pawn);
+                    }
                     else
+                    {
                         Find.Selector.Select(pawn);
+                    }
                 }
                 else if (Event.current.alt)
                 {
                     Find.MainTabsRoot.EscapeCurrentTab(false);
-                    CameraJumper.TryJumpAndSelect(target);
+                    CameraJumper.TryJumpAndSelect(target, mode);
                 }
                 else
                 {
                     if (Find.Selector.IsSelected(pawn))
-                        CameraJumper.TryJump(target);
+                    {
+                        CameraJumper.TryJump(target, mode);
+                    }
                     if (!Find.Selector.IsSelected(pawn) || Find.Selector.NumSelected > 1 && Event.current.button == 1)
                     {
                         Find.Selector.ClearSelection();
@@ -355,7 +363,7 @@
             }
             else //default
             {
-                CameraJumper.TryJumpAndSelect(target);
+                CameraJumper.TryJumpAndSelect(target, mode);
             }
         }
 
@@ -365,7 +373,8 @@
                 o1.EscapeCurrentTab(o2);
         }
 
-        private static NeedDef DummyNeed => DefDatabase<NeedDef>.GetNamedSilentFail("Authority");
+        private static NeedDef _dummyNeed;
+        public static NeedDef DummyNeed => _dummyNeed ??= DefDatabase<NeedDef>.GetNamedSilentFail("Authority");
         // the xml says
         //  <!-- This is a temporary dummy need to suppress errors when loading older saves. -->
         // temporary my ass.
@@ -386,7 +395,7 @@
         private static PawnColumnDef GenerateNewPawnColumnDefFor(Def def)
         {
             bool prependDescription = def is not PawnCapacityDef;
-            PawnColumnDef pcd = new PawnColumnDef
+            PawnColumnDef pcd = new()
             {
                 defName = HorribleStringParsersForSaving.CreateDefNameFromType(def),
                 sortable = true,
@@ -394,7 +403,7 @@
                 generated = true,
                 label = def.LabelCap,
                 modContentPack = def.modContentPack,
-                modExtensions = new List<DefModExtension> { new DefModExtension_PawnColumnDefs() }
+                modExtensions = [new DefModExtension_PawnColumnDefs()]
             };
             switch (def)
             {
@@ -436,7 +445,7 @@
         {
             base.DoSettingsWindowContents(inRect);
 
-            Listing_Standard listingStandard = new Listing_Standard();
+            Listing_Standard listingStandard = new();
             listingStandard.Begin(inRect);
             listingStandard.CheckboxLabeled("Numbers_showMoreInfoThanVanilla".Translate(), ref Numbers_Settings.showMoreInfoThanVanilla);
             listingStandard.CheckboxLabeled("Numbers_coolerThanTheWildlifeTab".Translate(), ref Numbers_Settings.coolerThanTheWildlifeTab);
@@ -464,20 +473,20 @@
 
                 if (num + rowHeight >= scrollPosition.y && num <= scrollPosition.y + outRect.height)
                 {
-                    Rect rect = new Rect(0f, num, outRect.width, rowHeight);
+                    Rect rect = new(0f, num, outRect.width, rowHeight);
                     if (num2 % 2 == 0)
                     {
                         Widgets.DrawAltRect(rect);
                     }
                     GUI.BeginGroup(rect);
-                    Rect rect2 = new Rect(rect.width - buttonHeight, (rect.height - buttonHeight) / 2f, buttonHeight, buttonHeight);
+                    Rect rect2 = new(rect.width - buttonHeight, (rect.height - buttonHeight) / 2f, buttonHeight, buttonHeight);
                     if (Widgets.ButtonImage(rect2, StaticConstructorOnGameStart.DeleteX, Color.white, GenUI.SubtleMouseoverColor))
                     {
                         settings.storedPawnTableDefs.RemoveAt(i);
                     }
                     TooltipHandler.TipRegion(rect2, "delet this");
 
-                    Rect rect5 = new Rect(0, 0, rect.width - rowHeight - 2f, rect.height);
+                    Rect rect5 = new(0, 0, rect.width - rowHeight - 2f, rect.height);
                     Text.Anchor = TextAnchor.MiddleLeft;
                     Text.Font = GameFont.Small;
 
@@ -499,7 +508,7 @@
             Find.World?.GetComponent<WorldComponent_Numbers>()?.NotifySettingsChanged();
         }
 
-        private readonly List<string> cachedList = new List<string>();
+        private readonly List<string> cachedList = [];
 
         private List<string> RegenPawnTableDefsFromSettings()
         {

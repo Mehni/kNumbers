@@ -44,7 +44,7 @@
 
         private static List<FloatMenuOption> RecipeOptionsMaker(Pawn pawn)
         {
-            List<FloatMenuOption> list = new List<FloatMenuOption>();
+            List<FloatMenuOption> list = [];
             int num = 0;
             foreach (RecipeDef current in pawn.def.AllRecipes.Where(x => x.AvailableNow))
             {

@@ -18,6 +18,9 @@
         private PawnColumnDef _allowedarea;
         private PawnColumnDef AllowedArea => _allowedarea ??= _allowedarea = DefDatabase<PawnColumnDef>.GetNamedSilentFail("AllowedArea");
 
+        private PawnColumnDef _xenoType;
+        private PawnColumnDef XenoType => _xenoType ??= _xenoType = DefDatabase<PawnColumnDef>.GetNamedSilentFail("Xenotype");
+
         private PawnTableDef PawnTable
         {
             get => numbers.pawnTableDef;
@@ -36,23 +39,28 @@
 
         public List<FloatMenuOption> PresetOptionsMaker()
         {
-            List<FloatMenuOption> list = new List<FloatMenuOption>
-            {
-                new FloatMenuOption("Numbers_SaveCurrentLayout".Translate(), Save),
-                new FloatMenuOption("Numbers_LoadSavedLayout".Translate(), Load),
+            var savedLayouts = LoadPlayerCreatedLayouts();
+            List<FloatMenuOption> list =
+            [
+                new FloatMenuOption("Numbers_SaveCurrentLayout".Translate(), Save)
+            ];
+            list.AddRange(savedLayouts);
+
+            list.AddRange(
+            [
                 new FloatMenuOption("Numbers_Presets.Load".Translate("Numbers_Presets.Medical".Translate()), () => ChangeMainTableTo(StaticConstructorOnGameStart.medicalPreset)),
                 new FloatMenuOption("Numbers_Presets.Load".Translate("Numbers_Presets.Combat".Translate()), () => ChangeMainTableTo(StaticConstructorOnGameStart.combatPreset)),
                 new FloatMenuOption("Numbers_Presets.Load".Translate("Numbers_Presets.WorkTabPlus".Translate()), () => ChangeMainTableTo(StaticConstructorOnGameStart.workTabPlusPreset)),
                 new FloatMenuOption("Numbers_Presets.Load".Translate("Numbers_Presets.ColonistNeeds".Translate()), () => ChangeMainTableTo(StaticConstructorOnGameStart.colonistNeedsPreset)),
-                //maybe Psycasting here, index 6, referenced below
+                //maybe Psycasting here, index 6 + savedLayouts.Count, referenced below
                 new FloatMenuOption("Numbers_SetAsDefault".Translate(), SetAsDefault,
                         extraPartWidth: 29f,
                         extraPartOnGUI: rect => Numbers_Utility.InfoCardButton(rect.x + 5f, rect.y + (rect.height - 24f) / 2, "Numbers_SetAsDefaultExplanation".Translate(PawnTable.LabelCap))),
                 new FloatMenuOption("Numbers_LoadDefault".Translate(), LoadDefault)
-            };
+            ]);
             if (ModLister.RoyaltyInstalled)
             {
-                list.Insert(6, new FloatMenuOption("Numbers_Presets.Load".Translate("Numbers_Presets.Psycasting".Translate()), () => ChangeMainTableTo(StaticConstructorOnGameStart.psycastingPreset)));
+                list.Insert(6 + savedLayouts.Count, new FloatMenuOption("Numbers_Presets.Load".Translate("Numbers_Presets.Psycasting".Translate()), () => ChangeMainTableTo(StaticConstructorOnGameStart.psycastingPreset)));
             }
 
             return list;
@@ -70,9 +78,7 @@
 
         public List<FloatMenuOption> OtherOptionsMaker()
         {
-            List<FloatMenuOption> list = new List<FloatMenuOption>();
-
-            list.AddRange(General());
+            List<FloatMenuOption> list = [.. General()];
 
             //equipment bearers
             if (new[] { NumbersDefOf.Numbers_MainTable,
@@ -101,7 +107,7 @@
                 list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.Animals.options
                     .Concat(DefDatabase<PawnTableDef>.GetNamed("Animals").columns)
                     .Where(x => pcdValidator(x))
-                    .Except(new[] { AllowedArea, AllowedAreaWide })));
+                    .Except([AllowedArea, AllowedAreaWide])));
             }
 
             if (PawnTable == NumbersDefOf.Numbers_MainTable)
@@ -110,7 +116,7 @@
                     .Concat(DefDatabase<PawnTableDef>.GetNamed("Assign").columns)
                     .Concat(DefDatabase<PawnTableDef>.GetNamed("Restrict").columns)
                     .Where(x => pcdValidator(x))
-                    .Except(new[] { AllowedArea, AllowedAreaWide })));
+                    .Except([AllowedArea, AllowedAreaWide, XenoType])));
             }
 
             if (PawnTable == NumbersDefOf.Numbers_WildAnimals)
@@ -127,12 +133,12 @@
                 list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.DeadThings.options));
             }
 
-            return list.OrderBy(x => x.Label).ToList();
+            return [.. list.OrderBy(x => x.Label)];
         }
 
         public List<FloatMenuOption> OptionsMakerForGenericDef<T>(IEnumerable<T> listOfDefs) where T : Def
         {
-            List<FloatMenuOption> list = new List<FloatMenuOption>();
+            List<FloatMenuOption> list = [];
 
             foreach (var defCurrent in listOfDefs)
             {
@@ -150,7 +156,7 @@
 
         public List<FloatMenuOption> PawnSelector()
         {
-            List<FloatMenuOption> list = new List<FloatMenuOption>();
+            List<FloatMenuOption> list = [];
             foreach (KeyValuePair<PawnTableDef, Func<Pawn, bool>> filter in WorldComponent_Numbers.PrimaryFilter)
             {
                 void Action()
@@ -174,7 +180,7 @@
         private void Save()
         {
             //not actually saved like this, just the easiest way to pass it around
-            PawnTableDef ptdPawnTableDef = new PawnTableDef
+            PawnTableDef ptdPawnTableDef = new()
             {
                 columns = PawnTable.columns,
                 modContentPack = PawnTable.modContentPack,
@@ -182,12 +188,12 @@
                 defName = PawnTable.defName,
                 label = "NumbersTable" + Rand.Range(0, 10000)
             };
-            Find.WindowStack.Add(new Dialog_IHaveToCreateAnEntireFuckingDialogForAGODDAMNOKAYBUTTONFFS(ref ptdPawnTableDef));
+            Find.WindowStack.Add(new Dialog_IHaveToCreateAnEntireFuckingDialogForAGODDAMNOKAYBUTTONFFS(ptdPawnTableDef));
         }
 
-        private void Load()
+        private List<FloatMenuOption> LoadPlayerCreatedLayouts()
         {
-            List<FloatMenuOption> loadOptions = new List<FloatMenuOption>();
+            List<FloatMenuOption> loadOptions = [];
             foreach (string tableDefToBe in settings.storedPawnTableDefs)
             {
                 void ApplySetting()
@@ -204,10 +210,7 @@
                 loadOptions.Add(new FloatMenuOption(label, ApplySetting));
             }
 
-            if (loadOptions.NullOrEmpty())
-                loadOptions.Add(new FloatMenuOption("Numbers_NothingSaved".Translate(), null));
-
-            Find.WindowStack.Add(new FloatMenu(loadOptions));
+            return loadOptions;
         }
 
         private void ChangeMainTableTo(List<PawnColumnDef> list)

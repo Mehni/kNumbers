@@ -11,7 +11,7 @@ namespace Numbers
         {
             var assignableAreas = Find.CurrentMap.areaManager.AllAreas.Where(area => area.AssignableAsAllowed());
             var bla = Text.CalcSize(assignableAreas.Select(x => x.Label).ToCommaList());
-            return (int) Mathf.Max(bla.x + 48, def.width);
+            return (int)Mathf.Max(bla.x + 48, def.width);
         }
 
         public override int GetMinWidth(PawnTable table)
@@ -45,7 +45,7 @@ namespace Numbers
                     var rect = new Rect(headerRect.x + startPosition, headerRect.y, rectWidth, headerRect.height);
                     if (Mouse.IsOver(rect) && Event.current.control && Event.current.shift && Event.current.button == 0)
                     {
-                        table.PawnsListForReading.ForEach(pawn => pawn.playerSettings.AreaRestriction = area);
+                        table.PawnsListForReading.ForEach(pawn => pawn.playerSettings.AreaRestrictionInPawnCurrentMap = area);
                     }
                     areaIndexOffset++;
                 }

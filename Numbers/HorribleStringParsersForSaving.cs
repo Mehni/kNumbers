@@ -11,7 +11,7 @@
         {
             string label = asDefault ? "Default" : table.label;
 
-            return string.Join(",", new[] { table.defName, label, TurnPawnTableColumnsIntoCommaDelimitedString(table) });
+            return string.Join(",", [table.defName, label, TurnPawnTableColumnsIntoCommaDelimitedString(table)]);
         }
 
         public static string CreateDefNameFromType(Def def)
@@ -19,7 +19,7 @@
 
         private static string TurnPawnTableColumnsIntoCommaDelimitedString(PawnTableDef table)
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
             foreach (var item in table.columns)
             {
                 stringBuilder.Append(item.defName);

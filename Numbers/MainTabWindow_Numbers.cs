@@ -16,8 +16,7 @@
         public const float buttonGap = 4f;
         public const float extraTopSpace = 83f;
 
-        public static List<Func<Pawn, bool>> filterValidator = new List<Func<Pawn, bool>>
-                                                        { Find.World.GetComponent<WorldComponent_Numbers>().primaryFilter.Value };
+        public static List<Func<Pawn, bool>> filterValidator = [Find.World.GetComponent<WorldComponent_Numbers>().primaryFilter.Value];
 
         private readonly IEnumerable<StatDef> pawnHumanlikeStatDef;
         private readonly IEnumerable<StatDef> pawnAnimalStatDef;
@@ -39,12 +38,12 @@
         private IEnumerable<NeedDef> NeedDefs => PawnTableDef.Ext().Animallike ? pawnAnimalNeedDef : pawnHumanlikeNeedDef;
 
         private IEnumerable<PawnColumnDef> HealthStats
-            => new[] { DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_HediffList"),
+            => [ DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_HediffList"),
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_HediffBadList"),
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Pain"),
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Bleedrate"),
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_NeedsTreatment"),
-                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_DiseaseProgress") };
+                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_DiseaseProgress") ];
 
         //ctor to populate lists.
         public MainTabWindow_Numbers()
@@ -54,16 +53,14 @@
             StatsToDraw = typeof(StatsReportUtility).GetMethod("StatsToDraw",
                                                               BindingFlags.NonPublic | BindingFlags.Static |
                                                               BindingFlags.InvokeMethod, null,
-                                                              new[] { typeof(Thing) }, null);
+                                                              [typeof(Thing)], null);
 
             if (StatsToDraw == null)
                 Log.Error("ReflectionTypeLoadException in Numbers: statsToDraw was null. Please contact mod author.");
 
-            if (pawnHumanlikeNeedDef == null)
-                pawnHumanlikeNeedDef = GetHumanLikeNeedDef();
+            pawnHumanlikeNeedDef ??= GetHumanLikeNeedDef();
 
-            if (pawnHumanlikeStatDef == null)
-                pawnHumanlikeStatDef = GetHumanLikeStatDefs();
+            pawnHumanlikeStatDef ??= GetHumanLikeStatDefs();
 
             if (pawnAnimalNeedDef == null || pawnAnimalStatDef == null || corpseStatDef == null)
             {
@@ -75,7 +72,10 @@
 
             PawnTableDef defaultTable = WorldComponent_Numbers.PrimaryFilter.First().Key;
             if (Find.World.GetComponent<WorldComponent_Numbers>().sessionTable.TryGetValue(defaultTable, out List<PawnColumnDef> list))
+            {
+                list.RemoveAll(x => x == null);
                 pawnTableDef.columns = list;
+            }
 
             UpdateFilter();
         }
@@ -112,11 +112,11 @@
             Text.Font = GameFont.Small;
 
             // row count:
-            Rect thingCount = new Rect(3f, 40f, 200f, 30f);
+            Rect thingCount = new(3f, 40f, 200f, 30f);
             Widgets.Label(thingCount, "koisama.Numbers.Count".Translate() + ": " + Pawns.Count());
 
             //pawn selector
-            Rect sourceButton = new Rect(x, 0f, buttonWidth, buttonHeight);
+            Rect sourceButton = new(x, 0f, buttonWidth, buttonHeight);
             DoButton(PawnTableDef.label, optionsMaker.PawnSelector(), ref x);
             TooltipHandler.TipRegion(sourceButton, new TipSignal("koisama.Numbers.ClickToToggle".Translate(), sourceButton.GetHashCode()));
 
@@ -144,7 +144,7 @@
             //cap btn (for living things)
             if (!new[] { NumbersDefOf.Numbers_AnimalCorpses, NumbersDefOf.Numbers_Corpses }.Contains(PawnTableDef))
             {
-                List<PawnColumnDef> optionalList = new List<PawnColumnDef>();
+                List<PawnColumnDef> optionalList = [];
 
                 if (new[] { NumbersDefOf.Numbers_MainTable, NumbersDefOf.Numbers_Prisoners, NumbersDefOf.Numbers_Animals }.Contains(PawnTableDef))
                 {
@@ -177,7 +177,7 @@
 
             //presets button
             float startPositionOfPresetsButton = Mathf.Max(rect.xMax - buttonWidth - Margin, x);
-            Rect addPresetBtn = new Rect(startPositionOfPresetsButton, 0f, buttonWidth, buttonHeight);
+            Rect addPresetBtn = new(startPositionOfPresetsButton, 0f, buttonWidth, buttonHeight);
             if (Widgets.ButtonText(addPresetBtn, "koisama.Numbers.SetPresetLabel".Translate()))
             {
                 Find.WindowStack.Add(new FloatMenu(optionsMaker.PresetOptionsMaker()));
@@ -188,7 +188,7 @@
 
         void DoButton(string label, List<FloatMenuOption> list, ref float x)
         {
-            Rect addColumnButton = new Rect(x, 0f, buttonWidth, buttonHeight);
+            Rect addColumnButton = new(x, 0f, buttonWidth, buttonHeight);
             if (Widgets.ButtonText(addColumnButton, label))
             {
                 Find.WindowStack.Add(new FloatMenu(list));
@@ -218,26 +218,26 @@
 
         private (List<NeedDef> pawnAnimalNeedDef, List<StatDef> pawnAnimalStatDef, List<StatDef> corpseStatDef) PopulateLists()
         {
-            PawnGenerationRequest request = new PawnGenerationRequest(PawnKindDefOf.Thrumbo, Faction.OfPirates, forceNoIdeo: true, forceGenerateNewPawn: true);
+            PawnGenerationRequest request = new(PawnKindDefOf.Thrumbo, Faction.OfPirates, forceNoIdeo: true, forceGenerateNewPawn: true);
             Pawn tmpPawn = PawnGenerator.GeneratePawn(request);
 
             var pawnAnimalNeedDef = tmpPawn.needs.AllNeeds.Where(x => x.def.showOnNeedList).Select(x => x.def).ToList();
 
-            var animalStatDef = ((IEnumerable<StatDrawEntry>)StatsToDraw?.Invoke(null, new[] { tmpPawn })) ?? Enumerable.Empty<StatDrawEntry>();
+            var animalStatDef = ((IEnumerable<StatDrawEntry>)StatsToDraw?.Invoke(null, new[] { tmpPawn })) ?? [];
 
             var pawnAnimalStatDef = animalStatDef
-                           .Where(s => s.stat != null && s.ShouldDisplay && s.stat.Worker != null)
+                           .Where(s => s.stat != null && s.ShouldDisplay() && s.stat.Worker != null)
                            .Select(s => s.stat)
                            .OrderBy(stat => stat.LabelCap.Resolve()).ToList();
 
             Corpse corpse = (Corpse)ThingMaker.MakeThing(tmpPawn.RaceProps.corpseDef);
             corpse.InnerPawn = tmpPawn;
 
-            var deadAnimalStatDef = ((IEnumerable<StatDrawEntry>)StatsToDraw?.Invoke(null, new[] { corpse })) ?? Enumerable.Empty<StatDrawEntry>();
+            var deadAnimalStatDef = ((IEnumerable<StatDrawEntry>)StatsToDraw?.Invoke(null, new[] { corpse })) ?? [];
 
             var corpseStatDef = deadAnimalStatDef
                            .Concat(tmpPawn.def.SpecialDisplayStats(StatRequest.For(tmpPawn)))
-                           .Where(s => s.stat != null && s.ShouldDisplay && s.stat.Worker != null)
+                           .Where(s => s.stat != null && s.ShouldDisplay() && s.stat.Worker != null)
                            .Select(s => s.stat)
                            .OrderBy(stat => stat.LabelCap.Resolve()).ToList();
 
@@ -247,23 +247,23 @@
             return (pawnAnimalNeedDef, pawnAnimalStatDef, corpseStatDef);
         }
 
-        private List<NeedDef> GetHumanLikeNeedDef() => DefDatabase<NeedDef>.AllDefsListForReading;
+        private IEnumerable<NeedDef> GetHumanLikeNeedDef() => DefDatabase<NeedDef>.AllDefsListForReading.Except(Numbers.DummyNeed);
 
         private List<StatDef> GetHumanLikeStatDefs()
         {
-            PawnGenerationRequest request = new PawnGenerationRequest(PawnKindDefOf.AncientSoldier, Faction.OfAncients, forceNoIdeo: true, forceGenerateNewPawn: true);
+            PawnGenerationRequest request = new(PawnKindDefOf.AncientSoldier, Faction.OfAncients, forceNoIdeo: true, forceGenerateNewPawn: true);
             Pawn tmpPawn = PawnGenerator.GeneratePawn(request);
 
-            var source = ((IEnumerable<StatDrawEntry>)StatsToDraw?.Invoke(null, new[] { tmpPawn })) ?? Enumerable.Empty<StatDrawEntry>();
+            var source = ((IEnumerable<StatDrawEntry>)StatsToDraw?.Invoke(null, new[] { tmpPawn })) ?? [];
 
             var pawnHumanlikeStatDef = source
                            .Concat(tmpPawn.def.SpecialDisplayStats(StatRequest.For(tmpPawn)))
-                           .Where(s => s.stat != null && s.ShouldDisplay && s.stat.Worker != null)
+                           .Where(s => s.stat != null && s.ShouldDisplay() && s.stat.Worker != null)
                            .Select(s => s.stat);
 
             tmpPawn.Destroy(DestroyMode.KillFinalize);
 
-            return pawnHumanlikeStatDef.OrderBy(stat => stat.LabelCap.Resolve()).ToList();
+            return [.. pawnHumanlikeStatDef.OrderBy(stat => stat.LabelCap.Resolve())];
         }
     }
 }

@@ -10,7 +10,7 @@
     [StaticConstructorOnStartup]
     public class PawnColumnWorker_DiseaseProgression : PawnColumnWorker
     {
-        private static readonly Color SeverePainColor = new Color(0.9f, 0.5f, 0f);
+        private static readonly Color SeverePainColor = new(0.9f, 0.5f, 0f);
 
         //[TweakValue("AAAADiseaseProgression")] //assumes a perfectly square icon.
         public static float MaxIconSize = 22f;
@@ -29,7 +29,7 @@
 
             GUI.color = GetPrettyColorFor(deltaSeverity);
 
-            Rect rect2 = new Rect(rect.x, rect.y, rect.width, Mathf.Min(rect.height, 30f));
+            Rect rect2 = new(rect.x, rect.y, rect.width, Mathf.Min(rect.height, 30f));
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleCenter;
             Text.WordWrap = false;
@@ -66,7 +66,7 @@
 
             Texture2D texture2D = redFlag ? StaticConstructorOnGameStart.SortingIcon : StaticConstructorOnGameStart.SortingDescendingIcon;
             GUI.color = redFlag ? HealthUtility.GoodConditionColor : HealthUtility.RedColor;
-            Rect position2 = new Rect(rect.xMax - texture2D.width - 1f, rect.yMax - texture2D.height - 1f, texture2D.width, texture2D.height);
+            Rect position2 = new(rect.xMax - texture2D.width - 1f, rect.yMax - texture2D.height - 1f, texture2D.width, texture2D.height);
             GUI.DrawTexture(position2, texture2D);
             GUI.color = Color.white;
         }
@@ -82,10 +82,10 @@
             float oneFourthRightCenteredOnIconWidth = (rect.width - (rect.width / 6)) - MaxIconSize / 2; 
 
             //skull vs immunity icon. One left, one right.
-            Rect skullPosition = new Rect(rect.x + oneFourthLeftCenteredOnIconWidth, rect.yMax - MaxIconSize, MaxIconSize, MaxIconSize);
+            Rect skullPosition = new(rect.x + oneFourthLeftCenteredOnIconWidth, rect.yMax - MaxIconSize, MaxIconSize, MaxIconSize);
             GUI.DrawTexture(skullPosition, skull);
 
-            Rect immunePosition = new Rect(rect.x + oneFourthRightCenteredOnIconWidth, rect.yMax - MaxIconSize, MaxIconSize, MaxIconSize);
+            Rect immunePosition = new(rect.x + oneFourthRightCenteredOnIconWidth, rect.yMax - MaxIconSize, MaxIconSize, MaxIconSize);
             GUI.DrawTexture(immunePosition.ScaledBy(0.8f), immune);
 
             Rect rect2 = rect;
@@ -98,7 +98,7 @@
             if (table.SortingBy == def)
             {
                 Texture2D texture2D = (!table.SortingDescending) ? StaticConstructorOnGameStart.SortingIcon : StaticConstructorOnGameStart.SortingDescendingIcon;
-                Rect position2 = new Rect(rect.xMax - texture2D.width - 1f, rect.yMax - texture2D.height - 1f, texture2D.width, texture2D.height);
+                Rect position2 = new(rect.xMax - texture2D.width - 1f, rect.yMax - texture2D.height - 1f, texture2D.width, texture2D.height);
                 GUI.DrawTexture(position2, texture2D);
             }
             if (def.HeaderInteractable)

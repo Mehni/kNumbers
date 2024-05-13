@@ -25,7 +25,7 @@
             {
                 foreach (ThingWithComps thing in pawn.equipment.AllEquipmentListForReading)
                 {
-                    Rect rect2 = new Rect(x, 0, gWidth, gHeight);
+                    Rect rect2 = new(x, 0, gWidth, gHeight);
                     DrawThing(rect2, thing, pawn);
                     x += gWidth;
                 }
@@ -35,7 +35,7 @@
             {
                 foreach (Apparel thing in pawn.apparel.WornApparel.OrderByDescending(ap => ap.def.apparel.bodyPartGroups[0].listOrder))
                 {
-                    Rect rect2 = new Rect(x, 0, gWidth, gHeight);
+                    Rect rect2 = new(x, 0, gWidth, gHeight);
                     DrawThing(rect2, thing, pawn);
                     x += gWidth;
                     if (x > width)
@@ -53,17 +53,17 @@
         {
             if (Widgets.ButtonInvisible(rect) && Event.current.button == 1)
             {
-                List<FloatMenuOption> list = new List<FloatMenuOption>
-                {
+                List<FloatMenuOption> list =
+                [
                     new FloatMenuOption("ThingInfo".Translate(), () => Find.WindowStack.Add(new Dialog_InfoCard(thing)))
-                };
+                ];
 
                 if (selPawn.IsColonistPlayerControlled)
                 {
                     Action dropAction = DropThing(thing, selPawn);
                     list.Add(new FloatMenuOption("DropThing".Translate(), dropAction));
                 }
-                FloatMenu window = new FloatMenu(list, thing.LabelCap);
+                FloatMenu window = new(list, thing.LabelCap);
                 Find.WindowStack.Add(window);
             }
             GUI.BeginGroup(rect);

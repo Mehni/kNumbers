@@ -26,11 +26,11 @@
                                             Drop = ContentFinder<Texture2D>.Get("UI/Buttons/Drop"),
                                             UnwaveringlyLoyal = ContentFinder<Texture2D>.Get("UI/Icons/UnwaveringlyLoyal");
 
-        public static List<PawnColumnDef> combatPreset = new List<PawnColumnDef>(),
-                                          workTabPlusPreset = new List<PawnColumnDef>(),
-                                          colonistNeedsPreset = new List<PawnColumnDef>(),
-                                          psycastingPreset = new List<PawnColumnDef>(),
-                                          medicalPreset = new List<PawnColumnDef>();
+        public static List<PawnColumnDef> combatPreset = [],
+                                          workTabPlusPreset = [],
+                                          colonistNeedsPreset = [],
+                                          psycastingPreset = [],
+                                          medicalPreset = [];
 
         public static Type animalTab;
         public static Type wildLifeTab;

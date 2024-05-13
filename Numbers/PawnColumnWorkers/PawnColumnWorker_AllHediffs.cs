@@ -16,7 +16,7 @@
 
         protected override string GetIconTip(Pawn pawn)
         {
-            StringBuilder icontipBuilder = new StringBuilder();
+            StringBuilder icontipBuilder = new();
             foreach (IGrouping<BodyPartRecord, Hediff> diffs in VisibleHediffGroupsInOrder(pawn))
             {
                 foreach (IGrouping<int, Hediff> current in diffs.GroupBy(x => x.UIGroupKey))
@@ -46,12 +46,12 @@
             float scale = 0.7f;
             int sizeOfVanillaRescueTex = 24;
 
-            Vector2 headerIconSize = new Vector2(
+            Vector2 headerIconSize = new(
                 Mathf.Min(sizeOfVanillaRescueTex, StaticConstructorOnGameStart.Plus.width) * scale,
                 Mathf.Min(sizeOfVanillaRescueTex, StaticConstructorOnGameStart.Plus.height) * scale);
 
             int xOffSet = (int)((rect.width - headerIconSize.x) / 4f);
-            Rect position = new Rect(
+            Rect position = new(
                 x: rect.x + xOffSet,
                 y: rect.yMax - Mathf.Min(sizeOfVanillaRescueTex, StaticConstructorOnGameStart.Plus.height),
                 width: headerIconSize.x,

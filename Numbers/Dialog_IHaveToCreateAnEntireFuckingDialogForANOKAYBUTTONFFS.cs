@@ -3,11 +3,11 @@
     using RimWorld;
     using Verse;
 
-    public class Dialog_IHaveToCreateAnEntireFuckingDialogForAGODDAMNOKAYBUTTONFFS : Dialog_Rename
+    public class Dialog_IHaveToCreateAnEntireFuckingDialogForAGODDAMNOKAYBUTTONFFS : Dialog_Rename<IRenameable>
     {
         private readonly PawnTableDef pawnTableDef;
 
-        public Dialog_IHaveToCreateAnEntireFuckingDialogForAGODDAMNOKAYBUTTONFFS(ref PawnTableDef pawnTableDef)
+        public Dialog_IHaveToCreateAnEntireFuckingDialogForAGODDAMNOKAYBUTTONFFS(PawnTableDef pawnTableDef) : base(null)
         {
             this.pawnTableDef = pawnTableDef;
             curName = pawnTableDef.label;
@@ -27,7 +27,7 @@
             return true;
         }
 
-        protected override void SetName(string name)
+        protected override void OnRenamed(string name)
         {
             pawnTableDef.label = curName;
 
