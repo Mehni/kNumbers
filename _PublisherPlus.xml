@@ -2,9 +2,9 @@
 <Configuration>
   <Excluded>
     <exclude>.editorconfig</exclude>
-    <exclude>.gitattributes</exclude>
-    <exclude>.gitignore</exclude>
+    <exclude>.git</exclude>
     <exclude>.vs</exclude>
+    <exclude>Numbers\bin</exclude>
     <exclude>Numbers\obj</exclude>
   </Excluded>
 </Configuration>

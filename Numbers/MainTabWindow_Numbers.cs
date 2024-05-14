@@ -164,9 +164,10 @@
             }
 
             //abilities btn
-            if (ModLister.RoyaltyInstalled)
+            var abilities = optionsMaker.OptionsMakerForGenericDef(DefDatabase<AbilityDef>.AllDefsListForReading.OrderBy(y => y.label));
+            if (abilities.Count > 0)
             {
-                DoButton("Abilities".Translate(), optionsMaker.OptionsMakerForGenericDef(DefDatabase<AbilityDef>.AllDefsListForReading.OrderBy(y => y.label)), ref x);
+                DoButton("Abilities".Translate(), abilities, ref x);
             }
 
             //records btn
