@@ -35,6 +35,8 @@
         public static Type animalTab;
         public static Type wildLifeTab;
 
+        public static Dictionary<string, List<string>> PawnTableDef_Columns { get; private set; }
+
         static StaticConstructorOnGameStart()
         {
             AddTrainablesToAnimalTable();
@@ -48,6 +50,14 @@
             //for the sake of compatibility (Better Pawn Control / other mods which subclass it.)
             animalTab = DefDatabase<MainButtonDef>.GetNamed("Animals").tabWindowClass;
             wildLifeTab = DefDatabase<MainButtonDef>.GetNamed("Wildlife").tabWindowClass;
+
+            CreateCacheMappingOfDefsForReset();
+        }
+
+        private static void CreateCacheMappingOfDefsForReset()
+        {
+            PawnTableDef_Columns = DefDatabase<PawnTableDef>.AllDefsListForReading.Where(x => x.defName.StartsWith("Numbers"))
+                .ToDictionary(x => x.defName, x => x.columns.Select(x => x.defName).ToList());
         }
 
         private static void AddTrainablesToAnimalTable()

@@ -195,7 +195,8 @@
             }
         }
 
-        private static GameFont GetGameFont(PawnTable table) => table is PawnTable_NumbersMain && Numbers_Settings.useTinyFont ? GameFont.Tiny : GameFont.Small;
+        private static GameFont GetGameFont(PawnTable table)
+            => table is PawnTable_NumbersMain && Numbers_Settings.useTinyFont ? GameFont.Tiny : GameFont.Small;
 
         private static IEnumerable<CodeInstruction> CentreCell(IEnumerable<CodeInstruction> instructions)
         {
@@ -217,7 +218,8 @@
         }
 
         //slight issue with job strings. Meh.
-        private static TextAnchor TranspilerHelper(PawnTable table) => table is PawnTable_NumbersMain ? TextAnchor.MiddleCenter : TextAnchor.MiddleLeft;
+        private static TextAnchor TranspilerHelper(PawnTable table)
+            => table is PawnTable_NumbersMain ? TextAnchor.MiddleCenter : TextAnchor.MiddleLeft;
 
         /// <summary>
         /// TOO MUCH OF A MESS TO EXPLAIN
@@ -227,8 +229,8 @@
         {
             MethodInfo GetCurrent = AccessTools.Property(typeof(Event), nameof(Event.current)).GetGetMethod();
             MethodInfo GetRawType = AccessTools.Property(typeof(Event), nameof(Event.rawType)).GetGetMethod();
-            MethodInfo NoMouseButtonsPressed = AccessTools.Method(typeof(Numbers), nameof(NoMouseButtonsPressed));
-            MethodInfo WasClicked = AccessTools.Method(typeof(Numbers), nameof(WasClicked));
+            MethodInfo NoMouseButtonsPressed = AccessTools.Method(typeof(Numbers), nameof(Numbers.NoMouseButtonsPressed));
+            MethodInfo WasClicked = AccessTools.Method(typeof(Numbers), nameof(Numbers.WasClicked));
 
             FieldInfo released = AccessTools.Field(typeof(ReorderableWidget), "released");
 
@@ -456,6 +458,15 @@
             listingStandard.SliderLabeled("Numbers_maxTableHeight".Translate(), ref Numbers_Settings.maxHeight, Numbers_Settings.maxHeight.ToStringPercent(), 0.3f);
             listingStandard.End();
 
+            DrawResetButton(inRect);
+
+            DrawStoredTables(inRect);
+
+            //writing is done by closing the window.
+        }
+
+        private void DrawStoredTables(Rect inRect)
+        {
             float rowHeight = 20f;
             float buttonHeight = 16f;
 
@@ -499,7 +510,34 @@
                 num2++;
             }
             Widgets.EndScrollView();
-            //writing is done by closing the window.
+        }
+
+        private static void DrawResetButton(Rect inRect)
+        {
+            if (Widgets.ButtonText(inRect.BottomPart(0.5f).TopPart(0.1f), "Numbers_resetToDefault".Translate()))
+            {
+                var worldComp = Find.World.GetComponent<WorldComponent_Numbers>();
+                worldComp?.sessionTable.Clear();
+
+                foreach (var (pawnTable, columns) in StaticConstructorOnGameStart.PawnTableDef_Columns)
+                {
+                    if (worldComp == null)
+                    {
+                        break;
+                    }
+                    var def = DefDatabase<PawnTableDef>.GetNamed(pawnTable);
+
+                    List<PawnColumnDef> newColumnList = [];
+
+                    foreach (var columnName in columns)
+                    {
+                        var columnDef = DefDatabase<PawnColumnDef>.GetNamed(columnName);
+                        newColumnList.Add(columnDef);
+                    }
+                    worldComp.sessionTable[def] = newColumnList;
+                    def.columns = newColumnList;
+                }
+            }
         }
 
         public override void WriteSettings()

@@ -33,6 +33,11 @@
             NotifySettingsChanged();
         }
 
+        public void ResetLoadList()
+        {
+            loadList.Clear();
+        }
+
         public KeyValuePair<PawnTableDef, Func<Pawn, bool>> primaryFilter;
 
         private List<PawnColumnDef> loadList;
