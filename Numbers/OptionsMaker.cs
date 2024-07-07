@@ -29,7 +29,7 @@
 
         private static readonly Func<PawnColumnDef, bool> filterRoyalty = pcd => ModLister.RoyaltyInstalled || !pcd.HasModExtension<DefModExtension_NeedsRoyalty>();
         private static readonly Func<PawnColumnDef, bool> filterBioTech = pcd => ModLister.BiotechInstalled || !pcd.HasModExtension<DefModExtension_NeedsBioTech>();
-        private static readonly Func<PawnColumnDef, bool> filterIdeology = pcd => ModLister.BiotechInstalled || !pcd.HasModExtension<DefModExtension_NeedsIdeology>();
+        private static readonly Func<PawnColumnDef, bool> filterIdeology = pcd => ModLister.IdeologyInstalled || !pcd.HasModExtension<DefModExtension_NeedsIdeology>();
 
         public OptionsMaker(MainTabWindow_Numbers mainTabWindow)
         {

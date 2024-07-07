@@ -37,13 +37,15 @@
 
         private IEnumerable<NeedDef> NeedDefs => PawnTableDef.Ext().Animallike ? pawnAnimalNeedDef : pawnHumanlikeNeedDef;
 
-        private IEnumerable<PawnColumnDef> HealthStats
-            => [ DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_HediffList"),
-                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_HediffBadList"),
-                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Pain"),
-                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Bleedrate"),
-                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_NeedsTreatment"),
-                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_DiseaseProgress") ];
+        private IEnumerable<PawnColumnDef> HealthStats =>
+        [
+            DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_HediffList"),
+            DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_HediffBadList"),
+            DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Pain"),
+            DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Bleedrate"),
+            DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_NeedsTreatment"),
+            DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_DiseaseProgress")
+        ];
 
         //ctor to populate lists.
         public MainTabWindow_Numbers()
