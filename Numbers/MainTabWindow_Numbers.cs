@@ -177,6 +177,16 @@
 
             //other btn
             DoButton("MiscRecordsCategory".Translate(), optionsMaker.OtherOptionsMaker(), ref x);
+            
+            //ManageAutoSlaughter btn
+            if (new[] { NumbersDefOf.Numbers_Animals }.Contains(PawnTableDef))
+            {
+                if (Widgets.ButtonText(new Rect(x, 0f, buttonWidth, buttonHeight), "ManageAutoSlaughter".Translate()))
+                {
+                    Find.WindowStack.Add(new Dialog_AutoSlaughter(Find.CurrentMap));
+                    x += buttonWidth + buttonGap;
+                }
+            }
 
             //presets button
             float startPositionOfPresetsButton = Mathf.Max(rect.xMax - buttonWidth - Margin, x);

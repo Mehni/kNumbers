@@ -6,6 +6,8 @@
 
     public class PawnColumnWorker_MentalState : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         protected override string GetTextFor(Pawn pawn)
             => pawn.MentalState?.InspectLine ?? string.Empty;
 

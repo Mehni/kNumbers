@@ -9,6 +9,8 @@
         public const int minWidthBasedOnNarrowestColumnThatColumnBeingMass = 69;
         public const int maxWidthBasedOnColumnsWithALongAssNameLikeThisInt = 150;
         public const int margin = 5;
+        
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
 
         protected override string GetTextFor(Pawn pawn)
         {

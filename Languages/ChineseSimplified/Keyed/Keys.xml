@@ -30,5 +30,9 @@
   <Numbers_LoadSavedLayout>载入布局存档</Numbers_LoadSavedLayout>
   <Numbers_NothingSaved>没有布局存档</Numbers_NothingSaved>
   <Numbers_SaveCurrentLayout>保存当前布局</Numbers_SaveCurrentLayout>
-
+  
+  <Predator>捕食者</Predator>
+  <Pregnant>怀孕</Pregnant>
+  <Gender>性别</Gender>
+  
 </LanguageData>

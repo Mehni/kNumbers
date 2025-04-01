@@ -6,6 +6,8 @@
 
     class PawnColumnWorker_Faction : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         protected override string GetTextFor(Pawn pawn)
             => pawn.Faction?.Name;
 

@@ -2,9 +2,12 @@
 {
     using RimWorld;
     using Verse;
+    using UnityEngine;
 
     public class PawnColumnWorker_AnimalWildness : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         public override int Compare(Pawn a, Pawn b)
             => (a.AnimalOrWildMan() || b.AnimalOrWildMan())
                 ? GetValue(a).CompareTo(GetValue(b))

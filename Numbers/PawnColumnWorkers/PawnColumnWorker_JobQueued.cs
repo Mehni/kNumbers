@@ -7,6 +7,8 @@
 
     public class PawnColumnWorker_JobQueued : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         protected override string GetTextFor(Pawn pawn)
         {
             if (pawn.jobs?.jobQueue.Any() ?? false)

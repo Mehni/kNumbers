@@ -1,11 +1,13 @@
 ﻿namespace Numbers
 {
-    using System.Linq;
+    using UnityEngine;
     using RimWorld;
     using Verse;
 
     public class PawnColumnWorker_AnimalWoolGrowth : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         protected override string GetTextFor(Pawn pawn)
         {
             if (pawn.ageTracker.CurLifeStage.shearable)

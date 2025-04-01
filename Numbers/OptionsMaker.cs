@@ -63,14 +63,14 @@
                 list.Insert(6 + savedLayouts.Count, new FloatMenuOption("Numbers_Presets.Load".Translate("Numbers_Presets.Psycasting".Translate()), () => ChangeMainTableTo(StaticConstructorOnGameStart.psycastingPreset)));
             }
 
-            return list;
+            return list.Distinct(new FloatMenuOptionComparer()).ToList();
         }
 
         private IEnumerable<FloatMenuOption> General()
         {
             yield return new FloatMenuOption("Race".Translate(), () => AddPawnColumnAtBestPositionAndRefresh(DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Race")));
             yield return new FloatMenuOption("Faction".Translate(), () => AddPawnColumnAtBestPositionAndRefresh(DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Faction")));
-            yield return new FloatMenuOption("Gender", () => AddPawnColumnAtBestPositionAndRefresh(DefDatabase<PawnColumnDef>.GetNamedSilentFail("Gender")));
+            yield return new FloatMenuOption("Gender".Translate(), () => AddPawnColumnAtBestPositionAndRefresh(DefDatabase<PawnColumnDef>.GetNamedSilentFail("Gender")));
         }
 
         public List<FloatMenuOption> FloatMenuOptionsFor(IEnumerable<PawnColumnDef> pcdList)
@@ -121,7 +121,6 @@
 
             if (PawnTable == NumbersDefOf.Numbers_WildAnimals)
             {
-                list.RemoveAll(x => x.Label == "Gender"); //duplicate
                 list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.WildAnimals.options
                     .Concat(DefDatabase<PawnTableDef>.GetNamed("Wildlife").columns)
                     .Where(x => pcdValidator(x))));
@@ -133,7 +132,9 @@
                 list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.DeadThings.options));
             }
 
-            return [.. list.OrderBy(x => x.Label)];
+            return list.Distinct(new FloatMenuOptionComparer())
+                .OrderBy(x => x.Label)
+                .ToList();
         }
 
         public List<FloatMenuOption> OptionsMakerForGenericDef<T>(IEnumerable<T> listOfDefs) where T : Def
@@ -151,7 +152,7 @@
                 list.Add(new FloatMenuOption(label, Action));
             }
 
-            return list;
+            return list.Distinct(new FloatMenuOptionComparer()).ToList();
         }
 
         public List<FloatMenuOption> PawnSelector()
@@ -255,15 +256,15 @@
                 return string.Empty;
 
             if (pcd.workType != null)
-                return pcd.workType.labelShort;
+                return pcd.workType.labelShort.Translate();
 
             if (!pcd.LabelCap.NullOrEmpty())
-                return pcd.LabelCap;
+                return pcd.LabelCap.ToString().Translate();
 
             if (!pcd.headerTip.NullOrEmpty())
-                return pcd.headerTip;
+                return pcd.headerTip.Translate();
 
-            return pcd.defName;
+            return pcd.defName.Translate();
         }
 
         private void AddPawnColumnAtBestPositionAndRefresh(PawnColumnDef pcd)
@@ -300,5 +301,18 @@
             }
         };
         //basically all that are already present, don't have an interactable header, and uh
+
+        private class FloatMenuOptionComparer : IEqualityComparer<FloatMenuOption>
+        {
+            public bool Equals(FloatMenuOption x, FloatMenuOption y)
+            {
+                return x?.Label == y?.Label;
+            }
+
+            public int GetHashCode(FloatMenuOption obj)
+            {
+                return obj.Label.GetHashCode();
+            }
+        }
     }
 }

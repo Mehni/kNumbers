@@ -70,7 +70,7 @@
             }
             var pred = DefDatabase<PawnColumnDef>.GetNamed("Predator");
             pred.sortable = true;
-            pred.headerTip = "Predator";
+            pred.headerTip = "Predator".Translate();
         }
 
         private static bool RightClickToRemoveHeader(PawnColumnWorker __instance, Rect headerRect, PawnTable table)

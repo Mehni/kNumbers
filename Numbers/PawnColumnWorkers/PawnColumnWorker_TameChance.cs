@@ -3,9 +3,12 @@
     using System;
     using RimWorld;
     using Verse;
+    using UnityEngine;
 
     public class PawnColumnWorker_TameChance : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         public override int Compare(Pawn a, Pawn b) => GetValue(a).CompareTo(GetValue(b));
 
         protected override string GetTextFor(Pawn pawn) => pawn.AnimalOrWildMan() ? GetValue(pawn).ToStringPercent() : string.Empty;

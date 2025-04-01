@@ -6,6 +6,8 @@
 
     public class PawnColumnWorker_Capacity : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         protected override string GetTextFor(Pawn pawn)
             => pawn.health.capacities.GetLevel(def.Ext().capacity).ToStringPercent();
 

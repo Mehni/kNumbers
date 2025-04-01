@@ -3,10 +3,13 @@
     using System.Linq;
     using RimWorld;
     using Verse;
+    using UnityEngine;
 
     //todo: probably better with icons to hover over for a tooltip or smth
     public class PawnColumnWorker_Endogenes : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         protected override string GetTextFor(Pawn pawn)
         {
             return pawn.genes?.Endogenes?.Select(gene => gene.Label).ToCommaList();
