@@ -24,7 +24,12 @@
                                             SortingDescendingIcon = ContentFinder<Texture2D>.Get("UI/Icons/SortingDescending"),
                                             BarInstantMarkerTex = ContentFinder<Texture2D>.Get("UI/Misc/BarInstantMarker"),
                                             Drop = ContentFinder<Texture2D>.Get("UI/Buttons/Drop"),
-                                            UnwaveringlyLoyal = ContentFinder<Texture2D>.Get("UI/Icons/UnwaveringlyLoyal");
+                                            UnwaveringlyLoyal = ContentFinder<Texture2D>.Get("UI/Icons/UnwaveringlyLoyal"),
+                                            PassionMinorIcon = ContentFinder<Texture2D>.Get("UI/Icons/PassionMinor"),
+                                            PassionMajorIcon = ContentFinder<Texture2D>.Get("UI/Icons/PassionMajor"),
+                                            SkillBarFillTex = SolidColorMaterials.NewSolidColorTexture(new Color(1f, 1f, 1f, 0.25f)),
+                                            SkillBarBgTex = SolidColorMaterials.NewSolidColorTexture(new Color(1f, 1f, 1f, 0.07f)),
+                                            EntropyBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.46f, 0.34f, 0.35f));
 
         public static List<PawnColumnDef> combatPreset = [],
                                           workTabPlusPreset = [],

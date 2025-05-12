@@ -5,15 +5,10 @@
     using UnityEngine;
     using Verse;
 
-    [StaticConstructorOnStartup]
     //mostly from Koisama
     public class PawnColumnWorker_Skill : PawnColumnWorker
     {
 
-        private static readonly Texture2D passionMinorIcon = ContentFinder<Texture2D>.Get("UI/Icons/PassionMinor");
-        private static readonly Texture2D passionMajorIcon = ContentFinder<Texture2D>.Get("UI/Icons/PassionMajor");
-        private static readonly Texture2D SkillBarFillTex = SolidColorMaterials.NewSolidColorTexture(new Color(1f, 1f, 1f, 0.25f));
-        private static readonly Texture2D SkillBarBgTex = SolidColorMaterials.NewSolidColorTexture(new Color(1f, 1f, 1f, 0.07f));
         private static readonly Color DisabledSkillColor = new(1f, 1f, 1f, 0.5f);
 
         private static readonly MethodInfo mGetSkillDescription = typeof(SkillUI).GetMethod("GetSkillDescription", BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.InvokeMethod, null, [typeof(SkillRecord)], null);
@@ -34,13 +29,13 @@
             Rect position = new(3f, 3f, 24f, 24f);
             if (skill.passion > Passion.None)
             {
-                Texture2D image = (skill.passion != Passion.Major) ? passionMinorIcon : passionMajorIcon;
+                Texture2D image = (skill.passion != Passion.Major) ? StaticConstructorOnGameStart.PassionMinorIcon : StaticConstructorOnGameStart.PassionMajorIcon;
                 GUI.DrawTexture(position, image);
             }
             if (!skill.TotallyDisabled)
             {
                 Rect rect3 = new(position.xMax, 0f, rect.width - position.xMax, rect.height);
-                Widgets.FillableBar(rect3, skill.Level / 20f, SkillBarFillTex, SkillBarBgTex, false);
+                Widgets.FillableBar(rect3, skill.Level / 20f, StaticConstructorOnGameStart.SkillBarFillTex, StaticConstructorOnGameStart.SkillBarBgTex, false);
             }
             Rect rect4 = new(position.xMax + 4f, 0f, 999f, rect.height);
             rect4.yMin += 3f;
