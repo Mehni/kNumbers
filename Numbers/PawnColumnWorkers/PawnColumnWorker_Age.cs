@@ -3,9 +3,13 @@
     using System;
     using RimWorld;
     using Verse;
+    using UnityEngine;
 
     public class PawnColumnWorker_Age : PawnColumnWorker_Text
     {
+        
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         protected override string GetTextFor(Pawn pawn)
             => Math.Round(pawn.ageTracker.AgeBiologicalYearsFloat, 2).ToString("0.00");
 

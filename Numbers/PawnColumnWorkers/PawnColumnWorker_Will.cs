@@ -1,10 +1,13 @@
 ﻿using RimWorld;
 using Verse;
+using UnityEngine;
 
 namespace Numbers
 {
     public class PawnColumnWorker_Will : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         protected override string GetTextFor(Pawn pawn)
             => pawn.guest.will.ToString("F1");
 

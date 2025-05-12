@@ -2,10 +2,13 @@
 {
     using RimWorld;
     using Verse;
+    using UnityEngine;
 
     //todo: probably better with icons to hover over for a tooltip or smth
     public class PawnColumnWorker_GenesRegrowTime : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         private int GetTicksRemaining(Pawn pawn)
         {
             var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.XenogermReplicating);

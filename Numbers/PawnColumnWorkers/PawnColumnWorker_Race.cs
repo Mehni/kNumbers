@@ -11,6 +11,8 @@
     {
         private readonly Dictionary<PawnTableDef, float> widthsTables = WorldComponent_Numbers.PrimaryFilter.Keys.ToDictionary(x => x, x => 0f);
 
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         protected override string GetTextFor(Pawn pawn)
         {
             string text = pawn.kindDef.race.LabelCap.Resolve() ?? string.Empty;

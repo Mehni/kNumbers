@@ -6,6 +6,8 @@
 
     public class PawnColumnWorker_PrisonerResistance : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         protected override string GetTextFor(Pawn pawn)
         {
             return pawn.guest.Resistance.ToString("F1");

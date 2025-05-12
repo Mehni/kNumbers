@@ -2,9 +2,12 @@
 {
     using RimWorld;
     using Verse;
+    using UnityEngine;
 
     public class PawnColumnWorker_PsylinkLevel : PawnColumnWorker_Text
     {
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
+        
         protected override string GetTextFor(Pawn pawn)
             => (pawn.psychicEntropy?.Psylink?.level ?? 0).ToString();
 
