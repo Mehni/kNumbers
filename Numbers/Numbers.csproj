@@ -11,8 +11,8 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4085" />
-		<PackageReference Include="Lib.Harmony" Version="2.3.3">
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4409" />
+		<PackageReference Include="Lib.Harmony" Version="2.3.6">
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 	</ItemGroup>
