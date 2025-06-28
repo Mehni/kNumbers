@@ -10,7 +10,7 @@
 
         protected override string GetTextFor(Pawn pawn) => pawn.AnimalOrWildMan() ? GetValue(pawn).ToStringPercent() : string.Empty;
 
-        private float GetValue(Pawn pawn) => pawn.AnimalOrWildMan() ? TameChanceFactorCurve_Wildness.Evaluate(pawn.RaceProps.wildness) : 0;
+        private float GetValue(Pawn pawn) => pawn.AnimalOrWildMan() ? TameChanceFactorCurve_Wildness.Evaluate(pawn.GetStatValue(StatDefOf.Wildness)) : 0;
 
 
 #if DEBUG
