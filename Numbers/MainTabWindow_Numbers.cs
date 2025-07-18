@@ -264,9 +264,34 @@
                            .Where(s => s.stat != null && s.ShouldDisplay() && s.stat.Worker != null)
                            .Select(s => s.stat);
 
+            // Some stats are flaky and disappear between game/save loads, before gear is initialized
+            // or if pawn is not wearing required gear. Force add those stats. Missing DLC is also handled
+            string[] flakyStatNames =
+            [
+                "EatingSpeed",
+                "ForagedNutritionPerDay",
+                "VacuumResistance",
+                "ToxicEnvironmentResistance"
+            ];
+
+            var flakyStats = flakyStatNames
+                .Select(name =>
+                {
+                    var stat = DefDatabase<StatDef>.GetNamedSilentFail(name);
+                    if (stat == null)
+                        Log.Message($"[Numbers] Stat not found: {name}. DLC might be inactive. If this is an error, report the author");
+                    return stat;
+                })
+                .Where(stat => stat != null);
+
+            var combinedStats = pawnHumanlikeStatDef
+                .Concat(flakyStats)
+                .GroupBy(stat => stat.defName)
+                .Select(g => g.First());
+
             tmpPawn.Destroy(DestroyMode.KillFinalize);
 
-            return [.. pawnHumanlikeStatDef.OrderBy(stat => stat.LabelCap.Resolve())];
+            return [.. combinedStats.OrderBy(stat => stat.LabelCap.Resolve())];
         }
     }
 }
