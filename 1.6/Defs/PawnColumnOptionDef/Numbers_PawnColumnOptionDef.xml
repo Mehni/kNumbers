@@ -27,6 +27,7 @@
             <li>Numbers_Endogenes</li>
             <li>Numbers_GenesRegrowTime</li>
             <li>Numbers_FoodConsumption</li>
+            <li MayRequire="Ludeon.RimWorld.Ideology">Numbers_IdeologyCertainty</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 

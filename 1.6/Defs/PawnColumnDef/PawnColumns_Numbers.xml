@@ -371,4 +371,12 @@
     <width>50</width>
   </PawnColumnDef>
 
+  <PawnColumnDef>
+    <defName>Numbers_IdeologyCertainty</defName>
+    <label>Ideology Certainty</label>
+    <width>80</width>
+    <workerClass>Numbers.PawnColumnWorker_IdeologyCertainty</workerClass>
+    <sortable>true</sortable>
+  </PawnColumnDef>
+
 </Defs>
