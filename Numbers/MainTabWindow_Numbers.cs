@@ -287,7 +287,7 @@
                 {
                     var stat = DefDatabase<StatDef>.GetNamedSilentFail(name);
                     if (stat == null)
-                        Log.Message($"[Numbers] Stat not found: {name}. DLC might be inactive. If this is an error, report the author");
+                        Log.Message($"[Numbers] Stat not found: {name}. DLC might be inactive. If this is an error, report to the author");
                     return stat;
                 })
                 .Where(stat => stat != null);
