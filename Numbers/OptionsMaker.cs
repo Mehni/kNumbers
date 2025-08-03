@@ -73,8 +73,19 @@
             yield return new FloatMenuOption("Gender", () => AddPawnColumnAtBestPositionAndRefresh(DefDatabase<PawnColumnDef>.GetNamedSilentFail("Gender")));
         }
 
+        public List<FloatMenuOption> FloatMenuOptionsFor(IEnumerable<PawnColumnDef> pcdList, Func<PawnColumnDef, string> labelOverride)
+            => pcdList.Select(pcd => new FloatMenuOption(labelOverride(pcd), () => AddPawnColumnAtBestPositionAndRefresh(pcd))).ToList();
+
         public List<FloatMenuOption> FloatMenuOptionsFor(IEnumerable<PawnColumnDef> pcdList)
-            => pcdList.Select(pcd => new FloatMenuOption(GetBestLabelForPawnColumn(pcd), () => AddPawnColumnAtBestPositionAndRefresh(pcd))).ToList();
+            => pcdList
+                .Where(pcd => pcd != null)
+                .Select(pcd =>
+                {
+                    string label = GetBestLabelForPawnColumn(pcd);
+                    return new FloatMenuOption(label, () => AddPawnColumnAtBestPositionAndRefresh(pcd));
+                })
+                .OrderBy(option => option.Label)
+                .ToList();
 
         public List<FloatMenuOption> OtherOptionsMaker()
         {
@@ -140,7 +151,7 @@
         {
             List<FloatMenuOption> list = [];
 
-            foreach (var defCurrent in listOfDefs)
+            foreach (var defCurrent in listOfDefs.OrderBy(d => d.LabelCap.Resolve()))
             {
                 void Action()
                 {

@@ -1,11 +1,11 @@
 ﻿namespace Numbers
 {
+    using RimWorld;
+    using RimWorld.Planet;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using RimWorld;
-    using RimWorld.Planet;
     using UnityEngine;
     using Verse;
 
@@ -128,7 +128,15 @@
             //worktypes
             if (PawnTableDef == NumbersDefOf.Numbers_MainTable)
             {
-                DoButton(workTabName, optionsMaker.FloatMenuOptionsFor(DefDatabase<PawnColumnDef>.AllDefsListForReading.Where(pcd => pcd.workType != null).Reverse()), ref x);
+                var workColumns = DefDatabase<PawnColumnDef>.AllDefsListForReading
+                    .Where(pcd => pcd.workType != null)
+                    .OrderBy(pcd => pcd.workType.labelShort.CapitalizeFirst());
+
+                DoButton(workTabName,
+                    optionsMaker.FloatMenuOptionsFor(
+                        workColumns,
+                        labelOverride: pcd => pcd.workType.labelShort.CapitalizeFirst()),
+                    ref x);
             }
 
             //skills
