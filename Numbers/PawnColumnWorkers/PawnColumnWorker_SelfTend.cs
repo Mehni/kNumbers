@@ -1,6 +1,8 @@
 ﻿namespace Numbers
 {
     using RimWorld;
+    using System;
+    using Unity.Burst.Intrinsics;
     using UnityEngine;
     using Verse;
 
@@ -15,8 +17,48 @@
 
         protected override void SetValue(Pawn pawn, bool value, PawnTable table)
         {
-            if (value && pawn.workSettings.GetPriority(WorkTypeDefOf.Doctor) == 0)
-                Messages.Message("MessageSelfTendUnsatisfied".Translate(pawn.LabelShort, pawn), MessageTypeDefOf.CautionInput, false);
+            if (pawn.workSettings != null)
+            {
+                if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
+                {
+                    if (value)
+                    {
+                        Messages.Message(
+                            "IncapableOfWorkType".Translate(pawn.LabelShort, WorkTypeDefOf.Doctor.labelShort),
+                            pawn,
+                            MessageTypeDefOf.RejectInput
+                        );
+                    }
+                    // Skip setting self-tend if incapable
+                    return;
+                }
+
+                int priority;
+                try
+                {
+                    priority = pawn.workSettings.GetPriority(WorkTypeDefOf.Doctor);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    // Work priorities may be uninitialized (e.g., newly joined pawn) or corrupt
+                    Messages.Message(
+                        "Cannot enable self tend because work priorities are uninitialized or corrupt for the pawn.",
+                        pawn,
+                        MessageTypeDefOf.CautionInput,
+                        false
+                    );
+                    return;
+                }
+
+                if (value && priority == 0)
+                {
+                    Messages.Message(
+                        "MessageSelfTendUnsatisfied".Translate(pawn.LabelShort, pawn),
+                        MessageTypeDefOf.CautionInput,
+                        false
+                    );
+                }
+            }
 
             pawn.playerSettings.selfTend = value;
         }
