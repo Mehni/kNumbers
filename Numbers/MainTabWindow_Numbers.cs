@@ -194,6 +194,22 @@
                 Find.WindowStack.Add(new FloatMenu(optionsMaker.PresetOptionsMaker()));
             }
 
+            // Auto Slaughter Button (only for Animals)
+
+            if (PawnTableDef == NumbersDefOf.Numbers_Animals && Find.CurrentMap != null)
+            { 
+                // Magic Numbers Incoming
+                float buttonWidth = 200f;
+                float xOffset = 1f;  // smaller = move further left
+                float yOffset = 68f;  // smaller = move higher up
+
+                Rect autoSlaughterBtn = new Rect(rect.x + xOffset, rect.y + yOffset, buttonWidth, buttonHeight);
+                if (Widgets.ButtonText(autoSlaughterBtn, "ManageAutoSlaughter".Translate()))
+                {
+                    Find.WindowStack.Add(new Dialog_AutoSlaughter(Find.CurrentMap));
+                }
+            }
+            
             base.DoWindowContents(rect);
         }
 
