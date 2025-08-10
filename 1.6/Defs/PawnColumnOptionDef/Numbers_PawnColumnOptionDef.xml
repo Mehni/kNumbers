@@ -29,6 +29,7 @@
             <li>Numbers_FoodConsumption</li>
             <li MayRequire="Ludeon.RimWorld.Ideology">Numbers_IdeologyCertainty</li>
             <li>Numbers_ToxicBuildup</li>
+            <li>Numbers_CaravanCarryingCapacity</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 

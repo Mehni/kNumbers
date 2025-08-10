@@ -387,4 +387,12 @@
     <sortable>true</sortable>
   </PawnColumnDef>
 
+  <PawnColumnDef>
+    <defName>Numbers_CaravanCarryingCapacity</defName>
+    <label>Caravan Carrying Capacity</label>
+    <workerClass>Numbers.PawnColumnWorker_CaravanCarryingCapacity</workerClass>
+    <width>80</width>
+    <sortable>true</sortable>
+  </PawnColumnDef>
+
 </Defs>
