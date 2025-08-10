@@ -379,4 +379,12 @@
     <sortable>true</sortable>
   </PawnColumnDef>
 
+  <PawnColumnDef>
+    <defName>Numbers_ToxicBuildup</defName>
+    <label>Toxic Buildup</label>
+    <workerClass>Numbers.PawnColumnWorker_ToxicBuildUp</workerClass>
+    <width>50</width>
+    <sortable>true</sortable>
+  </PawnColumnDef>
+
 </Defs>

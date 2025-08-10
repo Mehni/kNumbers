@@ -210,6 +210,5 @@
     <headerIcon>UI/Icons/Ideo/Certainty</headerIcon>
     <workerClass>Numbers.PawnColumnWorker_IdeoCertainty</workerClass>
     <sortable>true</sortable>
-</PawnColumnDef>
-
+  </PawnColumnDef>
 </Defs>
