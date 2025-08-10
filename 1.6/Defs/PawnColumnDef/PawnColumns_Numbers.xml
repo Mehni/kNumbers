@@ -395,4 +395,11 @@
     <sortable>true</sortable>
   </PawnColumnDef>
 
+  <PawnColumnDef>
+    <defName>Numbers_ExtractSkull</defName>
+    <workerClass>Numbers.PawnColumnWorker_ExtractSkull</workerClass>
+    <sortable>true</sortable>
+    <label>Extract skull</label>
+    <paintable>true</paintable>
+  </PawnColumnDef>
 </Defs>

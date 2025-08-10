@@ -26,7 +26,7 @@ namespace Numbers
         {
             if (pawn == null)
                 return null;
-            return "CarryingCapacityTip".Translate();
+            return "Amount of mass that can be carried in caravan. It is not same as carrying capacity.";
         }
     }
 }

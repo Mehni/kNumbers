@@ -90,6 +90,7 @@
         <options>
             <li>Numbers_Forbidden</li>
             <li>Numbers_LeatherType</li>
+            <li>Numbers_ExtractSkull</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 
