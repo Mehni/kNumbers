@@ -175,11 +175,12 @@
 
             //abilities btn
             var abilities = optionsMaker.OptionsMakerForGenericDef(DefDatabase<AbilityDef>.AllDefsListForReading.OrderBy(y => y.label));
-            if (abilities.Count > 0)
+            if (abilities.Count > 0 && 
+                PawnTableDef != NumbersDefOf.Numbers_Animals && PawnTableDef != NumbersDefOf.Numbers_WildAnimals &&
+                PawnTableDef != NumbersDefOf.Numbers_AnimalCorpses && PawnTableDef != NumbersDefOf.Numbers_Corpses)
             {
                 DoButton("Abilities".Translate(), abilities, ref x);
             }
-
             //records btn
             DoButton("TabRecords".Translate(), optionsMaker.OptionsMakerForGenericDef(DefDatabase<RecordDef>.AllDefsListForReading), ref x);
 
