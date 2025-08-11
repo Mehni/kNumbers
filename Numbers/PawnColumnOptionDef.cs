@@ -19,6 +19,7 @@
         public static PawnColumnOptionDef MainTable;
         public static PawnColumnOptionDef WildAnimals;
         public static PawnColumnOptionDef DeadThings;
+        public static PawnColumnOptionDef WildMen;
 
         public PawnColumnOptionDefOf()
         {

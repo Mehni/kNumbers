@@ -96,7 +96,8 @@
                         NumbersDefOf.Numbers_Prisoners,
                         NumbersDefOf.Numbers_Enemies,
                         NumbersDefOf.Numbers_Corpses,
-                        NumbersDefOf.Numbers_Guests
+                        NumbersDefOf.Numbers_Guests,
+                        NumbersDefOf.Numbers_WildMen
                       }.Contains(PawnTable))
             {
                 list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.EquipmentBearers.options));
@@ -138,6 +139,18 @@
                     .Where(x => pcdValidator(x))));
             }
 
+            if (PawnTable == NumbersDefOf.Numbers_WildMen)
+            {
+                // Add Wild Animals Options to Wildmen Table
+                list.RemoveAll(x => x.Label == "Gender"); //duplicate
+                list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.WildAnimals.options
+                    .Concat(DefDatabase<PawnTableDef>.GetNamed("Wildlife").columns)
+                    .Where(x => pcdValidator(x))));
+                //list.AddRange(FloatMenuOptionsFor(PawnColumnOptionDefOf.WildMen.options
+                //    .Concat(DefDatabase<PawnTableDef>.GetNamed("WildMen").columns)
+                //    .Where(x => pcdValidator(x))));
+            }
+
             //all dead things
             if (new[] { NumbersDefOf.Numbers_AnimalCorpses, NumbersDefOf.Numbers_Corpses }.Contains(PawnTable))
             {
@@ -170,6 +183,9 @@
             List<FloatMenuOption> list = [];
             foreach (KeyValuePair<PawnTableDef, Func<Pawn, bool>> filter in WorldComponent_Numbers.PrimaryFilter)
             {
+                // Skip WildMen table if the user has disabled it
+                if (filter.Key == NumbersDefOf.Numbers_WildMen && !Numbers_Settings.showWildMenTable)
+                    continue;
                 void Action()
                 {
                     if (filter.Value != MainTabWindow_Numbers.filterValidator.First())

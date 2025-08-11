@@ -275,4 +275,25 @@
     </modExtensions>
   </PawnTableDef>
 
+  <PawnTableDef>
+    <defName>Numbers_WildMen</defName>
+    <label>Wild Men</label>
+    <workerClass>Numbers.PawnTable_NumbersMain</workerClass>
+    <columns>
+      <li>LabelWithIcon</li>
+      <li>Gender</li>
+      <li>Hunt</li>
+      <li>Tame</li>
+      <li>GapTiny</li>
+      <li>ManhunterOnDamageChance</li>
+      <li>ManhunterOnTameFailChance</li>
+      <li>Numbers_Traits</li>
+      <li>Info</li>
+    </columns>
+    <modExtensions>
+      <li Class="Numbers.DefModExtension_PawnTableDefs">
+        <Humanlike>true</Humanlike>
+      </li>
+    </modExtensions>
+  </PawnTableDef>
 </Defs>

@@ -2,12 +2,15 @@
 <Defs>
 
     <Numbers.PawnColumnOptionDef>
+    <!-- These options are added to MainTable, Prisoners, Enemies, Corpses, Guests and WildMen  -->
         <defName>EquipmentBearers</defName>
         <options>
             <li>Numbers_Equipment</li>
             <li>Numbers_Meditation</li>
             <li>Numbers_Traits</li>
             <li>Numbers_Strip</li>
+            <li>Numbers_Ideology</li>
+            <li MayRequire="Ludeon.RimWorld.Ideology">Numbers_IdeologyCertainty</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 
@@ -21,13 +24,11 @@
             <li>Numbers_HediffList</li>
             <li>Numbers_HediffBadList</li>
             <li>Numbers_InventoryDropAll</li>
-            <li>Numbers_Ideology</li>
             <li>Numbers_Xenogenes</li>
             <li MayRequire="Ludeon.RimWorld.Biotech">Xenotype</li>
             <li>Numbers_Endogenes</li>
             <li>Numbers_GenesRegrowTime</li>
             <li>Numbers_FoodConsumption</li>
-            <li MayRequire="Ludeon.RimWorld.Ideology">Numbers_IdeologyCertainty</li>
             <li>Numbers_ToxicBuildup</li>
             <li>Numbers_CaravanCarryingCapacity</li>
         </options>
@@ -94,5 +95,11 @@
         </options>
     </Numbers.PawnColumnOptionDef>
 
-
+    <Numbers.PawnColumnOptionDef>
+        <defName>WildMen</defName>
+        <options>
+        <!-- All options from WildAnimals are already added.  -->
+        <!-- This is just a placeholder. I will add it if necessary.  -->
+        </options>
+    </Numbers.PawnColumnOptionDef>
 </Defs>
