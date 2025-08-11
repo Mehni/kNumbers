@@ -119,7 +119,10 @@
             psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Numbers_Psyfocus"));
             psycastingPreset.Add(DefDatabase<PawnColumnDef>.GetNamed("Numbers_Entropy"));
             psycastingPreset.AddRange(
-                DefDatabase<PawnColumnDef>.AllDefsListForReading.Where(pcd => pcd.Ext(logError: false)?.ability != null).ToList()
+                DefDatabase<PawnColumnDef>.AllDefsListForReading.Where(pcd =>
+                    pcd.Ext(logError: false)?.ability != null &&
+                    typeof(Psycast).IsAssignableFrom(pcd.Ext(logError: false).ability.abilityClass))
+                    .ToList()
                     .OrderBy(x => x.Ext().ability.level)
                     .ThenBy(x => x.Ext().ability.PsyfocusCost)
                     .ThenBy(x => x.Ext().ability.EntropyGain)

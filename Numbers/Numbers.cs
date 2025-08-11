@@ -459,7 +459,7 @@
             listingStandard.SliderLabeled("Numbers_maxTableHeight".Translate(), ref Numbers_Settings.maxHeight, Numbers_Settings.maxHeight.ToStringPercent(), 0.3f);
             listingStandard.End();
 
-            DrawResetButton(inRect);
+            if (Current.ProgramState == ProgramState.Playing) DrawResetButton(inRect);
 
             DrawStoredTables(inRect);
 
