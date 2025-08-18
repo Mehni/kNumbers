@@ -1,7 +1,9 @@
 ﻿namespace Numbers
 {
-    using System.Linq;
     using RimWorld;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using UnityEngine;
     using Verse;
 
@@ -9,22 +11,40 @@
     {
         protected override string GetTextFor(Pawn pawn)
         {
-            if (pawn.jobs?.jobQueue.Any() ?? false)
-            {
-                string text = pawn.jobs.jobQueue[0].job.GetReport(pawn).CapitalizeFirst();
+            var jobs = GetJobs(pawn);
+            if (jobs.Count == 0) return null;
 
-                GenText.SetTextSizeToFit(text, new Rect(0f, 0f, Mathf.CeilToInt(Text.CalcSize(def.LabelCap).x), GetMinCellHeight(pawn)));
+            string text = jobs[0];
+            GenText.SetTextSizeToFit(text, new Rect(0f, 0f, Mathf.CeilToInt(Text.CalcSize(def.LabelCap).x), GetMinCellHeight(pawn)));
 
-                return text;
-            }
-            return null;
+            return text;
         }
 
         public override int Compare(Pawn a, Pawn b)
             => (a.jobs?.jobQueue?.Count ?? 0).CompareTo(b.jobs?.jobQueue?.Count ?? 0);
 
         protected override string GetTip(Pawn pawn)
-            => pawn.jobs?.jobQueue?.Count.ToString();
+        {
+            var jobs = GetJobs(pawn);
+            if (jobs.Count == 0) return null;
+
+            var sb = new StringBuilder();
+            int width = jobs.Count.ToString().Length;
+            for (int i = 0; i < jobs.Count; i++) sb.AppendLine($"{(i + 1).ToString().PadLeft(width)}. {jobs[i]}");
+
+            return sb.ToString().TrimEnd();
+        }
+
+        private List<string> GetJobs(Pawn pawn)
+        {
+            var result = new List<string>();
+            if (pawn.jobs?.jobQueue.Any() ?? false)
+            {
+                // queued jobs
+                foreach (var queued in pawn.jobs.jobQueue) result.Add(queued.job.GetReport(pawn).CapitalizeFirst());
+            }
+            return result;
+        }
 
         public override int GetMinWidth(PawnTable table)
             => Mathf.Max(base.GetMinWidth(table), 200);
