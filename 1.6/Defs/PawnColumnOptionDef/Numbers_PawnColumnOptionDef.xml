@@ -11,6 +11,7 @@
             <li>Numbers_Strip</li>
             <li>Numbers_Ideology</li>
             <li MayRequire="Ludeon.RimWorld.Ideology">Numbers_IdeologyCertainty</li>
+            <li>Numbers_Recruitable</li>
         </options>
     </Numbers.PawnColumnOptionDef>
 
@@ -42,7 +43,6 @@
             <li>FoodRestriction</li>
             <li>Numbers_Inventory</li>
             <li>Numbers_Guilt</li>
-            <li>Numbers_Recruitable</li>
             <li MayRequire="Ludeon.RimWorld.Ideology">Numbers_Will</li>
         </options>
     </Numbers.PawnColumnOptionDef>
