@@ -1,11 +1,12 @@
-﻿namespace Numbers
+﻿using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using UnityEngine;
+using Verse;
+
+namespace Numbers
 {
-    using RimWorld;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using UnityEngine;
-    using Verse;
 
     public class PawnColumnWorker_JobQueued : PawnColumnWorker_Text
     {

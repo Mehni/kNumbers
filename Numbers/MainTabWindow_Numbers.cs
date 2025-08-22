@@ -1,14 +1,14 @@
-﻿namespace Numbers
-{
-    using RimWorld;
-    using RimWorld.Planet;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using UnityEngine;
-    using Verse;
+﻿using RimWorld;
+using RimWorld.Planet;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using UnityEngine;
+using Verse;
 
+namespace Numbers
+{
     public class MainTabWindow_Numbers : MainTabWindow_PawnTable
     {
         public const float buttonWidth = 110f;
