@@ -8,20 +8,20 @@ namespace Numbers
         protected override string GetTextFor(Pawn pawn)
         {
             float? certainty = pawn.ideo?.Certainty;
-            return certainty is float value && value >= 0f
-                ? $"{value * 100f:F0}%"
-                : "-";
+            return certainty is float value && value >= 0f ? $"{value * 100f:F0}%" : "-";
         }
 
         protected override string GetTip(Pawn pawn)
         {
-            string ideoName = pawn.ideo?.Ideo?.name ?? "None";
+            Ideo ideo = pawn.ideo?.Ideo;
             string certainty = GetTextFor(pawn);
-            return $"Certainty in {ideoName}: {certainty}";
+
+            NamedArgument ideoArg = ideo != null ? ideo.Named("IDEO") : "None".Named("IDEO");
+
+            return "CertaintyInIdeo".Translate(pawn.Named("PAWN"), ideoArg) + $": {certainty}";
         }
 
-        protected override string GetHeaderTip(PawnTable table)
-            => "The Certainty of Pawn in Ideology.";
+        protected override string GetHeaderTip(PawnTable table) => "Certainty".Translate();
 
         public override int Compare(Pawn a, Pawn b)
         {
