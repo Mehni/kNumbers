@@ -19,20 +19,6 @@
         {
             if (pawn.workSettings != null)
             {
-                if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
-                {
-                    if (value)
-                    {
-                        Messages.Message(
-                            "IncapableOfWorkType".Translate(pawn.LabelShort, WorkTypeDefOf.Doctor.labelShort),
-                            pawn,
-                            MessageTypeDefOf.RejectInput
-                        );
-                    }
-                    // Skip setting self-tend if incapable
-                    return;
-                }
-
                 int priority;
                 try
                 {
@@ -65,7 +51,7 @@
 
         protected override string GetHeaderTip(PawnTable table) => "SelfTend".Translate() + "\n\n" + "Numbers_ColumnHeader_Tooltip".Translate();
 
-        protected override string GetTip(Pawn pawn) => "SelfTendTip".Translate(Faction.OfPlayer.def.pawnsPlural, TendUtility.SelfTendQualityFactor.ToStringPercent()).CapitalizeFirst();
+        protected override string GetTip(Pawn pawn) => "AllowSelfTendTip".Translate(Faction.OfPlayer.def.pawnsPlural, TendUtility.SelfTendQualityFactor.ToStringPercent()).CapitalizeFirst();
 
         public override void DoHeader(Rect rect, PawnTable table)
         {
