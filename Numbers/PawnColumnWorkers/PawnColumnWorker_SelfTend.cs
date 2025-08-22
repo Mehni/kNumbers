@@ -1,11 +1,10 @@
-﻿namespace Numbers
-{
-    using RimWorld;
-    using System;
-    using Unity.Burst.Intrinsics;
-    using UnityEngine;
-    using Verse;
+﻿using RimWorld;
+using System;
+using UnityEngine;
+using Verse;
 
+namespace Numbers
+{
     public class PawnColumnWorker_SelfTend : PawnColumnWorker_Checkbox
     {
         public static float IconPositionVertical = 35f;
