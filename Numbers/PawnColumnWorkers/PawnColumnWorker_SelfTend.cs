@@ -1,9 +1,10 @@
-﻿namespace Numbers
-{
-    using RimWorld;
-    using UnityEngine;
-    using Verse;
+﻿using RimWorld;
+using System;
+using UnityEngine;
+using Verse;
 
+namespace Numbers
+{
     public class PawnColumnWorker_SelfTend : PawnColumnWorker_Checkbox
     {
         public static float IconPositionVertical = 35f;
@@ -15,15 +16,41 @@
 
         protected override void SetValue(Pawn pawn, bool value, PawnTable table)
         {
-            if (value && pawn.workSettings.GetPriority(WorkTypeDefOf.Doctor) == 0)
-                Messages.Message("MessageSelfTendUnsatisfied".Translate(pawn.LabelShort, pawn), MessageTypeDefOf.CautionInput, false);
+            if (pawn.workSettings != null)
+            {
+                int priority;
+                try
+                {
+                    priority = pawn.workSettings.GetPriority(WorkTypeDefOf.Doctor);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    // Work priorities may be uninitialized (e.g., newly joined pawn) or corrupt
+                    Messages.Message(
+                        "Cannot enable self tend because work priorities are uninitialized or corrupt for the pawn.",
+                        pawn,
+                        MessageTypeDefOf.CautionInput,
+                        false
+                    );
+                    return;
+                }
+
+                if (value && priority == 0)
+                {
+                    Messages.Message(
+                        "MessageSelfTendUnsatisfied".Translate(pawn.LabelShort, pawn),
+                        MessageTypeDefOf.CautionInput,
+                        false
+                    );
+                }
+            }
 
             pawn.playerSettings.selfTend = value;
         }
 
         protected override string GetHeaderTip(PawnTable table) => "SelfTend".Translate() + "\n\n" + "Numbers_ColumnHeader_Tooltip".Translate();
 
-        protected override string GetTip(Pawn pawn) => "SelfTendTip".Translate(Faction.OfPlayer.def.pawnsPlural, TendUtility.SelfTendQualityFactor.ToStringPercent()).CapitalizeFirst();
+        protected override string GetTip(Pawn pawn) => "AllowSelfTendTip".Translate(Faction.OfPlayer.def.pawnsPlural, TendUtility.SelfTendQualityFactor.ToStringPercent()).CapitalizeFirst();
 
         public override void DoHeader(Rect rect, PawnTable table)
         {

@@ -203,4 +203,12 @@
     <label>Faction</label>
   </PawnColumnDef>
 
+  <PawnColumnDef>
+    <defName>IdeoligionCertainty</defName>
+    <label>Certainty</label>
+    <width>80</width>
+    <headerIcon>UI/Icons/Ideo/Certainty</headerIcon>
+    <workerClass>Numbers.PawnColumnWorker_IdeoCertainty</workerClass>
+    <sortable>true</sortable>
+  </PawnColumnDef>
 </Defs>

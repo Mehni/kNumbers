@@ -13,9 +13,9 @@
         {
         }
 
-        public override void FinalizeInit()
+        public override void FinalizeInit(bool fromLoad)
         {
-            base.FinalizeInit();
+            base.FinalizeInit(fromLoad);
             primaryFilter = PrimaryFilter.First();
 
             if (!sessionTable.Any())
@@ -77,7 +77,8 @@
             { NumbersDefOf.Numbers_Animals,        pawn => !pawn.Dead && pawn.IsVisible() && pawn.IsAnimal() && pawn.Faction == Faction.OfPlayer },
             { NumbersDefOf.Numbers_WildAnimals,    pawn => !pawn.Dead && pawn.IsVisible() && pawn.IsWildAnimal() },
             { NumbersDefOf.Numbers_Corpses,        pawn => pawn.Dead && pawn.IsVisible() && !pawn.IsAnimal() },
-            { NumbersDefOf.Numbers_AnimalCorpses,  pawn => pawn.Dead && pawn.IsVisible() && pawn.IsAnimal() }
+            { NumbersDefOf.Numbers_AnimalCorpses,  pawn => pawn.Dead && pawn.IsVisible() && pawn.IsAnimal() },
+            { NumbersDefOf.Numbers_WildMen,        pawn => !pawn.Dead && pawn.IsVisible() && pawn.IsWildMan() }
         };
 
         internal void NotifySettingsChanged()

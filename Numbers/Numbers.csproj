@@ -7,12 +7,12 @@
 		<FileVersion>1.1.0.0</FileVersion>
 		<DebugType>none</DebugType>
 		<LangVersion>latest</LangVersion>
-		<OutputPath>..\1.5\Assemblies\</OutputPath>
+		<OutputPath>..\1.6\Assemblies\</OutputPath>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4085" />
-		<PackageReference Include="Lib.Harmony" Version="2.3.3">
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4502-beta" />
+		<PackageReference Include="Lib.Harmony" Version="2.3.6">
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 	</ItemGroup>

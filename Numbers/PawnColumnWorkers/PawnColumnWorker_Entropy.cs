@@ -4,11 +4,8 @@
     using UnityEngine;
     using Verse;
 
-    [StaticConstructorOnStartup]
     public class PawnColumnWorker_Entropy : PawnColumnWorker
     {
-        private static readonly Texture2D EntropyBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.46f, 0.34f, 0.35f));
-
         //mostly from PawnColumnWorker_Need
 
         public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
@@ -30,7 +27,7 @@
             Rect rect3 = new(rect.x, rect.y + rect.height / 2f, rect.width, rect.height / 2f);
             rect3 = new Rect(rect3.x + barWidth, rect3.y, rect3.width - barWidth * 2f, rect3.height - barHeight);
 
-            Widgets.FillableBar(rect3, curEntropyLevel, EntropyBarTex);
+            Widgets.FillableBar(rect3, curEntropyLevel, StaticConstructorOnGameStart.EntropyBarTex);
 
             Text.Font = GameFont.Small;
         }

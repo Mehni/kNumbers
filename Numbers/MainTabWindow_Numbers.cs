@@ -1,14 +1,14 @@
-﻿namespace Numbers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using RimWorld;
-    using RimWorld.Planet;
-    using UnityEngine;
-    using Verse;
+﻿using RimWorld;
+using RimWorld.Planet;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using UnityEngine;
+using Verse;
 
+namespace Numbers
+{
     public class MainTabWindow_Numbers : MainTabWindow_PawnTable
     {
         public const float buttonWidth = 110f;
@@ -128,7 +128,15 @@
             //worktypes
             if (PawnTableDef == NumbersDefOf.Numbers_MainTable)
             {
-                DoButton(workTabName, optionsMaker.FloatMenuOptionsFor(DefDatabase<PawnColumnDef>.AllDefsListForReading.Where(pcd => pcd.workType != null).Reverse()), ref x);
+                var workColumns = DefDatabase<PawnColumnDef>.AllDefsListForReading
+                    .Where(pcd => pcd.workType != null)
+                    .OrderBy(pcd => pcd.workType.labelShort.CapitalizeFirst());
+
+                DoButton(workTabName,
+                    optionsMaker.FloatMenuOptionsFor(
+                        workColumns,
+                        labelOverride: pcd => pcd.workType.labelShort.CapitalizeFirst()),
+                    ref x);
             }
 
             //skills
@@ -167,11 +175,12 @@
 
             //abilities btn
             var abilities = optionsMaker.OptionsMakerForGenericDef(DefDatabase<AbilityDef>.AllDefsListForReading.OrderBy(y => y.label));
-            if (abilities.Count > 0)
+            if (abilities.Count > 0 && 
+                PawnTableDef != NumbersDefOf.Numbers_Animals && PawnTableDef != NumbersDefOf.Numbers_WildAnimals &&
+                PawnTableDef != NumbersDefOf.Numbers_AnimalCorpses && PawnTableDef != NumbersDefOf.Numbers_Corpses)
             {
                 DoButton("Abilities".Translate(), abilities, ref x);
             }
-
             //records btn
             DoButton("TabRecords".Translate(), optionsMaker.OptionsMakerForGenericDef(DefDatabase<RecordDef>.AllDefsListForReading), ref x);
 
@@ -186,6 +195,22 @@
                 Find.WindowStack.Add(new FloatMenu(optionsMaker.PresetOptionsMaker()));
             }
 
+            // Auto Slaughter Button (only for Animals)
+
+            if (PawnTableDef == NumbersDefOf.Numbers_Animals && Find.CurrentMap != null)
+            { 
+                // Magic Numbers Incoming
+                float buttonWidth = 200f;
+                float xOffset = 1f;  // smaller = move further left
+                float yOffset = 68f;  // smaller = move higher up
+
+                Rect autoSlaughterBtn = new Rect(rect.x + xOffset, rect.y + yOffset, buttonWidth, buttonHeight);
+                if (Widgets.ButtonText(autoSlaughterBtn, "ManageAutoSlaughter".Translate()))
+                {
+                    Find.WindowStack.Add(new Dialog_AutoSlaughter(Find.CurrentMap));
+                }
+            }
+            
             base.DoWindowContents(rect);
         }
 
@@ -264,9 +289,34 @@
                            .Where(s => s.stat != null && s.ShouldDisplay() && s.stat.Worker != null)
                            .Select(s => s.stat);
 
+            // Some stats are flaky and disappear between game/save loads, before gear is initialized
+            // or if pawn is not wearing required gear. Force add those stats. Missing DLC is also handled
+            string[] flakyStatNames =
+            [
+                "EatingSpeed",
+                "ForagedNutritionPerDay",
+                "VacuumResistance",
+                "ToxicEnvironmentResistance"
+            ];
+
+            var flakyStats = flakyStatNames
+                .Select(name =>
+                {
+                    var stat = DefDatabase<StatDef>.GetNamedSilentFail(name);
+                    if (stat == null)
+                        Log.Message($"[Numbers] Stat not found: {name}. DLC might be inactive. If this is an error, report to the author");
+                    return stat;
+                })
+                .Where(stat => stat != null);
+
+            var combinedStats = pawnHumanlikeStatDef
+                .Concat(flakyStats)
+                .GroupBy(stat => stat.defName)
+                .Select(g => g.First());
+
             tmpPawn.Destroy(DestroyMode.KillFinalize);
 
-            return [.. pawnHumanlikeStatDef.OrderBy(stat => stat.LabelCap.Resolve())];
+            return [.. combinedStats.OrderBy(stat => stat.LabelCap.Resolve())];
         }
     }
 }

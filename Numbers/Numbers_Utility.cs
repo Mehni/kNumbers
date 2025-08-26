@@ -102,5 +102,6 @@
         public static PawnTableDef Numbers_WildAnimals;
         public static PawnTableDef Numbers_Corpses;
         public static PawnTableDef Numbers_AnimalCorpses;
+        public static PawnTableDef Numbers_WildMen;
     }
 }
