@@ -48,7 +48,7 @@ namespace Numbers
             pawn.playerSettings.selfTend = value;
         }
 
-        protected override string GetHeaderTip(PawnTable table) => "SelfTend".Translate() + "\n\n" + "Numbers_ColumnHeader_Tooltip".Translate();
+        protected override string GetHeaderTip(PawnTable table) => "AllowSelfTend".Translate() + "\n\n" + "Numbers_ColumnHeader_Tooltip".Translate();
 
         protected override string GetTip(Pawn pawn) => "AllowSelfTendTip".Translate(Faction.OfPlayer.def.pawnsPlural, TendUtility.SelfTendQualityFactor.ToStringPercent()).CapitalizeFirst();
 
@@ -57,8 +57,8 @@ namespace Numbers
             float scale = 0.3f;
             base.DoHeader(rect, table);
             Vector2 headerIconSize = new Vector2(StaticConstructorOnGameStart.Tame.width, StaticConstructorOnGameStart.Tame.height) * scale;
-            int     num            = (int)((rect.width - headerIconSize.x) * 0.4);
-            Rect    position       = new(rect.x + num + IconPositionHorizontal, rect.yMax - StaticConstructorOnGameStart.Tame.height + IconPositionVertical, headerIconSize.x, headerIconSize.y);
+            int num = (int)((rect.width - headerIconSize.x) * 0.4);
+            Rect position = new(rect.x + num + IconPositionHorizontal, rect.yMax - StaticConstructorOnGameStart.Tame.height + IconPositionVertical, headerIconSize.x, headerIconSize.y);
             GUI.DrawTexture(position, StaticConstructorOnGameStart.Tame);
         }
     }
