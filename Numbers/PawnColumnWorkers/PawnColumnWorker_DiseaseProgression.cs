@@ -154,7 +154,7 @@
             IEnumerable<HediffWithComps> tmplist =
                 pawn.health.hediffSet.hediffs.Where(x => x.Visible && x is HediffWithComps && !x.FullyImmune()).Cast<HediffWithComps>();
 
-            float delta = float.MinValue;
+            float delta = float.MaxValue;
             HediffWithComps mostSevereHediff = null;
 
             foreach (HediffWithComps hediff in tmplist)
@@ -164,7 +164,7 @@
                 if (hediffCompImmunizable == null)
                     continue;
 
-                if (hediffCompImmunizable.Immunity - hediff.Severity > delta)
+                if (hediffCompImmunizable.Immunity - hediff.Severity < delta)
                 {
                     delta = hediffCompImmunizable.Immunity - hediff.Severity;
                     mostSevereHediff = hediff;
